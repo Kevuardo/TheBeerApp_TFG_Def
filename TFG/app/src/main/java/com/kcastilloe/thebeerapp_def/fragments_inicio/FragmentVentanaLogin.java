@@ -18,21 +18,11 @@ import com.kcastilloe.thebeerapp_def.R;
 public class FragmentVentanaLogin extends Fragment {
 
     private static final String TAG = "FragmentVentanaLogin";
-    private Button btnTest1;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ventana_login, container, false);
-        btnTest1 = (Button) view.findViewById(R.id.btnTest1);
-
-        btnTest1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(), "CLICK 1", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         return view;
     }
 }
