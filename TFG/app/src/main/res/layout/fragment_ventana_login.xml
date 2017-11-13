@@ -6,19 +6,19 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivLogo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp"
-        app:srcCompat="@drawable/icono_tba" />
+        app:srcCompat="@drawable/logotexto" />
 
     <EditText
-        android:id="@+id/etNickUsuario"
+        android:id="@+id/etNickLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/ivLogo1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="47dp"
         android:ems="10"
@@ -26,12 +26,12 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/etPasswordUsuario"
+        android:id="@+id/etPasswordLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/etNickUsuario"
-        android:layout_alignStart="@+id/etNickUsuario"
-        android:layout_below="@+id/etNickUsuario"
+        android:layout_alignLeft="@+id/etNickLogin"
+        android:layout_alignStart="@+id/etNickLogin"
+        android:layout_below="@+id/etNickLogin"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Contraseña"
