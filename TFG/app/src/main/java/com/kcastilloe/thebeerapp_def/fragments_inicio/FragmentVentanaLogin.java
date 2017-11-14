@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.kcastilloe.thebeerapp_def.MainActivity;
 import com.kcastilloe.thebeerapp_def.R;
 
 /**
@@ -22,7 +23,17 @@ public class FragmentVentanaLogin extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ventana_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_ventana_login, container, false); /* Selecciona el layout. */
+
+        /* Recoge el botón y le añade un OnClickListener que se ejecutará cada vez que se pulse el botón. */
+        final Button btnIniciarSesion = view.findViewById(R.id.btnIniciarSesion);
+        btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                /* De esta manera se llama al método propio de la MainActivity desde un Fragment. */
+                ((MainActivity) getActivity()).iniciarSesionUsuario();
+            }
+        });
+
         return view;
     }
 }

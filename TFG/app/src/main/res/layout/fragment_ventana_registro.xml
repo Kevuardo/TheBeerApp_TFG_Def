@@ -15,7 +15,7 @@
         app:srcCompat="@drawable/logotexto" />
 
     <EditText
-        android:id="@+id/etNombreLogin"
+        android:id="@+id/etNombreRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivLogo2"
@@ -29,7 +29,7 @@
         android:id="@+id/etNickRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etNombreLogin"
+        android:layout_below="@+id/etNombreRegistro"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:ems="10"
@@ -37,7 +37,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/etEdadUsuario"
+        android:id="@+id/etEdadRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etNickRegistro"
@@ -45,13 +45,13 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Edad (mayor que 18)"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/etPasswordRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etEdadUsuario"
+        android:layout_below="@+id/etEdadRegistro"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:ems="10"
@@ -68,6 +68,16 @@
         android:ems="10"
         android:hint="Repita la contraseña"
         android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnRegistrarUsuario"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etPasswordVerificacionRegistro"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:text="Registrarse" />
 
 
 </RelativeLayout>
