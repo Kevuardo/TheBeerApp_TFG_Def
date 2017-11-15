@@ -1,8 +1,6 @@
 package com.kcastilloe.thebeerapp_def.fragments_inicio;
 
-import android.app.Activity;
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,7 +20,9 @@ import com.kcastilloe.thebeerapp_def.R;
 import java.util.regex.Pattern;
 
 /**
- * Created by kevin_000 on 13/11/2017.
+ * Clase Java que contiene el modelo del Fragment de registro de usuario y sus métodos de
+ * validación de campos.
+ * @author Kevin Castillo Escudero
  */
 
 public class FragmentVentanaRegistro extends Fragment {
@@ -171,12 +171,9 @@ public class FragmentVentanaRegistro extends Fragment {
 
                 /* Evalúa si el campo está vacío. */
                 if (etNickRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
-
                     Toast.makeText(view.getContext(), "Introduzca un nick de usuario, por favor.", Toast.LENGTH_LONG).show();
                     etNickRegistro.setBackgroundTintList(bordeRojo);
-
                 } else {
-
                     /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
                     /* EXTRA: EVALUAR SI EL NICK DE USUARIO YA ESTÁ SIENDO UTILIZADO POR OTRO USUARIO. */
                     nick = etNickRegistro.getText().toString().trim();
@@ -184,25 +181,18 @@ public class FragmentVentanaRegistro extends Fragment {
                         Toast.makeText(view.getContext(), "Nick de usuario inválido; pruebe con otro", Toast.LENGTH_SHORT).show();
                         etNickRegistro.setBackgroundTintList(bordeRojo);
                     } else {
-
                         etNickRegistro.setBackgroundTintList(bordeVerde);
                         /* Evalúa si el campo está vacío. */
                         if (etEdadRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
-
                             Toast.makeText(view.getContext(), "Introduzca una edad, por favor.", Toast.LENGTH_LONG).show();
                             etEdadRegistro.setBackgroundTintList(bordeRojo);
-
                         } else {
-
                             /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
                             edad = Integer.parseInt(etEdadRegistro.getText().toString().trim());
                             if (!validarEdad(edad)) {
-
                                 Toast.makeText(view.getContext(), "Debe ser mayor de edad para utilizar la app", Toast.LENGTH_SHORT).show();
                                 etEdadRegistro.setBackgroundTintList(bordeRojo);
-
                             } else {
-
                                 etEdadRegistro.setBackgroundTintList(bordeVerde);
                                 /* A continuación comprueba que las contraseñas coincidan y tengan el mismo formato. */
                                 /* Evalúa si el campo está vacío. */
@@ -211,43 +201,29 @@ public class FragmentVentanaRegistro extends Fragment {
                                     Toast.makeText(view.getContext(), "Introduzca una contraseña, por favor", Toast.LENGTH_SHORT).show();
                                     etPasswordRegistro.setBackgroundTintList(bordeRojo);
                                 } else {
-
                                     /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
                                     password = etPasswordRegistro.getText().toString().trim();
                                     if (!validarPassword(password)) {
-
                                         Toast.makeText(view.getContext(), "La contraseña ha de tener mínimo 8 caracteres, incluyendo mínimo 1 número, 1 mayúscula y 1 minúscula.", Toast.LENGTH_SHORT).show();
                                         etPasswordRegistro.setBackgroundTintList(bordeRojo);
                                     } else {
-
                                         etPasswordRegistro.setBackgroundTintList(bordeVerde);
                                         /* Evalúa si el campo está vacío. */
                                         if (etPasswordVerificacionRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
-
                                             Toast.makeText(view.getContext(), "Introduzca una verificación de contraseña, por favor", Toast.LENGTH_SHORT).show();
                                             etPasswordRegistro.setBackgroundTintList(bordeRojo);
-
                                         } else {
-
                                             /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
                                             passwordVerificacion = etPasswordVerificacionRegistro.getText().toString().trim();
                                             if (!validarPassword(passwordVerificacion)) {
-
                                                 Toast.makeText(view.getContext(), "La contraseña de verificación ha de tener mínimo 8 caracteres, incluyendo mínimo 1 número, 1 mayúscula y 1 minúscula.", Toast.LENGTH_SHORT).show();
                                                 etPasswordRegistro.setBackgroundTintList(bordeRojo);
-
                                             } else {
-
                                                 if (passwordVerificacion.compareToIgnoreCase(password) != 0) {
-
                                                     Toast.makeText(view.getContext(), "Las contraseñas deben coincidir", Toast.LENGTH_SHORT).show();
-
                                                 } else {
-
                                                     /* De esta manera se llama al método propio de la MainActivity desde un Fragment. */
-                                                    Toast.makeText(view.getContext(), "Has rellenado todo", Toast.LENGTH_SHORT).show();
-//                                                    ((MainActivity) getActivity()).registrarUsuario(nick, edad, password);
-
+                                                    ((MainActivity) getActivity()).registrarUsuario(nick, edad, password);
                                                 }
                                             }
                                         }
@@ -257,7 +233,6 @@ public class FragmentVentanaRegistro extends Fragment {
                         }
                     }
                 }
-//                }
             }
         });
         return view;
