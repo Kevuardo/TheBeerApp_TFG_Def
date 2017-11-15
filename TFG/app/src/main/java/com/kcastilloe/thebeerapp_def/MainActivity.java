@@ -58,11 +58,10 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Iniciar sesión", Toast.LENGTH_SHORT).show();
     }
 
-
     /**
      * Método usado para registrar un usuario nuevo en la app con los parámetros introducidos por el usuario.
      */
-    public void registrarUsuario(String nombre, String nickUsuario, int edad, String password) {
+    public void registrarUsuario(String nickUsuario, int edad, String password) {
         Toast.makeText(this, "Registro", Toast.LENGTH_SHORT).show();
 
 
