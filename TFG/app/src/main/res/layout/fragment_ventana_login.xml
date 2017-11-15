@@ -11,42 +11,56 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="50dp"
         app:srcCompat="@drawable/logotexto" />
 
-    <EditText
-        android:id="@+id/etNickLogin"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilNickLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivLogo1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:hint="Nick de usuario"
-        android:inputType="textPersonName" />
+        android:layout_marginTop="10dp">
 
-    <EditText
-        android:id="@+id/etPasswordLogin"
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etNickLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nick de usuario"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilPasswordLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/etNickLogin"
-        android:layout_alignStart="@+id/etNickLogin"
-        android:layout_below="@+id/etNickLogin"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:text="" />
+        android:layout_below="@+id/tilNickLogin"
+        app:passwordToggleEnabled="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etPasswordLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Contraseña"
+            android:inputType="textPassword"/>
+
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/btnIniciarSesion"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etPasswordLogin"
+        android:layout_below="@+id/tilPasswordLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="Iniciar sesión" />
-
 
 </RelativeLayout>
