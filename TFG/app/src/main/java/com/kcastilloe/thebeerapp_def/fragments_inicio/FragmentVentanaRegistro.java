@@ -169,7 +169,12 @@ public class FragmentVentanaRegistro extends Fragment {
                 String password = "";
                 String passwordVerificacion = "";
 
-                /* Evalúa si el campo está vacío. */
+                /* Variables bandera para analizar la validación de campos. */
+                boolean nickValido = false;
+                boolean edadValida = false;
+                boolean passwordValida = false;
+                boolean passwordVerificacionValida = false;
+
                 if (etNickRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
                     Toast.makeText(view.getContext(), "Introduzca un nick de usuario, por favor.", Toast.LENGTH_LONG).show();
                     etNickRegistro.setBackgroundTintList(bordeRojo);
@@ -182,59 +187,72 @@ public class FragmentVentanaRegistro extends Fragment {
                         etNickRegistro.setBackgroundTintList(bordeRojo);
                     } else {
                         etNickRegistro.setBackgroundTintList(bordeVerde);
-                        /* Evalúa si el campo está vacío. */
-                        if (etEdadRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
-                            Toast.makeText(view.getContext(), "Introduzca una edad, por favor.", Toast.LENGTH_LONG).show();
-                            etEdadRegistro.setBackgroundTintList(bordeRojo);
-                        } else {
-                            /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
-                            edad = Integer.parseInt(etEdadRegistro.getText().toString().trim());
-                            if (!validarEdad(edad)) {
-                                Toast.makeText(view.getContext(), "Debe ser mayor de edad para utilizar la app", Toast.LENGTH_SHORT).show();
-                                etEdadRegistro.setBackgroundTintList(bordeRojo);
-                            } else {
-                                etEdadRegistro.setBackgroundTintList(bordeVerde);
-                                /* A continuación comprueba que las contraseñas coincidan y tengan el mismo formato. */
-                                /* Evalúa si el campo está vacío. */
-                                if (etPasswordRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
+                        nickValido = true;
+                    }
+                }
 
-                                    Toast.makeText(view.getContext(), "Introduzca una contraseña, por favor", Toast.LENGTH_SHORT).show();
-                                    etPasswordRegistro.setBackgroundTintList(bordeRojo);
-                                } else {
-                                    /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
-                                    password = etPasswordRegistro.getText().toString().trim();
-                                    if (!validarPassword(password)) {
-                                        Toast.makeText(view.getContext(), "La contraseña ha de tener mínimo 8 caracteres, incluyendo mínimo 1 número, 1 mayúscula y 1 minúscula.", Toast.LENGTH_SHORT).show();
-                                        etPasswordRegistro.setBackgroundTintList(bordeRojo);
-                                    } else {
-                                        etPasswordRegistro.setBackgroundTintList(bordeVerde);
-                                        /* Evalúa si el campo está vacío. */
-                                        if (etPasswordVerificacionRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
-                                            Toast.makeText(view.getContext(), "Introduzca una verificación de contraseña, por favor", Toast.LENGTH_SHORT).show();
-                                            etPasswordRegistro.setBackgroundTintList(bordeRojo);
-                                        } else {
-                                            /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
-                                            passwordVerificacion = etPasswordVerificacionRegistro.getText().toString().trim();
-                                            if (!validarPassword(passwordVerificacion)) {
-                                                Toast.makeText(view.getContext(), "La contraseña de verificación ha de tener mínimo 8 caracteres, incluyendo mínimo 1 número, 1 mayúscula y 1 minúscula.", Toast.LENGTH_SHORT).show();
-                                                etPasswordRegistro.setBackgroundTintList(bordeRojo);
-                                            } else {
-                                                if (passwordVerificacion.compareToIgnoreCase(password) != 0) {
-                                                    Toast.makeText(view.getContext(), "Las contraseñas deben coincidir", Toast.LENGTH_SHORT).show();
-                                                } else {
-                                                    /* De esta manera se llama al método propio de la MainActivity desde un Fragment. */
-                                                    ((MainActivity) getActivity()).registrarUsuario(nick, edad, password);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                /* Evalúa si el campo está vacío. */
+                if (etEdadRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
+                    Toast.makeText(view.getContext(), "Introduzca una edad, por favor.", Toast.LENGTH_LONG).show();
+                    etEdadRegistro.setBackgroundTintList(bordeRojo);
+                } else {
+                    /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
+                    edad = Integer.parseInt(etEdadRegistro.getText().toString().trim());
+                    if (!validarEdad(edad)) {
+                        Toast.makeText(view.getContext(), "Debe ser mayor de edad para utilizar la app", Toast.LENGTH_SHORT).show();
+                        etEdadRegistro.setBackgroundTintList(bordeRojo);
+                    } else {
+                        etEdadRegistro.setBackgroundTintList(bordeVerde);
+                        edadValida = true;
+                    }
+                }
+
+                /* A continuación comprueba que las contraseñas coincidan y tengan el mismo formato. */
+                /* Evalúa si el campo está vacío. */
+                if (etPasswordRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
+
+                    Toast.makeText(view.getContext(), "Introduzca una contraseña, por favor", Toast.LENGTH_SHORT).show();
+                    etPasswordRegistro.setBackgroundTintList(bordeRojo);
+                } else {
+                    /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
+                    password = etPasswordRegistro.getText().toString().trim();
+                    if (!validarPassword(password)) {
+                        Toast.makeText(view.getContext(), "La contraseña ha de tener mínimo 8 caracteres, incluyendo mínimo 1 número, 1 mayúscula y 1 minúscula.", Toast.LENGTH_SHORT).show();
+                        etPasswordRegistro.setBackgroundTintList(bordeRojo);
+                    } else {
+                        etPasswordRegistro.setBackgroundTintList(bordeVerde);
+                        passwordValida = true;
+                    }
+                }
+
+                /* Evalúa si el campo está vacío. */
+                if (etPasswordVerificacionRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
+                    Toast.makeText(view.getContext(), "Introduzca una verificación de contraseña, por favor", Toast.LENGTH_SHORT).show();
+                    etPasswordVerificacionRegistro.setBackgroundTintList(bordeRojo);
+                } else {
+                    /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
+                    passwordVerificacion = etPasswordVerificacionRegistro.getText().toString().trim();
+                    if (!validarPassword(passwordVerificacion)) {
+                        Toast.makeText(view.getContext(), "La contraseña de verificación ha de tener mínimo 8 caracteres, incluyendo mínimo 1 número, 1 mayúscula y 1 minúscula.", Toast.LENGTH_SHORT).show();
+                        etPasswordVerificacionRegistro.setBackgroundTintList(bordeRojo);
+                    } else {
+                        /* Compara las contraseñas para comprobar que coinciden. */
+                        if (passwordVerificacion.compareToIgnoreCase(password) != 0) {
+                            Toast.makeText(view.getContext(), "Las contraseñas deben coincidir", Toast.LENGTH_SHORT).show();
+                        } else {
+                            etPasswordVerificacionRegistro.setBackgroundTintList(bordeVerde);
+                            passwordVerificacionValida = true;
                         }
                     }
                 }
+
+                if (nickValido && edadValida && passwordValida && passwordVerificacionValida) {
+                    /* De esta manera se llama al método propio de la MainActivity desde un Fragment. */
+                    ((MainActivity) getActivity()).registrarUsuario(nick, edad, password);
+                }
             }
         });
+
         return view;
     }
 
