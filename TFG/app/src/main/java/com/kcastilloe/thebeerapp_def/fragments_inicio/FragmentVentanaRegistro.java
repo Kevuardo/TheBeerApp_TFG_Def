@@ -1,9 +1,14 @@
 package com.kcastilloe.thebeerapp_def.fragments_inicio;
 
 import android.app.Activity;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +19,8 @@ import android.widget.Toast;
 import com.kcastilloe.thebeerapp_def.MainActivity;
 import com.kcastilloe.thebeerapp_def.R;
 
+import java.util.regex.Pattern;
+
 /**
  * Created by kevin_000 on 13/11/2017.
  */
@@ -22,53 +29,271 @@ public class FragmentVentanaRegistro extends Fragment {
 
     private static final String TAG = "FragmentVentanaRegistro";
 
+    /* Los campos del formulario. */
     private EditText etNombreRegistro, etNickRegistro, etEdadRegistro, etPasswordRegistro, etPasswordVerificacionRegistro;
+
+    /* Las validaciones de los campos de los formularios. */
+    private static final Pattern PATRON_NICK = Pattern.compile("^[a-zA-Z0-9_]{5,15}$");
+    private static final Pattern PATRON_PASSWORD = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$");
+
+    private ColorStateList bordeRojo;
+    private ColorStateList bordeVerde;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_ventana_registro, container, false); /* Selecciona el layout. */
 
+        /* Los colores para los bordes de los campos. */
+        bordeRojo = ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.red));
+        bordeVerde = ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.green));
+
         /* Recogida de elementos de la vista. */
-        etNombreRegistro = (EditText) view.findViewById(R.id.etNombreRegistro);
         etNickRegistro = (EditText) view.findViewById(R.id.etNickRegistro);
         etEdadRegistro = (EditText) view.findViewById(R.id.etEdadRegistro);
         etPasswordRegistro = (EditText) view.findViewById(R.id.etPasswordRegistro);
         etPasswordVerificacionRegistro = (EditText) view.findViewById(R.id.etPasswordVerificacionRegistro);
+
+        /* Añade TextChangedListener a los EditText para validarlos dinámicamente según cambie su contenido. */
+        etNickRegistro.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                /* Una vez que el texto ha cambiado, pasa a validarlo.
+                 * Si es válido, pone el borde en verde; si no, lo pone en rojo. */
+                if (!validarNick(editable.toString())) {
+                    etNickRegistro.setBackgroundTintList(bordeRojo);
+                } else {
+                    etNickRegistro.setBackgroundTintList(bordeVerde);
+                }
+            }
+        });
+        etEdadRegistro.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                /* Una vez que el texto ha cambiado, pasa a validarlo.
+                 * Si es válido, pone el borde en verde; si no, lo pone en rojo. */
+                /* Evalúa que no esté vacío para evitar errores de ejecución. */
+                if (editable.toString().compareToIgnoreCase("") == 0) {
+                    etEdadRegistro.setBackgroundTintList(bordeRojo);
+                } else {
+                    /* Si no está vacío, evalúa si es mayor de edad. */
+                    int edadValidable = Integer.parseInt(editable.toString());
+                    if (!validarEdad(edadValidable)) {
+                        etEdadRegistro.setBackgroundTintList(bordeRojo);
+                    } else {
+                        etEdadRegistro.setBackgroundTintList(bordeVerde);
+                    }
+                }
+            }
+        });
+        etPasswordRegistro.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                /* Una vez que el texto ha cambiado, pasa a validarlo.
+                 * Si es válido, pone el borde en verde; si no, lo pone en rojo. */
+                if (!validarPassword(editable.toString())) {
+                    etPasswordRegistro.setBackgroundTintList(bordeRojo);
+                    /* Deshabilita la verificación de contraseña. */
+                    etPasswordVerificacionRegistro.setEnabled(false);
+                } else {
+                    etPasswordRegistro.setBackgroundTintList(bordeVerde);
+                    /* Habilita la verificación de contraseña. */
+                    etPasswordVerificacionRegistro.setEnabled(true);
+                }
+            }
+        });
+        etPasswordVerificacionRegistro.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                /* Una vez que el texto ha cambiado, pasa a validarlo.
+                 * Si es válido, pone el borde en verde; si no, lo pone en rojo. */
+                if (!validarPassword(editable.toString())) {
+                    etPasswordVerificacionRegistro.setBackgroundTintList(bordeRojo);
+                } else {
+                    if (editable.toString().compareToIgnoreCase(etPasswordRegistro.getText().toString()) != 0) {
+                        etPasswordVerificacionRegistro.setBackgroundTintList(bordeRojo);
+                    } else {
+                        etPasswordVerificacionRegistro.setBackgroundTintList(bordeVerde);
+                    }
+                }
+            }
+        });
 
         /* Recoge el botón y le añade un OnClickListener que se ejecutará cada vez que se pulse el botón. */
         final Button btnRegistrarUsuario = view.findViewById(R.id.btnRegistrarUsuario);
         btnRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 /* Recoge los valores de los campos. */
-                String nombre = "";
                 String nick = "";
                 int edad = 0;
-                String password = etPasswordRegistro.getText().toString();
-                String passwordVerificacion = etPasswordRegistro.getText().toString();
+                String password = "";
+                String passwordVerificacion = "";
 
-                /* Verifica que los campos no estén vacíos. */
-                if (etNombreRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
-                    Toast.makeText(view.getContext(), "Introduzca un nombre, por favor.", Toast.LENGTH_LONG).show();
+                /* Evalúa si el campo está vacío. */
+                if (etNickRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
+
+                    Toast.makeText(view.getContext(), "Introduzca un nick de usuario, por favor.", Toast.LENGTH_LONG).show();
+                    etNickRegistro.setBackgroundTintList(bordeRojo);
+
                 } else {
-                    nombre = etNombreRegistro.getText().toString();
-                    if (etNickRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
-                        Toast.makeText(view.getContext(), "Introduzca un nick de usuario, por favor.", Toast.LENGTH_LONG).show();
+
+                    /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
+                    /* EXTRA: EVALUAR SI EL NICK DE USUARIO YA ESTÁ SIENDO UTILIZADO POR OTRO USUARIO. */
+                    nick = etNickRegistro.getText().toString().trim();
+                    if (!validarNick(nick)) {
+                        Toast.makeText(view.getContext(), "Nick de usuario inválido; pruebe con otro", Toast.LENGTH_SHORT).show();
+                        etNickRegistro.setBackgroundTintList(bordeRojo);
                     } else {
+
+                        etNickRegistro.setBackgroundTintList(bordeVerde);
+                        /* Evalúa si el campo está vacío. */
                         if (etEdadRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
-                            Toast.makeText(view.getContext(), "Introduzca una edad válida, por favor.", Toast.LENGTH_LONG).show();
+
+                            Toast.makeText(view.getContext(), "Introduzca una edad, por favor.", Toast.LENGTH_LONG).show();
+                            etEdadRegistro.setBackgroundTintList(bordeRojo);
+
                         } else {
-                            edad = Integer.parseInt(etEdadRegistro.getText().toString());
-                            /* Faltan los passwords!!!! */
+
+                            /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
+                            edad = Integer.parseInt(etEdadRegistro.getText().toString().trim());
+                            if (!validarEdad(edad)) {
+
+                                Toast.makeText(view.getContext(), "Debe ser mayor de edad para utilizar la app", Toast.LENGTH_SHORT).show();
+                                etEdadRegistro.setBackgroundTintList(bordeRojo);
+
+                            } else {
+
+                                etEdadRegistro.setBackgroundTintList(bordeVerde);
+                                /* A continuación comprueba que las contraseñas coincidan y tengan el mismo formato. */
+                                /* Evalúa si el campo está vacío. */
+                                if (etPasswordRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
+
+                                    Toast.makeText(view.getContext(), "Introduzca una contraseña, por favor", Toast.LENGTH_SHORT).show();
+                                    etPasswordRegistro.setBackgroundTintList(bordeRojo);
+                                } else {
+
+                                    /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
+                                    password = etPasswordRegistro.getText().toString().trim();
+                                    if (!validarPassword(password)) {
+
+                                        Toast.makeText(view.getContext(), "La contraseña ha de tener mínimo 8 caracteres, incluyendo mínimo 1 número, 1 mayúscula y 1 minúscula.", Toast.LENGTH_SHORT).show();
+                                        etPasswordRegistro.setBackgroundTintList(bordeRojo);
+                                    } else {
+
+                                        etPasswordRegistro.setBackgroundTintList(bordeVerde);
+                                        /* Evalúa si el campo está vacío. */
+                                        if (etPasswordVerificacionRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
+
+                                            Toast.makeText(view.getContext(), "Introduzca una verificación de contraseña, por favor", Toast.LENGTH_SHORT).show();
+                                            etPasswordRegistro.setBackgroundTintList(bordeRojo);
+
+                                        } else {
+
+                                            /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
+                                            passwordVerificacion = etPasswordVerificacionRegistro.getText().toString().trim();
+                                            if (!validarPassword(passwordVerificacion)) {
+
+                                                Toast.makeText(view.getContext(), "La contraseña de verificación ha de tener mínimo 8 caracteres, incluyendo mínimo 1 número, 1 mayúscula y 1 minúscula.", Toast.LENGTH_SHORT).show();
+                                                etPasswordRegistro.setBackgroundTintList(bordeRojo);
+
+                                            } else {
+
+                                                if (passwordVerificacion.compareToIgnoreCase(password) != 0) {
+
+                                                    Toast.makeText(view.getContext(), "Las contraseñas deben coincidir", Toast.LENGTH_SHORT).show();
+
+                                                } else {
+
+                                                    /* De esta manera se llama al método propio de la MainActivity desde un Fragment. */
+                                                    Toast.makeText(view.getContext(), "Has rellenado todo", Toast.LENGTH_SHORT).show();
+//                                                    ((MainActivity) getActivity()).registrarUsuario(nick, edad, password);
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-
-                /* De esta manera se llama al método propio de la MainActivity desde un Fragment. */
-                ((MainActivity) getActivity()).registrarUsuario(nombre, nick, edad, password);
+//                }
             }
         });
-
         return view;
     }
+
+    /**
+     * Evalúa si el nick introducido es válido o no; devuelve un booleano.
+     *
+     * @param nickUsuario El nick de usuario a evaluar.
+     * @return Un booleano que será true si cumple con los estándares o false si no.
+     */
+    private boolean validarNick(String nickUsuario) {
+        return PATRON_NICK.matcher(nickUsuario).matches();
+    }
+
+//    /* Futura versión. */
+//    private boolean evaluarDisponibilidadNick (String nickUsuario) {
+//        return false;
+//    }
+
+    private boolean validarEdad(int edadUsuario) {
+        if (edadUsuario < 18 || edadUsuario > 130) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Evalúa si el nick introducido es válido o no; devuelve un booleano.
+     *
+     * @param passwordUsuario La contraseña de usuario a evaluar.
+     * @return Un booleano que será true si cumple con los estándares o false si no.
+     */
+    private boolean validarPassword(String passwordUsuario) {
+        return PATRON_PASSWORD.matcher(passwordUsuario).matches();
+    }
+
 }
