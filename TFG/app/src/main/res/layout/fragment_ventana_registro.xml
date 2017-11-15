@@ -14,69 +14,91 @@
         android:layout_marginTop="51dp"
         app:srcCompat="@drawable/logotexto" />
 
-    <EditText
-        android:id="@+id/etNombreRegistro"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilNickRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivLogo2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Nombre de usuario"
-        android:inputType="textPersonName" />
+        android:layout_marginTop="10dp">
 
-    <EditText
-        android:id="@+id/etNickRegistro"
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etNickRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Nick de usuario"
+            android:inputType="textPersonName" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilEdadRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etNombreRegistro"
+        android:layout_below="@+id/tilNickRegistro"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Nick de usuario"
-        android:inputType="textPersonName" />
+        android:layout_marginTop="10dp">
 
-    <EditText
-        android:id="@+id/etEdadRegistro"
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etEdadRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Edad (mínimo 18)"
+            android:inputType="number" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilPasswordRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etNickRegistro"
+        android:layout_below="@+id/tilEdadRegistro"
+        app:passwordToggleEnabled="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Edad (mayor que 18)"
-        android:inputType="number" />
+        android:layout_marginTop="10dp">
 
-    <EditText
-        android:id="@+id/etPasswordRegistro"
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etPasswordRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Contraseña"
+            android:inputType="textPassword" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilPasswordVerificacionRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etEdadRegistro"
+        android:layout_below="@+id/tilPasswordRegistro"
+        app:passwordToggleEnabled="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPassword" />
+        android:layout_marginTop="10dp">
 
-    <EditText
-        android:id="@+id/etPasswordVerificacionRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etPasswordRegistro"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Repita la contraseña"
-        android:inputType="textPassword" />
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etPasswordVerificacionRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Repita la contraseña"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/btnRegistrarUsuario"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etPasswordVerificacionRegistro"
+        android:layout_below="@+id/tilPasswordVerificacionRegistro"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="10dp"
         android:text="Registrarse" />
 
 

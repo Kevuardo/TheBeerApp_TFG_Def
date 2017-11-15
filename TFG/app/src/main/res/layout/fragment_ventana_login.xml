@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivLogo1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="Nick de usuario"
         android:inputType="textPersonName" />
@@ -32,7 +32,7 @@
         android:layout_alignLeft="@+id/etNickLogin"
         android:layout_alignStart="@+id/etNickLogin"
         android:layout_below="@+id/etNickLogin"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"
