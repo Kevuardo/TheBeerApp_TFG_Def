@@ -7,7 +7,7 @@
     <!-- Compartir cerveza. -->
     <item
         android:id="@+id/action_compartir"
-        android:icon="@drawable/ic_share_black_48dp"
+        android:icon="@android:drawable/ic_menu_info_details"
         android:title="Compartir cerveza"
         app:showAsAction="always">
 
@@ -16,19 +16,19 @@
             <item
                 android:id="@+id/action_compartir_sms"
                 android:title="Compartir vía SMS"
-                android:icon="@drawable/ic_textsms_black_48dp"></item>
+                android:icon="@android:drawable/ic_menu_info_details"></item>
             <item
                 android:id="@+id/action_compartir_gmail"
                 android:title="Compartir vía Gmail"
-                android:icon="@drawable/gmail_48dp"></item>
+                android:icon="@android:drawable/ic_menu_info_details"></item>
             <item
                 android:id="@+id/action_compartir_whatsapp"
                 android:title="Compartir vía WhatsApp"
-                android:icon="@drawable/whatsapp_48dp"></item>
+                android:icon="@android:drawable/ic_menu_info_details"></item>
             <item
                 android:id="@+id/action_compartir_twitter"
                 android:title="Compartir vía Twitter"
-                android:icon="@drawable/twitter_48dp"></item>
+                android:icon="@android:drawable/ic_menu_info_details"></item>
         </menu>
 
     </item>
@@ -36,7 +36,7 @@
     <!-- Ubicar contacto. -->
     <item
         android:id="@+id/action_ubicar"
-        android:icon="@drawable/ic_map_black_48dp"
+        android:icon="@android:drawable/ic_menu_info_details"
         android:title="Ubicar cerveza"
         app:showAsAction="always">
 
@@ -45,17 +45,17 @@
             <item
                 android:id="@+id/action_ubicar_localizar"
                 android:title="Localizar cerveza"
-                android:icon="@drawable/maps_48dp"></item>
-            <item
-                android:id="@+id/action_ubicar_navegar"
-                android:title="Navegar hasta la cerveza"
-                android:icon="@drawable/navigation_48dp"></item>
-            <!--
-            <item
-                android:id="@+id/action_ubicar_distancia"
-                android:title="Distancia con la cerveza"
-                android:icon="@drawable/ic_location_on_black_48dp"></item>
-            -->
+            android:icon="@android:drawable/ic_menu_info_details"></item>
+        <item
+            android:id="@+id/action_ubicar_navegar"
+            android:title="Navegar hasta la cerveza"
+            android:icon="@android:drawable/ic_menu_info_details"></item>
+        <!--
+        <item
+            android:id="@+id/action_ubicar_distancia"
+            android:title="Distancia con la cerveza"
+            android:icon="@drawable/ic_location_on_black_48dp"></item>
+        -->
         </menu>
 
     </item>
