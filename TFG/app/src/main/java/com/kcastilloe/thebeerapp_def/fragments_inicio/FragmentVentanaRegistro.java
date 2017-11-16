@@ -30,7 +30,7 @@ public class FragmentVentanaRegistro extends Fragment {
     private static final String TAG = "FragmentVentanaRegistro";
 
     /* Los campos del formulario. */
-    private EditText etNombreRegistro, etNickRegistro, etEdadRegistro, etPasswordRegistro, etPasswordVerificacionRegistro;
+    private EditText etNickRegistro, etEdadRegistro, etPasswordRegistro, etPasswordVerificacionRegistro;
 
     /* Las validaciones de los campos de los formularios. */
     private static final Pattern PATRON_NICK = Pattern.compile("^[a-zA-Z0-9_]{5,15}$");
@@ -174,7 +174,9 @@ public class FragmentVentanaRegistro extends Fragment {
                 boolean edadValida = false;
                 boolean passwordValida = false;
                 boolean passwordVerificacionValida = false;
+                boolean passwordsCoinciden = false;
 
+                /* Evalúa si el campo está vacío. */
                 if (etNickRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
                     Toast.makeText(view.getContext(), "Introduzca un nick de usuario, por favor.", Toast.LENGTH_LONG).show();
                     etNickRegistro.setBackgroundTintList(bordeRojo);
@@ -210,7 +212,6 @@ public class FragmentVentanaRegistro extends Fragment {
                 /* A continuación comprueba que las contraseñas coincidan y tengan el mismo formato. */
                 /* Evalúa si el campo está vacío. */
                 if (etPasswordRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
-
                     Toast.makeText(view.getContext(), "Introduzca una contraseña, por favor", Toast.LENGTH_SHORT).show();
                     etPasswordRegistro.setBackgroundTintList(bordeRojo);
                 } else {
@@ -236,17 +237,20 @@ public class FragmentVentanaRegistro extends Fragment {
                         Toast.makeText(view.getContext(), "La contraseña de verificación ha de tener mínimo 8 caracteres, incluyendo mínimo 1 número, 1 mayúscula y 1 minúscula.", Toast.LENGTH_SHORT).show();
                         etPasswordVerificacionRegistro.setBackgroundTintList(bordeRojo);
                     } else {
+                        passwordVerificacionValida = true;
                         /* Compara las contraseñas para comprobar que coinciden. */
                         if (passwordVerificacion.compareToIgnoreCase(password) != 0) {
                             Toast.makeText(view.getContext(), "Las contraseñas deben coincidir", Toast.LENGTH_SHORT).show();
                         } else {
                             etPasswordVerificacionRegistro.setBackgroundTintList(bordeVerde);
-                            passwordVerificacionValida = true;
+                            passwordsCoinciden = true;
                         }
                     }
                 }
 
-                if (nickValido && edadValida && passwordValida && passwordVerificacionValida) {
+                /* Si todas las variables bandera están igualadas a true, significa que todos los campos son válidos,
+                * y por tanto puede llamar a la función de registro de usuarios de la MainActivity. */
+                if (nickValido && edadValida && passwordValida && passwordVerificacionValida && passwordsCoinciden) {
                     /* De esta manera se llama al método propio de la MainActivity desde un Fragment. */
                     ((MainActivity) getActivity()).registrarUsuario(nick, edad, password);
                 }
@@ -271,6 +275,11 @@ public class FragmentVentanaRegistro extends Fragment {
 //        return false;
 //    }
 
+    /**
+     * Evalúa si la edad introducida es válida o no; devuelve un booleano.
+     * @param edadUsuario La edad del usuario a validar.
+     * @return Un booleano que será true si cumple con los estándares o false si no.
+     */
     private boolean validarEdad(int edadUsuario) {
         if (edadUsuario < 18 || edadUsuario > 130) {
             return false;
