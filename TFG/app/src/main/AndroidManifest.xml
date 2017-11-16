@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icono_tba"
+        android:icon="@drawable/tba_icono_color"
         android:label="The Beer App"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
