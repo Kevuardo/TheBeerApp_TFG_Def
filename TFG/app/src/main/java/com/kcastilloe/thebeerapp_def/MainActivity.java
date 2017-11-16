@@ -1,5 +1,6 @@
 package com.kcastilloe.thebeerapp_def;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -24,8 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private AdaptadorSeccionesInicio adaptadorSecciones; /* El adaptador de las secciones del TabLayout. */
-    private ViewPager vpContenedor; /* EL formato de las secciones. */
+    private ViewPager vpContenedor; /* El formato de las secciones. */
     private TabLayout tlVentanas; /* El contenedor de las secciones. */
+    private Intent intentCambio; /* El Intent para abrir la Home Activity. */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public void iniciarSesionUsuario(String nickUsuario, String password) {
         Toast.makeText(this, "Iniciar sesión", Toast.LENGTH_SHORT).show();
+        /* Una vez recibidos los parámetros, procede a comprobar las credenciales del
+        usuario en la BDD de Firebase. */
+
+        /* Una vez comprobado, abre la HomeActivity. */
+        abrirInicio();
     }
 
     /**
@@ -67,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Registro", Toast.LENGTH_SHORT).show();
         /* Una vez recibidos los parámetros, procede a registrar al usuario en la BDD de Firebase. */
 
+        /* Una vez registrado el usuario, hace su login. */
+        iniciarSesionUsuario(nickUsuario, password);
     }
 
     /**
@@ -74,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
      * inicio de sesión o registro han sido exitosas.
      */
     private void abrirInicio() {
-
+        Intent intentCambio = new Intent(this, HomeActivity.class);
+        startActivity(intentCambio);
     }
 }
