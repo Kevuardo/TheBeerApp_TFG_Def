@@ -1,5 +1,6 @@
 package com.kcastilloe.thebeerapp_def;
 
+import android.content.pm.ActivityInfo;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -30,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.i(TAG, "onCreate: Iniciando MainActivity.");
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); /* Fuerza la posición a vertical. */
 
+        /* Tras crear la vista, añade las secciones del TabLayout. */
         adaptadorSecciones = new AdaptadorSeccionesInicio(getSupportFragmentManager());
 
         /* Configura el ViewPager con el AdaptadorSecciones. */
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Método usado para iniciar sesión en la app con las credenciales introducidas por el usuario.
      */
-    public void iniciarSesionUsuario() {
+    public void iniciarSesionUsuario(String nickUsuario, String password) {
         Toast.makeText(this, "Iniciar sesión", Toast.LENGTH_SHORT).show();
     }
 
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void registrarUsuario(String nickUsuario, int edad, String password) {
         Toast.makeText(this, "Registro", Toast.LENGTH_SHORT).show();
-
+        /* Una vez recibidos los parámetros, procede a registrar al usuario en la BDD de Firebase. */
 
     }
 
