@@ -109,11 +109,13 @@ public class HomeActivity extends AppCompatActivity {
                 /* Abre la DetalleContactoActivity con el id del contacto almacenado. */
                 try {
                     cervezaFavorita = alCervezas.get(idItemLista);
-                    intentCambio = new Intent(MainActivity.this, DetalleCervezaActivity.class);
+//                    intentCambio = new Intent(MainActivity.this, DetalleCervezaActivity.class);
+                    intentCambio = new Intent(this, DetalleCervezaActivity.class);
                     intentCambio.putExtra("id", cervezaFavorita.getId());
                     startActivity(intentCambio);
                 } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(MainActivity.this, "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.action_context_compartir:
@@ -140,7 +142,8 @@ public class HomeActivity extends AppCompatActivity {
         alCervezas.clear(); /* Se vacía el Arraylist de cara a un nuevo proceso de rellenado de la lista. */
         try {
             //alCervezas = gbd.listarContactos();
-            adaptadorLista = new ListaPersonalizada(MainActivity.this, R.layout.item_lista_layout, alCervezas);
+//            adaptadorLista = new ListaPersonalizada(MainActivity.this, R.layout.item_lista_layout, alCervezas);
+            adaptadorLista = new ListaPersonalizada(this, R.layout.item_lista_layout, alCervezas);
             lvListaCervezasFavoritas.setAdapter(adaptadorLista);
 
             /* El OnClickListener para los items del ListView. */
@@ -150,11 +153,13 @@ public class HomeActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     try {
                         cervezaFavorita = alCervezas.get(position);
-                        intentCambio = new Intent(MainActivity.this, DetalleCervezaActivity.class);
+//                        intentCambio = new Intent(MainActivity.this, DetalleCervezaActivity.class);
+                        intentCambio = new Intent(view.getContext(), DetalleCervezaActivity.class);
                         intentCambio.putExtra("id", cervezaFavorita.getId());
                         startActivity(intentCambio);
                     } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(MainActivity.this, "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(view.getContext(), "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
                     }
                 }
             });
