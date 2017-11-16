@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "413939577453-b4pclfojqmapb7bbjnoblgr5idmdrd5i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kcastilloe.thebeerapp_def",
+            "certificate_hash": "65072fc23306a2aad0d8738d1083c6c24e64cd6c"
+          }
+        },
+        {
           "client_id": "413939577453-h99299ajci6i57i6gvev2acrceugt3k1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
