@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/llItemLista"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <LinearLayout
+        android:id="@+id/llMuestraItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/ivImagenItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+        <LinearLayout
+            android:id="@+id/llDatosItem"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvNombreItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre cerveza"
+                android:textSize="12sp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/tvGradosItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grados cerveza"
+                android:textSize="12sp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/tvTipoItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo cerveza"
+                android:textSize="12sp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/tvPaisOrigenItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="País origen cerveza"
+                android:textSize="12sp"
+                android:textStyle="normal|bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
