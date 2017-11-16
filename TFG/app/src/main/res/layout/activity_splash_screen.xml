@@ -7,11 +7,10 @@
     tools:context="com.kcastilloe.thebeerapp_def.SplashScreenActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivLogoSplashScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        app:srcCompat="@drawable/tba_logo_splash"
-        android:contentDescription="Logo TBA - Splash Screen"/>
+        app:srcCompat="@drawable/tba_logo_splash"/>
 </RelativeLayout>
