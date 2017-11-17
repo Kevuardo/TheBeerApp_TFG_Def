@@ -102,4 +102,17 @@
         android:text="Registrarse" />
 
 
+
+    <!-- Borrar Botón tras desarrollo!!! -->
+
+    <Button
+        android:id="@+id/btnAbrirHomeRegistro"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRegistrarUsuario"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Abrir ActivityHome" />
+
 </RelativeLayout>
