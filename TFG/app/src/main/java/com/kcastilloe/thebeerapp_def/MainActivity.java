@@ -82,8 +82,16 @@ public class MainActivity extends AppCompatActivity {
      * Método usado para invocar el Intent a la siguiente Activity una vez que las operaciones de
      * inicio de sesión o registro han sido exitosas.
      */
-    private void abrirInicio() {
+//    Eliminar método público tras desarrollo.
+
+//    private void abrirInicio() {
+//        Intent intentCambio = new Intent(this, HomeActivity.class);
+//        startActivity(intentCambio);
+//        finish(); /* Hace que no se pueda navegar desde HomeActivity hasta MainActivity de nuevo. */
+//    }
+    public void abrirInicio() {
         Intent intentCambio = new Intent(this, HomeActivity.class);
         startActivity(intentCambio);
+        finish(); /* Hace que no se pueda navegar desde HomeActivity hasta MainActivity de nuevo. */
     }
 }
