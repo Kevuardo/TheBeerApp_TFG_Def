@@ -11,8 +11,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kcastilloe.thebeerapp_def.modelo.Cerveza;
@@ -29,11 +33,13 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
 
     private ListView lvListaCervezasFavoritas; /* Lista de cervezas favoritas del usuario. */
+    private TextView tvListaVacia;
+    private LinearLayout llListaVacia;
     private ListaPersonalizada adaptadorLista; /* El adaptador personalizado para la lista. */
     private Cerveza cervezaFavorita;
     private ArrayList<Cerveza> alCervezas = new ArrayList();
     private Intent intentCambio;
-    private boolean listaVacia = false; /* Variable bandera para evaluar */
+//    private boolean listaVacia = false; /* Variable bandera para evaluar si la lista de favoritos está vacía. */
     private int idItemLista = 0; /* El id del item sobre el que se abre el menú contextual. */
 
     @Override
@@ -42,9 +48,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); /* Fuerza la posición a vertical. */
 
-
         lvListaCervezasFavoritas = (ListView) findViewById(R.id.lvListaCervezasFavoritas);
         registerForContextMenu(lvListaCervezasFavoritas); /* Para añadir el menú contextual. */
+//        tvListaVacia = (TextView) findViewById(R.id.tvListaVacia) ;
+        llListaVacia = (LinearLayout) findViewById(R.id.llListaVacia);
     }
 
     @Override
@@ -138,31 +145,37 @@ public class HomeActivity extends AppCompatActivity {
      * recoge los datos necesarios, crea objetos Cerveza para cada registro, y los muestra en los items de la lista.
      */
     private void rellenarLista() {
-        /* Se recogen las cervezas favoritas en un ArrayList. */
         alCervezas.clear(); /* Se vacía el Arraylist de cara a un nuevo proceso de rellenado de la lista. */
         try {
-            //alCervezas = gbd.listarContactos();
+            /* Se recogen las cervezas favoritas en un ArrayList. */
+            /* Evalúa si la lista está vacía. De estarlo, mostrará una imagen por defecto para comunicárselo al usuario. */
+            if (alCervezas.size() == 0) {
+//                lvListaCervezasFavoritas.setEmptyView(tvListaVacia);
+                lvListaCervezasFavoritas.setEmptyView(llListaVacia);
+            } else {
+                //alCervezas = gbd.listarContactos();
 //            adaptadorLista = new ListaPersonalizada(MainActivity.this, R.layout.item_lista_layout, alCervezas);
-            adaptadorLista = new ListaPersonalizada(this, R.layout.item_lista_layout, alCervezas);
-            lvListaCervezasFavoritas.setAdapter(adaptadorLista);
+                adaptadorLista = new ListaPersonalizada(this, R.layout.item_lista_layout, alCervezas);
+                lvListaCervezasFavoritas.setAdapter(adaptadorLista);
 
             /* El OnClickListener para los items del ListView. */
-            lvListaCervezasFavoritas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                /* Llama al Intent para que cambie a la actividad que muestra el detalle del contacto. */
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    try {
-                        cervezaFavorita = alCervezas.get(position);
+                lvListaCervezasFavoritas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    /* Llama al Intent para que cambie a la actividad que muestra el detalle del contacto. */
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        try {
+                            cervezaFavorita = alCervezas.get(position);
 //                        intentCambio = new Intent(MainActivity.this, DetalleCervezaActivity.class);
-                        intentCambio = new Intent(view.getContext(), DetalleCervezaActivity.class);
-                        intentCambio.putExtra("id", cervezaFavorita.getId());
-                        startActivity(intentCambio);
-                    } catch (Exception e) {
+                            intentCambio = new Intent(view.getContext(), DetalleCervezaActivity.class);
+                            intentCambio.putExtra("id", cervezaFavorita.getId());
+                            startActivity(intentCambio);
+                        } catch (Exception e) {
 //                        Toast.makeText(MainActivity.this, "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
-                        Toast.makeText(view.getContext(), "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(view.getContext(), "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
+                        }
                     }
-                }
-            });
+                });
+            }
         } catch (Exception e) {
             Toast.makeText(this, "Se ha producido un error al listar los contactos.", Toast.LENGTH_LONG).show();
         }
