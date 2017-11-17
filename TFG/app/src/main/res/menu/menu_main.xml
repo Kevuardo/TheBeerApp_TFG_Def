@@ -6,7 +6,7 @@
     <!-- Ajustes de la app. -->
     <item
         android:id="@+id/action_ajustes"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@drawable/ic_more_vert_black_48dp"
         android:title="Ajustes"
         app:showAsAction="always">
 
@@ -14,13 +14,13 @@
         <menu>
             <item
                 android:id="@+id/action_info"
+                android:icon="@drawable/ic_info_outline_black_48dp"
                 android:title="Información de la app"
-                android:icon="@android:drawable/ic_menu_info_details"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/action_extra"
+                android:icon="@drawable/ic_new_releases_black_48dp"
                 android:title="Extras de la app"
-                android:icon="@android:drawable/ic_menu_info_details"
                 app:showAsAction="ifRoom" />
         </menu>
 
