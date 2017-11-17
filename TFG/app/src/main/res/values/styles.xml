@@ -6,6 +6,16 @@
         <item name="colorPrimary">@android:color/holo_orange_light</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@android:color/black</item>
+        <!-- Este atributo es el estilo para los PopUpMenus de la ActionBar. -->
+        <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
+    </style>
+
+    <!-- Hace que el PopUpMenu se muestre justo bajo la ActionBar, no sobre ella. -->
+    <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:windowDisablePreview">true</item>
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">5.0dp</item>
+        <!--<item name="android:popupBackground">#FFF</item>-->
     </style>
 
     <style name="AppTheme.NoActionBar">
