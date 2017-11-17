@@ -257,6 +257,13 @@ public class FragmentVentanaRegistro extends Fragment {
             }
         });
 
+        final Button btnAbrirHomeRegistro = (Button) view.findViewById(R.id.btnAbrirHomeRegistro);
+        btnAbrirHomeRegistro.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).abrirInicio();
+            }
+        });
+
         return view;
     }
 
