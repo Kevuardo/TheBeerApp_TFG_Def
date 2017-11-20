@@ -17,8 +17,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.kcastilloe.thebeerapp_def.fragments_inicio.FragmentVentanaLogin;
 import com.kcastilloe.thebeerapp_def.fragments_inicio.FragmentVentanaRegistro;
+import com.kcastilloe.thebeerapp_def.modelo.ReferenciasFirebase;
+import com.kcastilloe.thebeerapp_def.modelo.Usuario;
 
 /**
  * La actividad de inicio de la app, en la que se muestran las opciones de iniciar sesión o
@@ -36,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
     private Intent intentCambio; /* El Intent para abrir la Home Activity. */
     private FirebaseAuth autenticacionFirebase; /* El controlador de autenticación de usuarios de Firebase. */
     private FirebaseUser usuarioActual; /* El modelo de usuario que se almacenará en Firebase. */
-    private String tokenPersonalizado;
+    private FirebaseDatabase bddFirebase;
+    private DatabaseReference referenciaBdd;
+    private Usuario nuevoUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +61,11 @@ public class MainActivity extends AppCompatActivity {
         tlVentanas = (TabLayout) findViewById(R.id.tlVentanas);
         tlVentanas.setupWithViewPager(vpContenedor);
 
-        /* A continuación, crea una nueva instancia de Autenticación en Firebase. */
+        /* A continuación, crea nuevas instancias de Autenticación y BDD en Firebase. */
         autenticacionFirebase = FirebaseAuth.getInstance();
+        bddFirebase = FirebaseDatabase.getInstance();
+        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS);
+        /* Si la referencia al nodo en la BDD no existe en la misma, creará dicho nodo con la referencia. */
     }
 
     @Override
@@ -120,13 +129,14 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Registra un usuario nuevo en la app con los parámetros introducidos por el usuario.
      */
-    public void registrarUsuario(String nick, final String email, int edad, final String password) {
+    public void registrarUsuario(final String nick, final String email, final int edad, final String password) {
         /* Una vez recibidos los parámetros, procede a registrar al usuario en la BDD de Firebase. */
         autenticacionFirebase.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    /* El usuario se registra con éxito en la BDD y fuerza su login. */
+                    /* El usuario se registra con éxito en la BDD, lo almacena con sus parámetros y fuerza su login. */
+                    almacenarNuevoUsuario(nick, email, edad);
                     iniciarSesionUsuario(email, password);
                 } else {
                     /* El usuario no ha podido registrase en la BDD correctamente. */
@@ -148,6 +158,15 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intentCambio);
 //        finish(); /* Hace que no se pueda navegar desde HomeActivity hasta MainActivity de nuevo. */
 //    }
+
+    private void almacenarNuevoUsuario(String nick, String email, int edad) {
+        /* Crea un objeto Usuario para almacenarlo en la BDD. */
+        nuevoUsuario = new Usuario(nick, email, edad);
+        /* Con child se puede seleccionar la clave que tendrá el nodo, y en este caso se desea que
+        sea el UID (User ID) que Firebase proporciona automáticamente a cada usuario autenticado. */
+        usuarioActual = autenticacionFirebase.getCurrentUser();
+        referenciaBdd.child(usuarioActual.getUid()).setValue(nuevoUsuario);
+    }
 
     public void abrirInicio() {
         Intent intentCambio = new Intent(this, HomeActivity.class);
