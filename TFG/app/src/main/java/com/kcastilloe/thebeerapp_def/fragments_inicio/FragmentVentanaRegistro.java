@@ -29,6 +29,8 @@ import java.util.regex.Pattern;
 public class FragmentVentanaRegistro extends Fragment {
 
     private static final String TAG = "FragmentVentanaRegistro";
+    private static final int EDAD_MINIMA = 18; /* Constante para almacenar el valor de edad mínimo para permitir al usuario usar la app. */
+    private static final int EDAD_MAXIMA = 130; /* Constante para almacenar el valor de edad máximo para permitir al usuario usar la app. */
 
     /* Los campos del formulario. */
     private EditText etNickRegistro, etEdadRegistro, etEmailRegistro, etPasswordRegistro, etPasswordVerificacionRegistro;
@@ -332,7 +334,7 @@ public class FragmentVentanaRegistro extends Fragment {
      * @return Un booleano que será true si cumple con los estándares o false si no.
      */
     public boolean validarEdad(int edadUsuario) {
-        if (edadUsuario < 18 || edadUsuario > 130) {
+        if (edadUsuario < EDAD_MINIMA || edadUsuario > EDAD_MAXIMA) {
             return false;
         } else {
             return true;
