@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ public class FragmentVentanaLogin extends Fragment {
     private static final String TAG = "FragmentVentanaLogin";
 
     /* Los campos del formulario. */
-    private EditText etNickLogin, etPasswordLogin;
+    private EditText etEmailLogin, etPasswordLogin;
 
     /* Las validaciones de los campos de los formularios. */
     private static final Pattern PATRON_NICK = Pattern.compile("^[a-zA-Z0-9_]{5,15}$");
@@ -49,11 +50,11 @@ public class FragmentVentanaLogin extends Fragment {
         bordeVerde = ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.green));
 
         /* Recogida de elementos de la vista. */
-        etNickLogin = (EditText) view.findViewById(R.id.etNickLogin);
+        etEmailLogin = (EditText) view.findViewById(R.id.etEmailLogin);
         etPasswordLogin = (EditText) view.findViewById(R.id.etPasswordLogin);
 
         /* Añade TextChangedListener a los EditText para validarlos dinámicamente según cambie su contenido. */
-        etNickLogin.addTextChangedListener(new TextWatcher() {
+        etEmailLogin.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -68,10 +69,10 @@ public class FragmentVentanaLogin extends Fragment {
             public void afterTextChanged(Editable editable) {
                 /* Una vez que el texto ha cambiado, pasa a validarlo.
                  * Si es válido, pone el borde en verde; si no, lo pone en rojo. */
-                if (!validarNick(editable.toString())) {
-                    etNickLogin.setBackgroundTintList(bordeRojo);
+                if (!validarEmail(editable.toString())) {
+                    etEmailLogin.setBackgroundTintList(bordeRojo);
                 } else {
-                    etNickLogin.setBackgroundTintList(bordeVerde);
+                    etEmailLogin.setBackgroundTintList(bordeVerde);
                 }
             }
         });
@@ -104,27 +105,26 @@ public class FragmentVentanaLogin extends Fragment {
             public void onClick(View v) {
 
                 /* Recoge los valores de los campos. */
-                String nick = "";
+                String email = "";
                 String password = "";
 
                 /* Variables bandera para analizar la validación de campos. */
-                boolean nickValido = false;
+                boolean emailValido = false;
                 boolean passwordValida = false;
 
                 /* Evalúa si el campo está vacío. */
-                if (etNickLogin.getText().toString().trim().compareToIgnoreCase("") == 0) {
-                    Toast.makeText(view.getContext(), "Introduzca un nick de usuario, por favor.", Toast.LENGTH_LONG).show();
-                    etNickLogin.setBackgroundTintList(bordeRojo);
+                if (etEmailLogin.getText().toString().trim().compareToIgnoreCase("") == 0) {
+                    Toast.makeText(view.getContext(), "Introduzca un e-mail, por favor.", Toast.LENGTH_SHORT).show();
+                    etEmailLogin.setBackgroundTintList(bordeRojo);
                 } else {
                     /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
-                    /* EXTRA: EVALUAR SI EL NICK DE USUARIO YA ESTÁ SIENDO UTILIZADO POR OTRO USUARIO. */
-                    nick = etNickLogin.getText().toString().trim();
-                    if (!validarNick(nick)) {
+                    email = etEmailLogin.getText().toString().trim();
+                    if (!validarEmail(email)) {
                         Toast.makeText(view.getContext(), "Nick de usuario inválido; pruebe con otro", Toast.LENGTH_SHORT).show();
-                        etNickLogin.setBackgroundTintList(bordeRojo);
+                        etEmailLogin.setBackgroundTintList(bordeRojo);
                     } else {
-                        etNickLogin.setBackgroundTintList(bordeVerde);
-                        nickValido = true;
+                        etEmailLogin.setBackgroundTintList(bordeVerde);
+                        emailValido = true;
                     }
                 }
 
@@ -146,9 +146,9 @@ public class FragmentVentanaLogin extends Fragment {
 
                 /* Si todas las variables bandera están igualadas a true, significa que todos los campos son válidos,
                 * y por tanto puede llamar a la función de inicio de sesión de usuarios de la MainActivity. */
-                if (nickValido && passwordValida) {
+                if (emailValido && passwordValida) {
                     /* De esta manera se llama al método propio de la MainActivity desde un Fragment. */
-                    ((MainActivity) getActivity()).iniciarSesionUsuario(nick, password);
+                    ((MainActivity) getActivity()).iniciarSesionUsuario(email, password);
                 }
             }
         });
@@ -164,13 +164,13 @@ public class FragmentVentanaLogin extends Fragment {
     }
 
     /**
-     * Evalúa si el nick introducido es válido o no; devuelve un booleano.
+     * Evalúa si el e-mail introducido es válido o no; devuelve un booleano.
      *
-     * @param nickUsuario El nick de usuario a evaluar.
+     * @param emailUsuario El e-mail del usuario a validar.
      * @return Un booleano que será true si cumple con los estándares o false si no.
      */
-    private boolean validarNick(String nickUsuario) {
-        return PATRON_NICK.matcher(nickUsuario).matches();
+    public boolean validarEmail(String emailUsuario) {
+        return Patterns.EMAIL_ADDRESS.matcher(emailUsuario).matches();
     }
 
     /**
@@ -179,8 +179,7 @@ public class FragmentVentanaLogin extends Fragment {
      * @param passwordUsuario La contraseña de usuario a evaluar.
      * @return Un booleano que será true si cumple con los estándares o false si no.
      */
-    private boolean validarPassword(String passwordUsuario) {
+    public boolean validarPassword(String passwordUsuario) {
         return PATRON_PASSWORD.matcher(passwordUsuario).matches();
     }
-
 }

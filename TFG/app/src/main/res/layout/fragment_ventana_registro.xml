@@ -38,14 +38,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tilNickRegistro"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp">
+        android:layout_centerHorizontal="true">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/etEdadRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="Edad (+18)"
             android:inputType="number" />
@@ -53,19 +51,33 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilPasswordRegistro"
+        android:id="@+id/tilEmailRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tilEdadRegistro"
+        android:layout_centerHorizontal="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etEmailRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilPasswordRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tilEmailRegistro"
         app:passwordToggleEnabled="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp">
+        android:layout_centerHorizontal="true">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/etPasswordRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="Contraseña"
             android:inputType="textPassword" />
@@ -78,14 +90,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tilPasswordRegistro"
         app:passwordToggleEnabled="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp">
+        android:layout_centerHorizontal="true">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/etPasswordVerificacionRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="Repita la contraseña"
             android:inputType="textPassword" />
@@ -100,8 +110,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="Registrarse" />
-
-
 
     <!-- Borrar Botón tras desarrollo!!! -->
 

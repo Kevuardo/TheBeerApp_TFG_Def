@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +31,12 @@ public class FragmentVentanaRegistro extends Fragment {
     private static final String TAG = "FragmentVentanaRegistro";
 
     /* Los campos del formulario. */
-    private EditText etNickRegistro, etEdadRegistro, etPasswordRegistro, etPasswordVerificacionRegistro;
+    private EditText etNickRegistro, etEdadRegistro, etEmailRegistro, etPasswordRegistro, etPasswordVerificacionRegistro;
 
     /* Las validaciones de los campos de los formularios. */
+    /* De 5 a 15 caracteres, sólo alfanuméricos y '_'.  */
     private static final Pattern PATRON_NICK = Pattern.compile("^[a-zA-Z0-9_]{5,15}$");
+    /* 8 caracteres o más; mínimo 1 minúscula, 1 mayúscula y 1 número. Sólo alfanuméricos. */
     private static final Pattern PATRON_PASSWORD = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$");
 
     private ColorStateList bordeRojo;
@@ -51,6 +54,7 @@ public class FragmentVentanaRegistro extends Fragment {
         /* Recogida de elementos de la vista. */
         etNickRegistro = (EditText) view.findViewById(R.id.etNickRegistro);
         etEdadRegistro = (EditText) view.findViewById(R.id.etEdadRegistro);
+        etEmailRegistro = (EditText) view.findViewById(R.id.etEmailRegistro);
         etPasswordRegistro = (EditText) view.findViewById(R.id.etPasswordRegistro);
         etPasswordVerificacionRegistro = (EditText) view.findViewById(R.id.etPasswordVerificacionRegistro);
 
@@ -74,6 +78,28 @@ public class FragmentVentanaRegistro extends Fragment {
                     etNickRegistro.setBackgroundTintList(bordeRojo);
                 } else {
                     etNickRegistro.setBackgroundTintList(bordeVerde);
+                }
+            }
+        });
+        etEmailRegistro.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                /* Una vez que el texto ha cambiado, pasa a validarlo.
+                 * Si es válido, pone el borde en verde; si no, lo pone en rojo. */
+                if (!validarEmail(editable.toString())) {
+                    etEmailRegistro.setBackgroundTintList(bordeRojo);
+                } else {
+                    etEmailRegistro.setBackgroundTintList(bordeVerde);
                 }
             }
         });
@@ -164,21 +190,23 @@ public class FragmentVentanaRegistro extends Fragment {
         btnRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 /* Recoge los valores de los campos. */
-                String nick = "";
+                String nick = null;
                 int edad = 0;
-                String password = "";
-                String passwordVerificacion = "";
+                String email = null;
+                String password = null;
+                String passwordVerificacion = null;
 
                 /* Variables bandera para analizar la validación de campos. */
                 boolean nickValido = false;
                 boolean edadValida = false;
+                boolean emailValido = false;
                 boolean passwordValida = false;
                 boolean passwordVerificacionValida = false;
                 boolean passwordsCoinciden = false;
 
                 /* Evalúa si el campo está vacío. */
                 if (etNickRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
-                    Toast.makeText(view.getContext(), "Introduzca un nick de usuario, por favor.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), "Introduzca un nick de usuario, por favor.", Toast.LENGTH_SHORT).show();
                     etNickRegistro.setBackgroundTintList(bordeRojo);
                 } else {
                     /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
@@ -195,7 +223,7 @@ public class FragmentVentanaRegistro extends Fragment {
 
                 /* Evalúa si el campo está vacío. */
                 if (etEdadRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
-                    Toast.makeText(view.getContext(), "Introduzca una edad, por favor.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), "Introduzca una edad, por favor.", Toast.LENGTH_SHORT).show();
                     etEdadRegistro.setBackgroundTintList(bordeRojo);
                 } else {
                     /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
@@ -206,6 +234,22 @@ public class FragmentVentanaRegistro extends Fragment {
                     } else {
                         etEdadRegistro.setBackgroundTintList(bordeVerde);
                         edadValida = true;
+                    }
+                }
+
+                /* Evalúa si el campo está vacío. */
+                if (etEmailRegistro.getText().toString().trim().compareToIgnoreCase("") == 0) {
+                    Toast.makeText(view.getContext(), "Introduzca un e-mail, por favor.", Toast.LENGTH_SHORT).show();
+                    etEmailRegistro.setBackgroundTintList(bordeRojo);
+                } else {
+                    /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
+                    email = etEmailRegistro.getText().toString().trim();
+                    if (!validarEmail(email)) {
+                        Toast.makeText(view.getContext(), "El e-mail debe tener un formato correcto", Toast.LENGTH_SHORT).show();
+                        etEmailRegistro.setBackgroundTintList(bordeRojo);
+                    } else {
+                        etEmailRegistro.setBackgroundTintList(bordeVerde);
+                        emailValido = true;
                     }
                 }
 
@@ -250,9 +294,9 @@ public class FragmentVentanaRegistro extends Fragment {
 
                 /* Si todas las variables bandera están igualadas a true, significa que todos los campos son válidos,
                 * y por tanto puede llamar a la función de registro de usuarios de la MainActivity. */
-                if (nickValido && edadValida && passwordValida && passwordVerificacionValida && passwordsCoinciden) {
+                if (nickValido && edadValida && emailValido && passwordValida && passwordVerificacionValida && passwordsCoinciden) {
                     /* De esta manera se llama al método propio de la MainActivity desde un Fragment. */
-                    ((MainActivity) getActivity()).registrarUsuario(nick, edad, password);
+                    ((MainActivity) getActivity()).registrarUsuario(nick, email, edad, password);
                 }
             }
         });
@@ -273,7 +317,7 @@ public class FragmentVentanaRegistro extends Fragment {
      * @param nickUsuario El nick de usuario a evaluar.
      * @return Un booleano que será true si cumple con los estándares o false si no.
      */
-    private boolean validarNick(String nickUsuario) {
+    public boolean validarNick(String nickUsuario) {
         return PATRON_NICK.matcher(nickUsuario).matches();
     }
 
@@ -287,7 +331,7 @@ public class FragmentVentanaRegistro extends Fragment {
      * @param edadUsuario La edad del usuario a validar.
      * @return Un booleano que será true si cumple con los estándares o false si no.
      */
-    private boolean validarEdad(int edadUsuario) {
+    public boolean validarEdad(int edadUsuario) {
         if (edadUsuario < 18 || edadUsuario > 130) {
             return false;
         } else {
@@ -296,13 +340,22 @@ public class FragmentVentanaRegistro extends Fragment {
     }
 
     /**
+     * Evalúa si el e-mail introducido es válido o no; devuelve un booleano.
+     *
+     * @param emailUsuario El e-mail del usuario a validar.
+     * @return Un booleano que será true si cumple con los estándares o false si no.
+     */
+    public boolean validarEmail(String emailUsuario) {
+        return Patterns.EMAIL_ADDRESS.matcher(emailUsuario).matches();
+    }
+
+    /**
      * Evalúa si el nick introducido es válido o no; devuelve un booleano.
      *
      * @param passwordUsuario La contraseña de usuario a evaluar.
      * @return Un booleano que será true si cumple con los estándares o false si no.
      */
-    private boolean validarPassword(String passwordUsuario) {
+    public boolean validarPassword(String passwordUsuario) {
         return PATRON_PASSWORD.matcher(passwordUsuario).matches();
     }
-
 }

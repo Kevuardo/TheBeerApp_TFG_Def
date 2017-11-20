@@ -15,7 +15,7 @@
         app:srcCompat="@drawable/tba_texto" />
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilNickLogin"
+        android:id="@+id/tilEmailLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivLogo1"
@@ -23,13 +23,12 @@
         android:layout_marginTop="10dp">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/etNickLogin"
+            android:id="@+id/etEmailLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nick de usuario"
-            android:layout_marginTop="10dp"
+            android:hint="E-mail"
             android:ems="10"
-            android:inputType="textPersonName"/>
+            android:inputType="textEmailAddress"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -37,7 +36,7 @@
         android:id="@+id/tilPasswordLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tilNickLogin"
+        android:layout_below="@+id/tilEmailLogin"
         app:passwordToggleEnabled="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp">
@@ -46,7 +45,6 @@
             android:id="@+id/etPasswordLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="Contraseña"
             android:inputType="textPassword"/>
