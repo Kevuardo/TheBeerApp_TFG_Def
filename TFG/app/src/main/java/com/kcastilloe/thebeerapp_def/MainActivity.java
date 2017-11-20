@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
     * Registra un usuario nuevo en la app con los parámetros introducidos por el usuario.
+    *
     * @param nick El nick del usuario que va a registrarse en la BDD.
     * @param email El e-mail del usuario que va a registrarse en la BDD.
     * @param edad La edad del usuario que va a registrarse en la BDD.
