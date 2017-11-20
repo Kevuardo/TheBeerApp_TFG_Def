@@ -1,7 +1,7 @@
 package com.kcastilloe.thebeerapp_def.modelo;
 
 /**
- * Clase modelo dedicada a las cervezas que se almacenarán y recogerán en la BD y que el
+ * Clase modelo dedicada a las cervezas que se almacenarán y recogerán en la BDD y que el
  * usuario verá en la app.
  *
  * @author Kevin Castillo Escudero
@@ -17,7 +17,7 @@ public class Cerveza {
     private byte[] foto;
 
     /**
-     * Constructor sin id (para la inserción en la BD).
+     * Constructor sin id (para la inserción en la BDD).
      *
      * @param nombre El nombre de la cerveza.
      * @param grados Los grados de la cerveza.
@@ -34,7 +34,7 @@ public class Cerveza {
     }
 
     /**
-     * Constructor con id (para la recuperación de datos en la BD y posterior muestra en el ListView).
+     * Constructor con id (para la recuperación de datos en la BDD y posterior muestra en el ListView).
      *
      * @param id El id de la cerveza.
      * @param nombre El nombre de la cerveza.

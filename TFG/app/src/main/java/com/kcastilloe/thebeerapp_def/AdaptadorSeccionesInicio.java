@@ -8,22 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by kevin_000 on 13/11/2017.
+ * Clase modelo del adaptador personalizado para el TabLayout de la ventana de inicio (Login y Registro).
+ *
+ * @author Kevin Castillo Escudero
  */
 
-/* Clase modelo del adaptador personalizado para el TabLayout de la ventana de inicio (Login y Registro). */
 public class AdaptadorSeccionesInicio extends FragmentPagerAdapter {
 
     private final List<Fragment> lListaFragment = new ArrayList<>(); /* Lista de los Fragments. */
     private final List<String> lListaTitulosFragment = new ArrayList<>(); /* Lista de títulos de los Fragments. */
 
-    /* Añade los Fragment a la lista de Fragment. */
+    /**
+     * Añade los Fragment a la lista de Fragment.
+     *
+     * @param fragment El objeto Fragment a añadir.
+     * @param titulo El título del Fragment (se mostrará en su sección en el TabLayout).
+     */
     public void agregarFragment(Fragment fragment, String titulo) {
         lListaFragment.add(fragment);
         lListaTitulosFragment.add(titulo);
     }
 
-    /* Constructor. */
+    /* Constructor heredado de FragmentPagerAdapter. */
     public AdaptadorSeccionesInicio(FragmentManager fm) {
         super(fm);
     }
@@ -40,7 +46,7 @@ public class AdaptadorSeccionesInicio extends FragmentPagerAdapter {
         return lListaFragment.get(position);
     }
 
-    /* Devuelve el número de Fragments. */
+    /* Devuelve el número de Fragments en total. */
     @Override
     public int getCount() {
         return lListaFragment.size();
