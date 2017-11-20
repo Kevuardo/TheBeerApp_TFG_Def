@@ -94,21 +94,23 @@ public class MainActivity extends AppCompatActivity {
      * @param usuarioActual El usuario actual a evaluar.
      */
     private void evaluarEstadoUsuario(FirebaseUser usuarioActual) {
-        /* Evalúa el estado del usuario al iniciarse la MainActivity. */
         /* Con Firebase, no se cierra sesión aunque se cierre la app, a menos que se fuerce el estado de desconexión
         con autenticacionFirebase.signOut(). */
         if (usuarioActual != null) {
             /* Si ya figura como que ha iniciado sesión, entonces pasa directamente a la HomeActivity. */
             abrirInicio(); /* Abre el inicio. */
         } else {
-            /* Si no, muestra mensaje de información. */
+            /* Si no, muestra un mensaje de información. */
             Toast.makeText(this, "Debes iniciar sesión para acceder a la app", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
-     * Método usado para iniciar sesión en la app con las credenciales introducidas por el usuario.
-     */
+    * Método usado para iniciar sesión en la app con las credenciales introducidas por el usuario.
+    *
+    * @param email El email del usuario que iniciará sesión en la app.
+    * @param password La contraseña del usuario que iniciará sesión en la app.
+    */
     public void iniciarSesionUsuario(String email, String password) {
         /* Una vez recibidos los parámetros, procede a comprobar las credenciales del usuario en la BDD de Firebase. */
         autenticacionFirebase.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -127,8 +129,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Registra un usuario nuevo en la app con los parámetros introducidos por el usuario.
-     */
+    * Registra un usuario nuevo en la app con los parámetros introducidos por el usuario.
+    * @param nick El nick del usuario que va a registrarse en la BDD.
+    * @param email El e-mail del usuario que va a registrarse en la BDD.
+    * @param edad La edad del usuario que va a registrarse en la BDD.
+    * @param password La contraseña del usuario que va a registrarse en la BDD.
+    */
     public void registrarUsuario(final String nick, final String email, final int edad, final String password) {
         /* Una vez recibidos los parámetros, procede a registrar al usuario en la BDD de Firebase. */
         autenticacionFirebase.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -146,10 +152,34 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
+    /**
+     * Almacena un nuevo usuario en la BDD referenciando su User ID para almacenar otros parámetros además de e-mail y password.
+     *
+     * @param nick El nick del usuario a almacenar.
+     * @param email El email del usuario a almacenar.
+     * @param edad El edad del usuario a almacenar.
+     */
+    private void almacenarNuevoUsuario(String nick, String email, int edad) {
+        /* Crea un objeto Usuario para almacenarlo en la BDD. */
+        nuevoUsuario = new Usuario(nick, email, edad);
+        usuarioActual = autenticacionFirebase.getCurrentUser();
+        /* Con child se puede seleccionar la clave que tendrá el nodo, y en este caso se desea que
+        sea el UID (User ID) que Firebase proporciona automáticamente a cada usuario autenticado. */
+        referenciaBdd.child(usuarioActual.getUid()).setValue(nuevoUsuario);
+    }
+
     /**
      * Invoca el Intent a la siguiente Activity una vez que las operaciones de
      * inicio de sesión o registro han sido exitosas.
      */
+    public void abrirInicio() {
+        Intent intentCambio = new Intent(this, HomeActivity.class);
+        startActivity(intentCambio);
+        finish(); /* Hace que no se pueda navegar desde HomeActivity hasta MainActivity de nuevo. */
+    }
+
 //    Eliminar método público tras desarrollo. Ahora está así porque está siendo usado para acceder con
 //    los botones de los fragment del TabLayout.
 
@@ -158,19 +188,4 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intentCambio);
 //        finish(); /* Hace que no se pueda navegar desde HomeActivity hasta MainActivity de nuevo. */
 //    }
-
-    private void almacenarNuevoUsuario(String nick, String email, int edad) {
-        /* Crea un objeto Usuario para almacenarlo en la BDD. */
-        nuevoUsuario = new Usuario(nick, email, edad);
-        /* Con child se puede seleccionar la clave que tendrá el nodo, y en este caso se desea que
-        sea el UID (User ID) que Firebase proporciona automáticamente a cada usuario autenticado. */
-        usuarioActual = autenticacionFirebase.getCurrentUser();
-        referenciaBdd.child(usuarioActual.getUid()).setValue(nuevoUsuario);
-    }
-
-    public void abrirInicio() {
-        Intent intentCambio = new Intent(this, HomeActivity.class);
-        startActivity(intentCambio);
-        finish(); /* Hace que no se pueda navegar desde HomeActivity hasta MainActivity de nuevo. */
-    }
 }
