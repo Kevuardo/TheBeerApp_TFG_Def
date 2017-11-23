@@ -11,9 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +29,8 @@ import java.util.ArrayList;
  */
 
 public class HomeActivity extends AppCompatActivity {
+
+    private static final String TAG = "HomeActivity";
 
     private ListView lvListaCervezasFavoritas; /* Lista de cervezas favoritas del usuario. */
     private TextView tvListaVacia;
@@ -62,13 +62,20 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_home, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_agregar_cerveza:
+
+                /* Abre la NuevaCervezaActivity. */
+                Intent intentCambio = new Intent(this, NuevaCervezaActivity.class);
+                startActivity(intentCambio);
+
+                return true;
             case R.id.action_info:
                 AlertDialog.Builder builderInfo = new AlertDialog.Builder(this);
                 builderInfo.setMessage("Creado por Kevin Castillo Escudero, 2017.\n\nContacto: kcastilloescudero@gmail.com");
@@ -81,6 +88,23 @@ public class HomeActivity extends AppCompatActivity {
                 });
                 AlertDialog dialogInfo = builderInfo.create();
                 dialogInfo.show();
+                return true;
+            case R.id.action_ajustes:
+
+                AlertDialog.Builder builderAjustes = new AlertDialog.Builder(this);
+                builderAjustes.setMessage("Has entrado en los ajustes de la app. Pero aquí no hay nah.");
+                builderAjustes.setTitle("Ajustes de la app");
+                builderAjustes.setPositiveButton("Cerrar ajustes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialogAjustes = builderAjustes.create();
+                dialogAjustes.show();
+
+                /* Abre la NuevaCervezaActivity. */
+
                 return true;
             case R.id.action_extra:
                 AlertDialog.Builder builderExtra = new AlertDialog.Builder(this);
@@ -148,7 +172,7 @@ public class HomeActivity extends AppCompatActivity {
         alCervezas.clear(); /* Se vacía el Arraylist de cara a un nuevo proceso de rellenado de la lista. */
         try {
             /* Se recogen las cervezas favoritas en un ArrayList. */
-            /* Evalúa si la lista está vacía. De estarlo, mostrará una imagen por defecto para comunicárselo al usuario. */
+            /* Evalúa si la lista está vacía. De estarlo, mostrará una imagen y un texto por defecto para comunicárselo al usuario. */
             if (alCervezas.size() == 0) {
 //                lvListaCervezasFavoritas.setEmptyView(tvListaVacia);
                 lvListaCervezasFavoritas.setEmptyView(llListaVacia);
