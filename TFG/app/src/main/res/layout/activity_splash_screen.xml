@@ -12,5 +12,5 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        app:srcCompat="@drawable/tba_logo_splash"/>
+        app:srcCompat="@drawable/ca_logo_splash" />
 </RelativeLayout>
