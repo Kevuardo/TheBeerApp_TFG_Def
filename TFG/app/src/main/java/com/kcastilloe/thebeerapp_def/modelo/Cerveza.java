@@ -14,6 +14,7 @@ public class Cerveza {
     private float grados = 0f;
     private String tipo = null;
     private String paisOrigen = null;
+    private String descripcion = null;
     private byte[] foto;
 
     /**
@@ -23,13 +24,15 @@ public class Cerveza {
      * @param grados Los grados de la cerveza.
      * @param tipo El tipo de la cerveza.
      * @param paisOrigen El país de origen de la cerveza.
+     * @param descripcion La descripción comercial de la cerveza.
      * @param foto La foto de la cerveza.
      */
-    public Cerveza(String nombre, float grados, String tipo, String paisOrigen, byte[] foto) {
+    public Cerveza(String nombre, float grados, String tipo, String paisOrigen, String descripcion, byte[] foto) {
         this.nombre = nombre;
         this.grados = grados;
         this.tipo = tipo;
         this.paisOrigen = paisOrigen;
+        this.descripcion = descripcion;
         this.foto = foto;
     }
 
@@ -41,15 +44,25 @@ public class Cerveza {
      * @param grados Los grados de la cerveza.
      * @param tipo El tipo de la cerveza.
      * @param paisOrigen El país de origen de la cerveza.
+     * @param descripcion La descripción comercial de la cerveza.
      * @param foto La foto de la cerveza.
      */
-    public Cerveza(int id, String nombre, float grados, String tipo, String paisOrigen, byte[] foto) {
+    public Cerveza(int id, String nombre, float grados, String tipo, String paisOrigen, String descripcion, byte[] foto) {
         this.id = id;
         this.nombre = nombre;
         this.grados = grados;
         this.tipo = tipo;
         this.paisOrigen = paisOrigen;
+        this.descripcion = descripcion;
         this.foto = foto;
+    }
+
+    /* Sólo testeo - constructor de cerveza sin imagen. */
+    public Cerveza(String nombre, float grados, String tipo, String paisOrigen) {
+        this.nombre = nombre;
+        this.grados = grados;
+        this.tipo = tipo;
+        this.paisOrigen = paisOrigen;
     }
 
     /* Getters y Setters. */
