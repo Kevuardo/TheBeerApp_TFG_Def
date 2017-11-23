@@ -8,7 +8,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ca_icono_color"
-        android:label="The Beer App"
+        android:label="Cheer App!"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
