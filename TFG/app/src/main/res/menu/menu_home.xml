@@ -3,19 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.kcastilloe.thebeerapp_def.MainActivity">
 
+    <!-- Añadir cerveza. -->
+    <item
+        android:id="@+id/action_agregar_cerveza"
+        android:icon="@drawable/ic_add_circle_outline_black_48dp"
+        android:title="Añadir cerveza"
+        app:showAsAction="always" >
+
+    </item>
+
     <!-- Ajustes de la app. -->
     <item
-        android:id="@+id/action_ajustes"
+        android:id="@+id/action_opciones"
         android:icon="@drawable/ic_more_vert_black_48dp"
         android:title="Ajustes"
         app:showAsAction="always">
 
-        <!-- Submenú de ajustes. -->
+        <!-- Submenú de opciones. -->
         <menu>
             <item
                 android:id="@+id/action_info"
                 android:icon="@drawable/ic_info_outline_black_48dp"
                 android:title="Información de la app"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/action_ajustes"
+                android:icon="@drawable/ic_settings_black_48dp"
+                android:title="Ajustes de usuario"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/action_extra"
