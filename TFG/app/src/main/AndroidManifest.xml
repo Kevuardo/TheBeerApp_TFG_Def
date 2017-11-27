@@ -11,7 +11,7 @@
         android:label="Cheer App!"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/TheBeerApp">
         <activity
             android:name=".SplashScreenActivity"
             android:label="Cheer App!"
@@ -25,7 +25,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".DetalleCervezaActivity" />
-        <activity android:name=".NuevaCervezaActivity"></activity>
+        <activity android:name=".NuevaCervezaActivity" />
     </application>
 
 </manifest>
