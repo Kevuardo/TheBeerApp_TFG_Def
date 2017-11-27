@@ -7,6 +7,9 @@
     android:padding="15dp"
     tools:context="com.kcastilloe.thebeerapp_def.HomeActivity">
 
+    <!-- El NavigationView para el NavigationDrawer, la navegación propia. -->
+    <include layout="@layout/menu_lateral_layout" />
+
     <ListView
         android:id="@+id/lvListaCervezasFavoritas"
         android:layout_width="match_parent"

@@ -153,8 +153,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
     /**
      * Almacena un nuevo usuario en la BDD referenciando su User ID para almacenar otros parámetros además de e-mail y password.
      *

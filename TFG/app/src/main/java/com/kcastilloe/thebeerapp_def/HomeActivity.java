@@ -3,6 +3,9 @@ package com.kcastilloe.thebeerapp_def;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,6 +50,9 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth autenticacionFirebase; /* El controlador de autenticación de usuarios de Firebase. */
     private FirebaseUser usuarioActual; /* El modelo de usuario que se almacenará en Firebase. */
 
+    private DrawerLayout dlMenuLateral;
+    private NavigationView nvMenuLateral;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +66,54 @@ public class HomeActivity extends AppCompatActivity {
 
         autenticacionFirebase = FirebaseAuth.getInstance();
         usuarioActual = autenticacionFirebase.getCurrentUser();
+
+        /* Los elementos del Navigation Drawer (menú lateral) y su configuración lógica. */
+
+        /* La configuración de los items que forman el NavigationDrawer. */
+        nvMenuLateral.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_seccion_1:
+                        Toast.makeText(HomeActivity.this, "Menú sección 1 pulsado", Toast.LENGTH_SHORT).show();
+                        item.setChecked(true);
+                        getSupportActionBar().setTitle(item.getTitle());
+                        dlMenuLateral.closeDrawers();
+                        break;
+                    case R.id.menu_seccion_2:
+                        Toast.makeText(HomeActivity.this, "Menú sección 2 pulsado", Toast.LENGTH_SHORT).show();
+                        item.setChecked(true);
+                        getSupportActionBar().setTitle(item.getTitle());
+                        dlMenuLateral.closeDrawers();
+                        break;
+                    case R.id.menu_seccion_3:
+                        Toast.makeText(HomeActivity.this, "Menú sección 3 pulsado", Toast.LENGTH_SHORT).show();
+                        item.setChecked(true);
+                        getSupportActionBar().setTitle(item.getTitle());
+                        dlMenuLateral.closeDrawers();
+                        break;
+                    case R.id.menu_opcion_1:
+                        Toast.makeText(HomeActivity.this, "Menú opción 1 pulsado", Toast.LENGTH_SHORT).show();
+                        dlMenuLateral.closeDrawers();
+                        break;
+                    case R.id.menu_opcion_2:
+                        Toast.makeText(HomeActivity.this, "Menú opción 2 pulsado", Toast.LENGTH_SHORT).show();
+                        dlMenuLateral.closeDrawers();
+                        break;
+                    case R.id.menu_opcion_3:
+                        Toast.makeText(HomeActivity.this, "Menú opción 3 pulsado", Toast.LENGTH_SHORT).show();
+                        dlMenuLateral.closeDrawers();
+                        break;
+                    default:
+                        Toast.makeText(HomeActivity.this, "Algo no ha funcionado como debería con el ND.", Toast.LENGTH_SHORT).show();
+                        dlMenuLateral.closeDrawers();
+                        break;
+                }
+
+                return true;
+
+            }
+        });
 
     }
 
@@ -151,13 +205,11 @@ public class HomeActivity extends AppCompatActivity {
                 /* Abre la DetalleContactoActivity con el id del contacto almacenado. */
                 try {
                     cervezaFavorita = alCervezas.get(idItemLista);
-//                    intentCambio = new Intent(MainActivity.this, DetalleCervezaActivity.class);
                     intentCambio = new Intent(this, DetalleCervezaActivity.class);
                     intentCambio.putExtra("id", cervezaFavorita.getId());
                     startActivity(intentCambio);
                 } catch (Exception e) {
-//                    Toast.makeText(MainActivity.this, "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
-                    Toast.makeText(this, "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Se ha producido un error al tratar de acceder al detalle de la cerveza.", Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.action_context_compartir:
@@ -166,7 +218,7 @@ public class HomeActivity extends AppCompatActivity {
                 compartirCerveza(cervezaFavorita);
                 return true;
             case R.id.action_context_ubicar:
-                /* Llama al contacto con el teléfono con el que está almacenado. */
+                /* Muestra las distintas ubicaciones almacenadas en Firebase de la cerveza seleccionada. */
                 cervezaFavorita = alCervezas.get(idItemLista);
 //                llamarContacto(contactoAlmacenado.getTelefono());
                 return true;
@@ -189,7 +241,6 @@ public class HomeActivity extends AppCompatActivity {
                 lvListaCervezasFavoritas.setEmptyView(llListaVacia);
             } else {
                 //alCervezas = gbd.listarContactos();
-//            adaptadorLista = new ListaPersonalizada(MainActivity.this, R.layout.item_lista_layout, alCervezas);
                 adaptadorLista = new ListaPersonalizada(this, R.layout.item_lista_layout, alCervezas);
                 lvListaCervezasFavoritas.setAdapter(adaptadorLista);
 
@@ -200,13 +251,11 @@ public class HomeActivity extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         try {
                             cervezaFavorita = alCervezas.get(position);
-//                        intentCambio = new Intent(MainActivity.this, DetalleCervezaActivity.class);
                             intentCambio = new Intent(view.getContext(), DetalleCervezaActivity.class);
                             intentCambio.putExtra("id", cervezaFavorita.getId());
                             startActivity(intentCambio);
                         } catch (Exception e) {
-//                        Toast.makeText(MainActivity.this, "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
-                            Toast.makeText(view.getContext(), "Se ha producido un error al tratar de acceder al detalle del contacto.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(view.getContext(), "Se ha producido un error al tratar de acceder al detalle de la cerveza.", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
