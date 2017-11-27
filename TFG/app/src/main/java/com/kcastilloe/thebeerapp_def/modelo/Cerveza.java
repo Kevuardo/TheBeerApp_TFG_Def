@@ -15,6 +15,7 @@ public class Cerveza {
     private String tipo = null;
     private String paisOrigen = null;
     private String descripcion = null;
+    /* ¡Falta añadir un ArrayList de ubicaciones de cada cerveza! */
     private byte[] foto;
 
     /**

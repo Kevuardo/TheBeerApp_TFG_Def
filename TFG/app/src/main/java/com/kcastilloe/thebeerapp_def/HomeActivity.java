@@ -17,6 +17,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 import com.kcastilloe.thebeerapp_def.modelo.Cerveza;
 
 import java.util.ArrayList;
@@ -41,6 +44,8 @@ public class HomeActivity extends AppCompatActivity {
     private Intent intentCambio;
 //    private boolean listaVacia = false; /* Variable bandera para evaluar si la lista de favoritos está vacía. */
     private int idItemLista = 0; /* El id del item sobre el que se abre el menú contextual. */
+    private FirebaseAuth autenticacionFirebase; /* El controlador de autenticación de usuarios de Firebase. */
+    private FirebaseUser usuarioActual; /* El modelo de usuario que se almacenará en Firebase. */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,10 @@ public class HomeActivity extends AppCompatActivity {
         registerForContextMenu(lvListaCervezasFavoritas); /* Para añadir el menú contextual. */
 //        tvListaVacia = (TextView) findViewById(R.id.tvListaVacia) ;
         llListaVacia = (LinearLayout) findViewById(R.id.llListaVacia);
+
+        autenticacionFirebase = FirebaseAuth.getInstance();
+        usuarioActual = autenticacionFirebase.getCurrentUser();
+
     }
 
     @Override
@@ -103,7 +112,9 @@ public class HomeActivity extends AppCompatActivity {
                 AlertDialog dialogAjustes = builderAjustes.create();
                 dialogAjustes.show();
 
-                /* Abre la NuevaCervezaActivity. */
+                /* Dev Only - Cierra la sesión actual. */
+                autenticacionFirebase.signOut();
+                Toast.makeText(this, "Sesión cerrada.", Toast.LENGTH_SHORT).show();
 
                 return true;
             case R.id.action_extra:
