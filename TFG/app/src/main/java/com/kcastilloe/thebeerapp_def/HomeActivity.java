@@ -68,8 +68,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseDatabase bddFirebase;
     private DatabaseReference referenciaBdd;
 
-    private String nickUsuario;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,8 +102,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 //        tvListaVacia = (TextView) findViewById(R.id.tvListaVacia) ;
         llListaVacia = (LinearLayout) findViewById(R.id.llListaVacia);
 
-        tvNickUsuarioMenuLateral = (TextView) findViewById(R.id.tvNickUsuarioMenuLateral);
-        tvEmailUsuarioMenuLateral = (TextView) findViewById(R.id.tvEmailUsuarioMenuLateral);
+        /* Los campos de la cabecera del NavigationDrawer. */
+        View navHeaderView = nvMenuLateral.getHeaderView(0); /* Se recoge la vista de la cabecera
+            para trabajar con sus campos. De no hacerse así y tratar de acceder a los campos directamente
+            dará un error de NullPointerException. */
+        tvNickUsuarioMenuLateral = (TextView) navHeaderView.findViewById(R.id.tvNickUsuarioMenuLateral);
+        tvEmailUsuarioMenuLateral = (TextView) navHeaderView.findViewById(R.id.tvEmailUsuarioMenuLateral);
 
         autenticacionFirebase = FirebaseAuth.getInstance();
         usuarioActual = autenticacionFirebase.getCurrentUser();
@@ -113,16 +115,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         bddFirebase = FirebaseDatabase.getInstance();
         referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS).child(usuarioActual.getUid()).child("nick");
 
-        /* Ejecución dinámica de recogida de datos por cambio de los mismos. */
+        /* Al cargar la Activity, modifica los datos según el usuario que esté logeado. */
 
+        /* Ejecución dinámica de recogida de datos por cambio de los mismos. */
         referenciaBdd.addValueEventListener(new ValueEventListener() {
 
             /* Cuando cambien los datos. */
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 /* DataSnapshot es la colección de datos recogida de la BDD, y puede ser 1 solo valor o una lista de valores. */
-                nickUsuario = dataSnapshot.getValue(String.class);
-                Log.i("Nick: ", nickUsuario + "");
+                String nickUsuario = dataSnapshot.getValue(String.class);
+                modificarCampos(usuarioActual, nickUsuario);
             }
 
             /* Cuando se cancele la referencia a la BDD por algún motivo, o se produzca un error en la BDD. */
@@ -133,8 +136,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         });
 
-        /* Al cargar la Activity, modifica los datos según el usuario. */
-        modificarCampos(usuarioActual);
     }
 
     @Override
@@ -287,11 +288,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
      * datos personales.
      *
      * @param usuarioActual El usuario autenticado en el dispositivo actualmente.
+     *
      */
-    private void modificarCampos(FirebaseUser usuarioActual) {
+    private void modificarCampos(FirebaseUser usuarioActual, String nickUsuario) {
 
         String emailUsuario = usuarioActual.getEmail();
-        Toast.makeText(this, "E-mail: " + emailUsuario, Toast.LENGTH_SHORT).show();
 
         tvNickUsuarioMenuLateral.setText(nickUsuario);
         tvEmailUsuarioMenuLateral.setText(emailUsuario);
