@@ -82,8 +82,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fabBuscarCervezas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+
+                /* DEV NOTE: de momento fuerza a abrir la Activity y luego selecciona, pero en el
+                resultado final se deberían pasar extras a la nueva Activity (un identificador de la
+                cerveza de la que se desea ver el detalle, por ejemplo). */
+                intentCambio = new Intent(HomeActivity.this, DetalleCervezaActivity.class);
+                startActivity(intentCambio);
             }
         });
 
@@ -104,7 +110,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         /* Los campos de la cabecera del NavigationDrawer. */
         View navHeaderView = nvMenuLateral.getHeaderView(0); /* Se recoge la vista de la cabecera
-            para trabajar con sus campos. De no hacerse así y tratar de acceder a los campos directamente
+            para trabajar con sus campos. De no hacerse así y tratar de acceder a los campos directamente,
             dará un error de NullPointerException. */
         tvNickUsuarioMenuLateral = (TextView) navHeaderView.findViewById(R.id.tvNickUsuarioMenuLateral);
         tvEmailUsuarioMenuLateral = (TextView) navHeaderView.findViewById(R.id.tvEmailUsuarioMenuLateral);
@@ -113,10 +119,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         usuarioActual = autenticacionFirebase.getCurrentUser();
 
         bddFirebase = FirebaseDatabase.getInstance();
+        /* Referencia al nick del usuario, que es lo que se desea recuperar en este moemento. */
         referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS).child(usuarioActual.getUid()).child("nick");
 
-        /* Al cargar la Activity, modifica los datos según el usuario que esté logeado. */
+    }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dlMenuLateral);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        /* Se actualizan los datos de los campos de la vista cada vez que HomeActivity se reanuda (creación incluida). */
         /* Ejecución dinámica de recogida de datos por cambio de los mismos. */
         referenciaBdd.addValueEventListener(new ValueEventListener() {
 
@@ -136,21 +158,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         });
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dlMenuLateral);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         rellenarLista();
     }
 
@@ -261,26 +268,124 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dlMenuLateral);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+
+        switch (item.getItemId()) {
+            case R.id.nav_cuenta:
+
+                AlertDialog.Builder builderCuenta = new AlertDialog.Builder(this);
+                builderCuenta.setMessage("Has entrado en los ajustes de la app. Pero aquí no hay nah.");
+                builderCuenta.setTitle("Ajustes de la app");
+                builderCuenta.setPositiveButton("Cerrar ajustes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialogCuenta = builderCuenta.create();
+                dialogCuenta.show();
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+
+            case R.id.nav_logout:
+
+                AlertDialog.Builder builderLogout = new AlertDialog.Builder(this);
+                builderLogout.setMessage("¿Deseas cerrar la sesión de usuario actual?");
+                builderLogout.setTitle("Sesión de usuario actual");
+
+                /* Botón de decisión afirmativo. */
+                builderLogout.setPositiveButton("Cerrar sesión", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        /* Dev Only - Cierra la sesión actual. */
+                        autenticacionFirebase.signOut();
+                        Toast.makeText(HomeActivity.this, "Sesión cerrada.", Toast.LENGTH_SHORT).show();
+                        intentCambio = new Intent(HomeActivity.this, MainActivity.class);
+                        startActivity(intentCambio);
+                        finish(); /* Hace que no se pueda navegar desde HomeActivity hasta MainActivity de nuevo. */
+                    }
+                });
+
+                /* Botón de decisión negativa. */
+                builderLogout.setNegativeButton("No cerrar sesión", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                AlertDialog dialogLogout = builderLogout.create();
+                dialogLogout.show();
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+
+            case R.id.nav_info:
+
+                AlertDialog.Builder builderInfo = new AlertDialog.Builder(this);
+                builderInfo.setMessage("Creado por Kevin Castillo Escudero, 2017.\n\nContacto: kcastilloescudero@gmail.com");
+                builderInfo.setTitle("Información de la app");
+                builderInfo.setPositiveButton("Cerrar info", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialogInfo = builderInfo.create();
+                dialogInfo.show();
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+
+            case R.id.nav_reportar:
+                AlertDialog.Builder builderReportar = new AlertDialog.Builder(this);
+                builderReportar.setMessage("No hay nada que reportar, granujilla ;)");
+                builderReportar.setTitle("Reportar incidencias");
+                builderReportar.setPositiveButton("Cerrar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialogReportar = builderReportar.create();
+                dialogReportar.show();
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+
+            case R.id.nav_sugerencias:
+
+                AlertDialog.Builder builderSugerencias = new AlertDialog.Builder(this);
+                builderSugerencias.setMessage("Todas las sugerencias son bienvenidas, pero no obligatoriamente tomadas en cuenta.");
+                builderSugerencias.setTitle("Sugerencias de desarrollo");
+                builderSugerencias.setPositiveButton("Cerrar ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialogSugerencias = builderSugerencias.create();
+                dialogSugerencias.show();
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+
+            case R.id.nav_extra:
+
+                AlertDialog.Builder builderExtra = new AlertDialog.Builder(this);
+                builderExtra.setMessage("Próximamente disponible, ¡no desesperes! ;)");
+                builderExtra.setTitle("¡Pero si está incompleto!");
+                builderExtra.setPositiveButton("Cerrar info", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialogExtra = builderExtra.create();
+                dialogExtra.show();
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
     /**
