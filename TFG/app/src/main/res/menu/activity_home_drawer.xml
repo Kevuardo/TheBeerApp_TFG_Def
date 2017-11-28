@@ -3,35 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
-
-    <item android:title="Communicate">
+    <item android:title="Usuario">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_cuenta"
+                android:icon="@drawable/ic_account_circle_black_48dp"
+                android:title="Administrar cuenta" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/user_logout"
+                android:title="Cerrar sesión" />
+        </menu>
+
+    </item>
+
+
+    <item android:title="Otros">
+        <menu>
+            <item
+                android:id="@+id/nav_info"
+                android:icon="@drawable/ic_info_outline_black_48dp"
+                android:title="Información de la app" />
+            <item
+                android:id="@+id/nav_reportar"
+                android:icon="@drawable/ic_report_problem_black_48dp"
+                android:title="Reportar incidencias" />
+            <item
+                android:id="@+id/nav_sugerencias"
+                android:icon="@drawable/lightbulb_on_outline_48dp"
+                android:title="Sugerir cambios" />
+            <item
+                android:id="@+id/nav_extra"
+                android:icon="@drawable/ic_new_releases_black_48dp"
+                android:title="Extras de la app" />
         </menu>
     </item>
 
