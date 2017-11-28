@@ -3,17 +3,21 @@ package com.kcastilloe.thebeerapp_def;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -22,7 +26,6 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 import com.kcastilloe.thebeerapp_def.modelo.Cerveza;
 
 import java.util.ArrayList;
@@ -34,24 +37,28 @@ import java.util.ArrayList;
  * @author Kevin Castillo Escudero
  */
 
-public class HomeActivity extends AppCompatActivity {
+
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "HomeActivity";
 
     private ListView lvListaCervezasFavoritas; /* Lista de cervezas favoritas del usuario. */
     private TextView tvListaVacia;
     private LinearLayout llListaVacia;
+    private Toolbar tbBarraSuperiorHome;
+    private FloatingActionButton fabBuscarCervezas;
+    private DrawerLayout dlMenuLateral;
+    private NavigationView nvMenuLateral;
+
     private ListaPersonalizada adaptadorLista; /* El adaptador personalizado para la lista. */
     private Cerveza cervezaFavorita;
     private ArrayList<Cerveza> alCervezas = new ArrayList();
     private Intent intentCambio;
-//    private boolean listaVacia = false; /* Variable bandera para evaluar si la lista de favoritos está vacía. */
+    //    private boolean listaVacia = false; /* Variable bandera para evaluar si la lista de favoritos está vacía. */
     private int idItemLista = 0; /* El id del item sobre el que se abre el menú contextual. */
     private FirebaseAuth autenticacionFirebase; /* El controlador de autenticación de usuarios de Firebase. */
     private FirebaseUser usuarioActual; /* El modelo de usuario que se almacenará en Firebase. */
 
-    private DrawerLayout dlMenuLateral;
-    private NavigationView nvMenuLateral;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,62 +66,47 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); /* Fuerza la posición a vertical. */
 
+        /* Código autogenerado por Android Studio. */
+        tbBarraSuperiorHome = (Toolbar) findViewById(R.id.tbBarraSuperiorHome);
+        setSupportActionBar(tbBarraSuperiorHome);
+
+        fabBuscarCervezas = (FloatingActionButton) findViewById(R.id.fabBuscarCervezas);
+        fabBuscarCervezas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        dlMenuLateral = (DrawerLayout) findViewById(R.id.dlMenuLateral);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, dlMenuLateral, tbBarraSuperiorHome, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        dlMenuLateral.addDrawerListener(toggle);
+        toggle.syncState();
+
+        nvMenuLateral = (NavigationView) findViewById(R.id.nvMenuLateral);
+        nvMenuLateral.setNavigationItemSelectedListener(this);
+
+        /* Código propio. */
         lvListaCervezasFavoritas = (ListView) findViewById(R.id.lvListaCervezasFavoritas);
-        registerForContextMenu(lvListaCervezasFavoritas); /* Para añadir el menú contextual. */
+        registerForContextMenu(lvListaCervezasFavoritas); /* Para añadir el menú contextual a los items de la lista. */
 //        tvListaVacia = (TextView) findViewById(R.id.tvListaVacia) ;
         llListaVacia = (LinearLayout) findViewById(R.id.llListaVacia);
 
         autenticacionFirebase = FirebaseAuth.getInstance();
         usuarioActual = autenticacionFirebase.getCurrentUser();
 
-        /* Los elementos del Navigation Drawer (menú lateral) y su configuración lógica. */
+    }
 
-        /* La configuración de los items que forman el NavigationDrawer. */
-        nvMenuLateral.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.menu_seccion_1:
-                        Toast.makeText(HomeActivity.this, "Menú sección 1 pulsado", Toast.LENGTH_SHORT).show();
-                        item.setChecked(true);
-                        getSupportActionBar().setTitle(item.getTitle());
-                        dlMenuLateral.closeDrawers();
-                        break;
-                    case R.id.menu_seccion_2:
-                        Toast.makeText(HomeActivity.this, "Menú sección 2 pulsado", Toast.LENGTH_SHORT).show();
-                        item.setChecked(true);
-                        getSupportActionBar().setTitle(item.getTitle());
-                        dlMenuLateral.closeDrawers();
-                        break;
-                    case R.id.menu_seccion_3:
-                        Toast.makeText(HomeActivity.this, "Menú sección 3 pulsado", Toast.LENGTH_SHORT).show();
-                        item.setChecked(true);
-                        getSupportActionBar().setTitle(item.getTitle());
-                        dlMenuLateral.closeDrawers();
-                        break;
-                    case R.id.menu_opcion_1:
-                        Toast.makeText(HomeActivity.this, "Menú opción 1 pulsado", Toast.LENGTH_SHORT).show();
-                        dlMenuLateral.closeDrawers();
-                        break;
-                    case R.id.menu_opcion_2:
-                        Toast.makeText(HomeActivity.this, "Menú opción 2 pulsado", Toast.LENGTH_SHORT).show();
-                        dlMenuLateral.closeDrawers();
-                        break;
-                    case R.id.menu_opcion_3:
-                        Toast.makeText(HomeActivity.this, "Menú opción 3 pulsado", Toast.LENGTH_SHORT).show();
-                        dlMenuLateral.closeDrawers();
-                        break;
-                    default:
-                        Toast.makeText(HomeActivity.this, "Algo no ha funcionado como debería con el ND.", Toast.LENGTH_SHORT).show();
-                        dlMenuLateral.closeDrawers();
-                        break;
-                }
-
-                return true;
-
-            }
-        });
-
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dlMenuLateral);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -227,6 +219,31 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dlMenuLateral);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
     /**
      * Para rellenar la lista de cervezas favoritas cada vez que se inicia la actividad. Contacta con la BDD,
      * recoge los datos necesarios, crea objetos Cerveza para cada registro, y los muestra en los items de la lista.
@@ -280,4 +297,5 @@ public class HomeActivity extends AppCompatActivity {
                 ";\nPaís Origen: " + cervezaAlmacenada.getPaisOrigen());
         startActivity(Intent.createChooser(intentCompartir, "Compartir con..."));
     }
+
 }

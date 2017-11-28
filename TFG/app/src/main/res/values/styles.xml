@@ -29,4 +29,13 @@
 
     <style name="TheBeerApp" parent="AppTheme" />
 
+    <style name="TheBeerApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="TheBeerApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="TheBeerApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

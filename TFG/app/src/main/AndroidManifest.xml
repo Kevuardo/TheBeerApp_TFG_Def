@@ -23,9 +23,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".HomeActivity" />
         <activity android:name=".DetalleCervezaActivity" />
         <activity android:name=".NuevaCervezaActivity" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_nd"
+            android:theme="@style/TheBeerApp.NoActionBar"></activity>
     </application>
 
 </manifest>
