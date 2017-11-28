@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -26,7 +27,13 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kcastilloe.thebeerapp_def.modelo.Cerveza;
+import com.kcastilloe.thebeerapp_def.modelo.ReferenciasFirebase;
 
 import java.util.ArrayList;
 
@@ -43,7 +50,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private static final String TAG = "HomeActivity";
 
     private ListView lvListaCervezasFavoritas; /* Lista de cervezas favoritas del usuario. */
-    private TextView tvListaVacia;
+    private TextView tvListaVacia, tvNickUsuarioMenuLateral, tvEmailUsuarioMenuLateral;
     private LinearLayout llListaVacia;
     private Toolbar tbBarraSuperiorHome;
     private FloatingActionButton fabBuscarCervezas;
@@ -58,7 +65,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private int idItemLista = 0; /* El id del item sobre el que se abre el menú contextual. */
     private FirebaseAuth autenticacionFirebase; /* El controlador de autenticación de usuarios de Firebase. */
     private FirebaseUser usuarioActual; /* El modelo de usuario que se almacenará en Firebase. */
+    private FirebaseDatabase bddFirebase;
+    private DatabaseReference referenciaBdd;
 
+    private String nickUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,9 +104,37 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 //        tvListaVacia = (TextView) findViewById(R.id.tvListaVacia) ;
         llListaVacia = (LinearLayout) findViewById(R.id.llListaVacia);
 
+        tvNickUsuarioMenuLateral = (TextView) findViewById(R.id.tvNickUsuarioMenuLateral);
+        tvEmailUsuarioMenuLateral = (TextView) findViewById(R.id.tvEmailUsuarioMenuLateral);
+
         autenticacionFirebase = FirebaseAuth.getInstance();
         usuarioActual = autenticacionFirebase.getCurrentUser();
 
+        bddFirebase = FirebaseDatabase.getInstance();
+        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS);
+
+        /* Ejecución dinámica de recogida de datos por cambio de los mismos. */
+
+        referenciaBdd.addValueEventListener(new ValueEventListener() {
+
+            /* Cuando cambien los datos. */
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                /* DataSnapshot es la colección de datos recogida de la BDD, y puede ser 1 solo valor o una lista de valores. */
+                nickUsuario = dataSnapshot.getValue(String.class);
+                Log.i("Nick: ", nickUsuario + "");
+            }
+
+            /* Cuando se cancele la referencia a la BDD por algún motivo, o se produzca un error en la BDD. */
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Error en BDD: ", databaseError.getMessage());
+            }
+
+        });
+
+        /* Al cargar la Activity, modifica los datos según el usuario. */
+        modificarCampos(usuarioActual);
     }
 
     @Override
@@ -242,6 +280,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dlMenuLateral);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /**
+     * Recibe el usuario actual y modifica los campos de la vista de la actividad en función de sus
+     * datos personales.
+     *
+     * @param usuarioActual El usuario autenticado en el dispositivo actualmente.
+     */
+    private void modificarCampos(FirebaseUser usuarioActual) {
+
+        String emailUsuario = usuarioActual.getEmail();
+        Toast.makeText(this, "E-mail: " + emailUsuario, Toast.LENGTH_SHORT).show();
+
+        tvNickUsuarioMenuLateral.setText(nickUsuario);
+        tvEmailUsuarioMenuLateral.setText(emailUsuario);
+
     }
 
     /**
