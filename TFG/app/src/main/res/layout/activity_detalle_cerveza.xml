@@ -1,179 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_design_support_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:expandedTitleMarginStart="60dp"
-    tools:context="com.kcastilloe.thebeerapp_def.DetalleCervezaActivity">
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
-        android:layout_height="255dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:id="@+id/ablEspacioFoto">
+        android:layout_height="match_parent"
+        app:expandedTitleMarginStart="60dp">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/ctblDisposicionToolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:layout_height="255dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:id="@+id/ablEspacioFoto">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/tbBarraImagen"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:minHeight="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-            <ImageView
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/ctblDisposicionToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:srcCompat="@mipmap/ic_launcher"
-                android:id="@+id/ivCervezaAlmacenada" />
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/tbBarraImagen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    </android.support.design.widget.AppBarLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@mipmap/ic_launcher"
+                    android:id="@+id/ivImagenCervezaDetalle" />
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:id="@+id/nscVistaAnidadaDeslizable">
+            </android.support.design.widget.CollapsingToolbarLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/llDatosCerveza"
-            android:paddingTop="8dp">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/tilNombreCervezaDetalle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/etNombreCervezaDetalle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nombre cerveza: "
-                    android:ems="10"
-                    android:inputType="textPersonName"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/tilGradacionCervezaDetalle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/etGradacionCervezaDetalle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Grados cerveza: "
-                    android:ems="10"
-                    android:inputType="textPersonName"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/tilTipoCervezaDetalle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/etTipoCervezaDetalle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Tipo cerveza: "
-                    android:ems="10"
-                    android:inputType="textPersonName"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/tilPaisOrigenCervezaDetalle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/etPaisOrigenCervezaDetalle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nombre cerveza: "
-                    android:ems="10"
-                    android:inputType="textPersonName"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/tilDescripcionCervezaDetalle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/etDescripcionCervezaDetalle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Descripción cerveza: "
-                    android:ems="10"
-                    android:inputType="textPersonName"/>
-
-            </android.support.design.widget.TextInputLayout>
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:id="@+id/nscVistaAnidadaDeslizable">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
+                android:layout_height="wrap_content"
+                android:id="@+id/llDatosContacto"
+                android:paddingTop="8dp">
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
 
-                    <Button
-                        android:text="Cerveza anterior"
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/btnCervezaAnterior"
-                        style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_weight="1"
-                        android:layout_margin="5dp"/>
+                        android:gravity="left">
 
-                    <Button
-                        android:text="Cerveza siguiente"
+                        <TextView
+                            android:id="@+id/tvFechaAdicionCervezaDetalle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="false"
+                            android:ems="10"
+                            android:layout_marginTop="10dp"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:inputType="none"
+                            android:text="Añadida el -/-/-"
+                            android:textStyle="normal|bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/btnCervezaSiguiente"
-                        style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_weight="1"
-                        android:layout_margin="5dp"/>
+                        android:gravity="right">
+
+                        <Button
+                            android:text="Favorita"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/btnFavorito"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvNombreCervezaDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:ems="10"
+                    android:layout_marginTop="10dp"
+                    android:enabled="true"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:text="Nombre: -"
+                    android:textStyle="normal|bold" />
+
+                <TextView
+                    android:id="@+id/tvGradacionCervezaDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:ems="10"
+                    android:layout_marginTop="10dp"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:text="Grados: -"
+                    android:textAlignment="viewStart"
+                    android:textStyle="normal|bold" />
+
+                <TextView
+                    android:id="@+id/tvTipoCervezaDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:ems="10"
+                    android:layout_marginTop="10dp"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:text="Tipo: -"
+                    android:textStyle="normal|bold" />
+
+                <TextView
+                    android:id="@+id/tvPaisOrigenCervezaDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:ems="10"
+                    android:layout_marginTop="10dp"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:text="País origen: -"
+                    android:textStyle="normal|bold" />
+
+                <TextView
+                    android:id="@+id/tvDescripcionCervezaDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:ems="10"
+                    android:layout_marginTop="10dp"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:text="Descripción: Aquí va la descripción, habrá que ver si se le puede meter algo para que no se joda la disposición del Activity. Como un TextArea scrollable o algo del rollo."
+                    android:textStyle="normal|bold" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:text="Cerveza anterior"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/btnCervezaAnterior"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"/>
+
+                        <Button
+                            android:text="Cerveza siguiente"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/btnCervezaSiguiente"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:text="Ubicar cerveza"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnUbicarCerveza"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_weight="1"/>
+
             </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
-            <Button
-                android:text="Ubicar cerveza"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnUbicarCerveza"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"/>
+    </android.support.design.widget.CoordinatorLayout>
 
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-
-</android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.DrawerLayout>
