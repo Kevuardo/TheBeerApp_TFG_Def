@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         usuarioActual = autenticacionFirebase.getCurrentUser();
 
         bddFirebase = FirebaseDatabase.getInstance();
-        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS);
+        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS).child(usuarioActual.getUid()).child("nick");
 
         /* Ejecución dinámica de recogida de datos por cambio de los mismos. */
 
