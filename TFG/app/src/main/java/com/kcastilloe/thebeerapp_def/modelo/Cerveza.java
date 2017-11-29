@@ -37,6 +37,9 @@ public class Cerveza {
         this.foto = foto;
     }
 
+    public Cerveza() {
+    }
+
     /**
      * Constructor con id (para la recuperación de datos en la BDD y posterior muestra en el ListView).
      *
