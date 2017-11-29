@@ -158,7 +158,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         });
 
-        rellenarLista();
+        /* Se recogen las cervezas favoritas en un ArrayList. */
+        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS).child(usuarioActual.getUid()).child("favoritas");
+        referenciaBdd.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                alCervezas.clear(); /* Se vacía el Arraylist de cara a un nuevo proceso de rellenado de la lista. */
+                /* El parámetro que recibe el método getValue() es la clase del tipo de objeto que se desea recoger,
+                * y necesita un constructor vacío. */
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    cervezaFavorita = postSnapshot.getValue(Cerveza.class);
+                    alCervezas.add(cervezaFavorita);
+                    Log.i("Cerveza polla", cervezaFavorita.getNombre() + "");
+                }
+                rellenarLista(alCervezas);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Error de BD", databaseError.getMessage()+ "");
+            }
+        });
+
     }
 
     @Override
@@ -408,10 +429,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
      * Para rellenar la lista de cervezas favoritas cada vez que se inicia la actividad. Contacta con la BDD,
      * recoge los datos necesarios, crea objetos Cerveza para cada registro, y los muestra en los items de la lista.
      */
-    private void rellenarLista() {
-        alCervezas.clear(); /* Se vacía el Arraylist de cara a un nuevo proceso de rellenado de la lista. */
+    private void rellenarLista(final ArrayList<Cerveza> alCervezas) {
+
         try {
-            /* Se recogen las cervezas favoritas en un ArrayList. */
             /* Evalúa si la lista está vacía. De estarlo, mostrará una imagen y un texto por defecto para comunicárselo al usuario. */
             if (alCervezas.size() == 0) {
 //                lvListaCervezasFavoritas.setEmptyView(tvListaVacia);
@@ -437,6 +457,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
             }
+
         } catch (Exception e) {
             Toast.makeText(this, "Se ha producido un error al listar los contactos.", Toast.LENGTH_LONG).show();
         }
