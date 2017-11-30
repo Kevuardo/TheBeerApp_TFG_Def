@@ -68,11 +68,11 @@ public class ListaPersonalizada extends ArrayAdapter<Cerveza> {
         tvPaisOrigenItem.setText(alCervezas.get(position).getPaisOrigen());
 
         /* Carga de la imagen de la cerveza. */
-        ivImagenItem = (ImageView) vistaFila.findViewById(R.id.ivImagenItem);
+        /*ivImagenItem = (ImageView) vistaFila.findViewById(R.id.ivImagenItem);
         byte[] bytesFoto = alCervezas.get(position).getFoto();
         ByteArrayInputStream bytesLectura = new ByteArrayInputStream(bytesFoto);
         Bitmap imagenContacto = BitmapFactory.decodeStream(bytesLectura);
-        ivImagenItem.setImageBitmap(imagenContacto);
+        ivImagenItem.setImageBitmap(imagenContacto);*/
 
         return vistaFila; /* Devuelve la vista personalizada de la fila. */
     }

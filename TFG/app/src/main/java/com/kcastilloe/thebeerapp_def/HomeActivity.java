@@ -115,13 +115,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         tvNickUsuarioMenuLateral = (TextView) navHeaderView.findViewById(R.id.tvNickUsuarioMenuLateral);
         tvEmailUsuarioMenuLateral = (TextView) navHeaderView.findViewById(R.id.tvEmailUsuarioMenuLateral);
 
-        autenticacionFirebase = FirebaseAuth.getInstance();
-        usuarioActual = autenticacionFirebase.getCurrentUser();
-
-        bddFirebase = FirebaseDatabase.getInstance();
-        /* Referencia al nick del usuario, que es lo que se desea recuperar en este moemento. */
-        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS).child(usuarioActual.getUid()).child("nick");
-
     }
 
     @Override
@@ -137,6 +130,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
+
+        /* Se debe hacer la instanciación de FirebaseAuth y FirebaseDatabase en onResume() ya que de
+        * hacerlo en onCreate() sólo funcionaría la primera vez, y cada que vez que se reanudará la
+        * HomeActivity tras ser creada habría una inconsistencia de referencias en el código al
+        * tratar de acceder a valores nulos. */
+        autenticacionFirebase = FirebaseAuth.getInstance();
+        usuarioActual = autenticacionFirebase.getCurrentUser();
+
+        bddFirebase = FirebaseDatabase.getInstance();
+        /* Referencia al nick del usuario, que es lo que se desea recuperar en este moemento. */
+        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS).child(usuarioActual.getUid()).child("nick");
 
         /* Se actualizan los datos de los campos de la vista cada vez que HomeActivity se reanuda (creación incluida). */
         /* Ejecución dinámica de recogida de datos por cambio de los mismos. */
@@ -161,6 +165,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         /* Se recogen las cervezas favoritas en un ArrayList. */
         referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS).child(usuarioActual.getUid()).child("favoritas");
         referenciaBdd.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 alCervezas.clear(); /* Se vacía el Arraylist de cara a un nuevo proceso de rellenado de la lista. */
@@ -169,7 +174,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     cervezaFavorita = postSnapshot.getValue(Cerveza.class);
                     alCervezas.add(cervezaFavorita);
-                    Log.i("Cerveza polla", cervezaFavorita.getNombre() + "");
+                    Log.i("Cerveza favorita", cervezaFavorita.getNombre() + "");
                 }
                 rellenarLista(alCervezas);
             }
@@ -178,6 +183,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             public void onCancelled(DatabaseError databaseError) {
                 Log.e("Error de BD", databaseError.getMessage()+ "");
             }
+
         });
 
     }
@@ -428,6 +434,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     /**
      * Para rellenar la lista de cervezas favoritas cada vez que se inicia la actividad. Contacta con la BDD,
      * recoge los datos necesarios, crea objetos Cerveza para cada registro, y los muestra en los items de la lista.
+     *
+     * @param alCervezas La colección de cervezas favoritas del usuario actual.
      */
     private void rellenarLista(final ArrayList<Cerveza> alCervezas) {
 
@@ -437,7 +445,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 //                lvListaCervezasFavoritas.setEmptyView(tvListaVacia);
                 lvListaCervezasFavoritas.setEmptyView(llListaVacia);
             } else {
-                //alCervezas = gbd.listarContactos();
                 adaptadorLista = new ListaPersonalizada(this, R.layout.item_lista_layout, alCervezas);
                 lvListaCervezasFavoritas.setAdapter(adaptadorLista);
 
@@ -459,7 +466,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
 
         } catch (Exception e) {
-            Toast.makeText(this, "Se ha producido un error al listar los contactos.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Se ha producido un error al listar los favoritos.", Toast.LENGTH_LONG).show();
         }
     }
 
