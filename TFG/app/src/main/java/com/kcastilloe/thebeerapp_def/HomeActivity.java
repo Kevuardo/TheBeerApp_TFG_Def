@@ -443,8 +443,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             /* Evalúa si la lista está vacía. De estarlo, mostrará una imagen y un texto por defecto para comunicárselo al usuario. */
             if (alCervezas.size() == 0) {
 //                lvListaCervezasFavoritas.setEmptyView(tvListaVacia);
+                /* Se fuerza el estado a visible de la vista, por si acaso estaba invisible previamente. */
+                llListaVacia.setVisibility(View.VISIBLE);
                 lvListaCervezasFavoritas.setEmptyView(llListaVacia);
             } else {
+                /* Se fuerza el estado a invisible de la vista, ya que de otra manera se mezclarían
+                en la vista la emptyView (imagen y texto) y los items de la lista. */
+                llListaVacia.setVisibility(View.INVISIBLE);
                 adaptadorLista = new ListaPersonalizada(this, R.layout.item_lista_layout, alCervezas);
                 lvListaCervezasFavoritas.setAdapter(adaptadorLista);
 
