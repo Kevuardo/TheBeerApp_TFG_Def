@@ -43,7 +43,7 @@ public class NuevaCervezaActivity extends AppCompatActivity {
         finish();
     }
 
-    /* Sölo testeo - genera varias cervezxas predefinidas. */
+    /* Sólo testeo - genera varias cervezxas predefinidas. */
     private void generarCervezas() {
 
         /* 1ª cerveza. */
@@ -70,8 +70,14 @@ public class NuevaCervezaActivity extends AppCompatActivity {
         generarCervezas();
 
         for (int i = 0; i < alCervezasInsercion.size(); i++) {
-            referenciaBdd.child(alCervezasInsercion.get(i).getNombre()).setValue(alCervezasInsercion.get(i));
-            Log.i(TAG, "Cerveza: " + alCervezasInsercion.get(i).getNombre());
+
+            /* Se fuerza una key aleatoria sin llegar a insertar un valor. Después se inserta la
+            cerveza como child() usando dicha key aleatoria, y finalmente se cambia el valor del id
+            al de la key para poder referenciarlo fácilmente para la DetalleCervezaActivity. */
+            String keyAleatoriaFirebase = referenciaBdd.push().getKey();
+            referenciaBdd.child(keyAleatoriaFirebase).setValue(alCervezasInsercion.get(i));
+            referenciaBdd.child(keyAleatoriaFirebase).child("id").setValue(keyAleatoriaFirebase);
+
         }
 
         Toast.makeText(this, "Todo creado con éxito", Toast.LENGTH_SHORT).show();
