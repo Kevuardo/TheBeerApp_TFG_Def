@@ -82,14 +82,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fabBuscarCervezas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-
-                /* DEV NOTE: de momento fuerza a abrir la Activity y luego selecciona, pero en el
-                resultado final se deberían pasar extras a la nueva Activity (un identificador de la
-                cerveza de la que se desea ver el detalle, por ejemplo). */
-                intentCambio = new Intent(HomeActivity.this, DetalleCervezaActivity.class);
-                startActivity(intentCambio);
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 
@@ -267,7 +261,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         idItemLista = info.position; /* Recoge el item de la lista en el que se ha llamado al menú contextual. */
         switch (item.getItemId()) {
             case R.id.action_context_consultar:
-                /* Abre la DetalleContactoActivity con el id del contacto almacenado. */
+                /* Abre la DetalleCervezaActivity con el id en Firebase de la cerveza seleciconada. */
                 try {
                     cervezaFavorita = alCervezas.get(idItemLista);
                     intentCambio = new Intent(this, DetalleCervezaActivity.class);
@@ -453,15 +447,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 adaptadorLista = new ListaPersonalizada(this, R.layout.item_lista_layout, alCervezas);
                 lvListaCervezasFavoritas.setAdapter(adaptadorLista);
 
-            /* El OnClickListener para los items del ListView. */
+                /* El OnClickListener para los items del ListView. */
                 lvListaCervezasFavoritas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    /* Llama al Intent para que cambie a la actividad que muestra el detalle del contacto. */
+                    /* Llama al Intent para que cambie a la actividad que muestra el detalle de la cerveza. */
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         try {
                             cervezaFavorita = alCervezas.get(position);
                             intentCambio = new Intent(view.getContext(), DetalleCervezaActivity.class);
-//                            intentCambio.putExtra("id", cervezaFavorita.getId());
+                            intentCambio.putExtra("id", cervezaFavorita.getId());
                             startActivity(intentCambio);
                         } catch (Exception e) {
                             Toast.makeText(view.getContext(), "Se ha producido un error al tratar de acceder al detalle de la cerveza.", Toast.LENGTH_LONG).show();
