@@ -153,13 +153,6 @@ public class FragmentVentanaLogin extends Fragment {
             }
         });
 
-        final Button btnAbrirHomeLogin = (Button) view.findViewById(R.id.btnAbrirHomeLogin);
-        btnAbrirHomeLogin.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ((MainActivity) getActivity()).abrirInicio();
-            }
-        });
-
         return view;
     }
 
