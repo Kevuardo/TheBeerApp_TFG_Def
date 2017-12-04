@@ -9,7 +9,6 @@ package com.kcastilloe.thebeerapp_def.modelo;
 
 public class Cerveza {
 
-    private int id = 0;
     private String nombre = null;
     private float grados = 0f;
     private String tipo = null;
@@ -19,7 +18,13 @@ public class Cerveza {
     private byte[] foto;
 
     /**
-     * Constructor sin id (para la inserción en la BDD).
+     * Constructor vacío, para usar sólo su modelo de clase en la recogida de favoritos del usuario.
+     */
+    public Cerveza() {
+    }
+
+    /**
+     * Constructor para la inserción en la BDD y recogida de la misma.
      *
      * @param nombre El nombre de la cerveza.
      * @param grados Los grados de la cerveza.
@@ -37,30 +42,6 @@ public class Cerveza {
         this.foto = foto;
     }
 
-    public Cerveza() {
-    }
-
-    /**
-     * Constructor con id (para la recuperación de datos en la BDD y posterior muestra en el ListView).
-     *
-     * @param id El id de la cerveza.
-     * @param nombre El nombre de la cerveza.
-     * @param grados Los grados de la cerveza.
-     * @param tipo El tipo de la cerveza.
-     * @param paisOrigen El país de origen de la cerveza.
-     * @param descripcion La descripción comercial de la cerveza.
-     * @param foto La foto de la cerveza.
-     */
-    public Cerveza(int id, String nombre, float grados, String tipo, String paisOrigen, String descripcion, byte[] foto) {
-        this.id = id;
-        this.nombre = nombre;
-        this.grados = grados;
-        this.tipo = tipo;
-        this.paisOrigen = paisOrigen;
-        this.descripcion = descripcion;
-        this.foto = foto;
-    }
-
     /* Sólo testeo - constructor de cerveza sin imagen. */
     public Cerveza(String nombre, float grados, String tipo, String paisOrigen) {
         this.nombre = nombre;
@@ -70,14 +51,6 @@ public class Cerveza {
     }
 
     /* Getters y Setters. */
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNombre() {
         return nombre;
     }

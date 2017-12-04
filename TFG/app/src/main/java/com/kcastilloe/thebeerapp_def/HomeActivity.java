@@ -271,7 +271,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 try {
                     cervezaFavorita = alCervezas.get(idItemLista);
                     intentCambio = new Intent(this, DetalleCervezaActivity.class);
-                    intentCambio.putExtra("id", cervezaFavorita.getId());
+//                    intentCambio.putExtra("id", cervezaFavorita.getId());
                     startActivity(intentCambio);
                 } catch (Exception e) {
                     Toast.makeText(this, "Se ha producido un error al tratar de acceder al detalle de la cerveza.", Toast.LENGTH_LONG).show();
@@ -461,7 +461,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         try {
                             cervezaFavorita = alCervezas.get(position);
                             intentCambio = new Intent(view.getContext(), DetalleCervezaActivity.class);
-                            intentCambio.putExtra("id", cervezaFavorita.getId());
+//                            intentCambio.putExtra("id", cervezaFavorita.getId());
                             startActivity(intentCambio);
                         } catch (Exception e) {
                             Toast.makeText(view.getContext(), "Se ha producido un error al tratar de acceder al detalle de la cerveza.", Toast.LENGTH_LONG).show();
