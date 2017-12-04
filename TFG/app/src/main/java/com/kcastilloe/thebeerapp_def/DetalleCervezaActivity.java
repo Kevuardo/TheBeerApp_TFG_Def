@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,18 +28,22 @@ import com.kcastilloe.thebeerapp_def.modelo.Usuario;
 
 public class DetalleCervezaActivity extends AppCompatActivity {
 
+    private TextView tvNombreCervezaDetalle, tvGradacionCervezaDetalle, tvTipoCervezaDetalle,
+            tvPaisOrigenCervezaDetalle, tvDescripcionCervezaDetalle;
+    private Button btnFavorito;
+
     private Intent intentCambio;
+
     private FirebaseAuth autenticacionFirebase;
     private FirebaseUser usuarioActual;
     private FirebaseDatabase bddFirebase;
     private DatabaseReference referenciaBdd;
-    private Cerveza nuevaCerveza;
-    private Usuario usuarioAlmacenado; /* El usuario almacenado en la BDD. */
+
     private Cerveza cervezaAlmacenada; /* La cerveza almacenada en la BDD. */
+    private Usuario usuarioAlmacenado; /* El usuario almacenado en la BDD. */
+
     private String idCerveza; /* La cadena identificadora de la cerveza en la BDD. */
-    private TextView tvNombreCervezaDetalle, tvGradacionCervezaDetalle, tvTipoCervezaDetalle,
-            tvPaisOrigenCervezaDetalle, tvDescripcionCervezaDetalle;
-    private Button btnFavorito;
+    private boolean esFavorita = false; /* Variable bandera. Si ya es favorita, la borra. Si no lo es, la añade. */
 
     /* Variables bandera para la navegación entre cervezas. */
     private boolean primeraCerveza = false;
@@ -63,6 +66,10 @@ public class DetalleCervezaActivity extends AppCompatActivity {
         tvDescripcionCervezaDetalle = (TextView) findViewById(R.id.tvDescripcionCervezaDetalle);
         btnFavorito = (Button) findViewById(R.id.btnFavorito);
 
+        /* Evalúa si el usuario ya ha marcado esa cerveza como favorita; de ser así, cambiará su texto
+        * y estilo. Para ello, evalúa si el ID de la cerveza se corresponde con alguno de los favoritos
+        * del usuario. */
+
         btnFavorito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,13 +77,16 @@ public class DetalleCervezaActivity extends AppCompatActivity {
             }
         });
 
+        /* Recoge el ID que le envía el Intent. */
+        Intent intentApertura = getIntent();
+        String idCerveza = intentApertura.getStringExtra("id");
+
         /* Recoger una cerveza de la BD, volcar datos en la vista y luego agregar a favoritos. */
         bddFirebase = FirebaseDatabase.getInstance();
-        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_CERVEZAS).child("Alhambra");
-
+        /* La clave en child() será igual a la clave ID de la cerveza que recibe en el Intent. */
+        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_CERVEZAS).child(idCerveza);
         autenticacionFirebase = FirebaseAuth.getInstance();
         usuarioActual = autenticacionFirebase.getCurrentUser();
-
 
     }
 
@@ -91,8 +101,8 @@ public class DetalleCervezaActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 /* El parámetro que recibe el método getValue() es la clase del tipo de objeto que se desea recoger,
                 * y necesita un constructor vacío. */
-                nuevaCerveza = dataSnapshot.getValue(Cerveza.class);
-                modificarCampos(nuevaCerveza);
+                cervezaAlmacenada = dataSnapshot.getValue(Cerveza.class);
+                modificarCampos(cervezaAlmacenada);
             }
 
             @Override
@@ -103,26 +113,30 @@ public class DetalleCervezaActivity extends AppCompatActivity {
 
     }
 
-    private void modificarCampos(Cerveza nuevaCerveza) {
+    /**
+     * Modifica los campos de la vista de detalle con los valores propios de la cerveza seleccioanda.
+     *
+     * @param cervezaAlmacenada La cerveza almacenada en la BDD que se ha referenciado al entrar en la Activity.
+     */
+    private void modificarCampos(Cerveza cervezaAlmacenada) {
 
-        tvNombreCervezaDetalle.setText("Nombre: " + nuevaCerveza.getNombre());
-        tvGradacionCervezaDetalle.setText("Grados: " + Float.toString(nuevaCerveza.getGrados()) + "%");
-        tvTipoCervezaDetalle.setText("Tipo: " + nuevaCerveza.getTipo());
-        tvPaisOrigenCervezaDetalle.setText("País de origen: " + nuevaCerveza.getPaisOrigen());
+        tvNombreCervezaDetalle.setText("Nombre: " + cervezaAlmacenada.getNombre());
+        tvGradacionCervezaDetalle.setText("Grados: " + Float.toString(cervezaAlmacenada.getGrados()) + "%");
+        tvTipoCervezaDetalle.setText("Tipo: " + cervezaAlmacenada.getTipo());
+        tvPaisOrigenCervezaDetalle.setText("País de origen: " + cervezaAlmacenada.getPaisOrigen());
 
     }
 
     private void guardarFavorita() {
 
-        boolean esFavorita = false; /* Variable bandera. Si ya es favorita, la borra. Si no lo es, la añade. */
 
-        Toast.makeText(this, "Pos mu bien, campeón.", Toast.LENGTH_SHORT).show();
+
         /* Crea un objeto Usuario para almacenarlo en la BDD. */
         usuarioActual = autenticacionFirebase.getCurrentUser();
         referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS);
         /* Con child se puede seleccionar la clave que tendrá el nodo, y en este caso se desea que
         sea el UID (User ID) que Firebase proporciona automáticamente a cada usuario autenticado. */
-        referenciaBdd.child(usuarioActual.getUid()).child("favoritas").child(nuevaCerveza.getNombre()).setValue(nuevaCerveza);
+        referenciaBdd.child(usuarioActual.getUid()).child("favoritas").child(cervezaAlmacenada.getId()).setValue(cervezaAlmacenada);
 
     }
 }
