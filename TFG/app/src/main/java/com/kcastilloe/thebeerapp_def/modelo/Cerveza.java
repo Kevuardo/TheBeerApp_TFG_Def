@@ -14,6 +14,7 @@ public class Cerveza {
     private String tipo = null;
     private String paisOrigen = null;
     private String descripcion = null;
+    private String id = null;
     /* ¡Falta añadir un ArrayList de ubicaciones de cada cerveza! */
     private byte[] foto;
 
@@ -24,7 +25,7 @@ public class Cerveza {
     }
 
     /**
-     * Constructor para la inserción en la BDD y recogida de la misma.
+     * Constructor sin id para la inserción en la BDD. (El id se modificará después de insertarse).
      *
      * @param nombre El nombre de la cerveza.
      * @param grados Los grados de la cerveza.
@@ -39,6 +40,27 @@ public class Cerveza {
         this.tipo = tipo;
         this.paisOrigen = paisOrigen;
         this.descripcion = descripcion;
+        this.foto = foto;
+    }
+
+    /**
+     * Constructor con ID para la recogida de datos de la BDD.
+     *
+     * @param nombre El nombre de la cerveza.
+     * @param grados Los grados de la cerveza.
+     * @param tipo El tipo de la cerveza.
+     * @param paisOrigen El país de origen de la cerveza.
+     * @param descripcion La descripción comercial de la cerveza.
+     * @param foto La foto de la cerveza.
+     * @param id El id de la cerveza almacenada en la BDD.
+     */
+    public Cerveza(String nombre, float grados, String tipo, String paisOrigen, String descripcion, String id, byte[] foto) {
+        this.nombre = nombre;
+        this.grados = grados;
+        this.tipo = tipo;
+        this.paisOrigen = paisOrigen;
+        this.descripcion = descripcion;
+        this.id = id;
         this.foto = foto;
     }
 
@@ -81,6 +103,22 @@ public class Cerveza {
 
     public void setPaisOrigen(String paisOrigen) {
         this.paisOrigen = paisOrigen;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public byte[] getFoto() {
