@@ -160,13 +160,13 @@
                     android:id="@+id/tvDescripcionCervezaDetalle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:clickable="false"
                     android:ems="10"
-                    android:layout_marginTop="10dp"
                     android:focusable="false"
                     android:inputType="none"
-                    android:text="Descripción: Aquí va la descripción, habrá que ver si se le puede meter algo para que no se joda la disposición del Activity. Como un TextArea scrollable o algo del rollo."
+                    android:text="Descripción: Aquí va la descripción, habrá que ver si se le puede meter algo para que no se cambie la disposición de elementos del Activity. Como un TextArea scrollable o algo del rollo."
                     android:textStyle="normal|bold" />
 
                 <LinearLayout
@@ -180,23 +180,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <Button
-                            android:text="Cerveza anterior"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/btnCervezaAnterior"
-                            style="@style/Widget.AppCompat.Button.Colored"
-                            android:layout_weight="1"
-                            android:layout_margin="5dp"/>
-
-                        <Button
-                            android:text="Cerveza siguiente"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/btnCervezaSiguiente"
-                            style="@style/Widget.AppCompat.Button.Colored"
-                            android:layout_weight="1"
-                            android:layout_margin="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
 
