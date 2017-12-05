@@ -16,7 +16,7 @@
         android:id="@+id/action_buscar"
         android:icon="@drawable/ic_search_black_48dp"
         android:orderInCategory="100"
-        android:title="Buscar"
+        android:title="Buscar cerveza"
         app:showAsAction="always">
     </item>
 
