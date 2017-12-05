@@ -9,35 +9,15 @@
         android:icon="@drawable/ic_add_circle_outline_black_48dp"
         android:title="Añadir cerveza"
         app:showAsAction="always" >
-
     </item>
 
-    <!-- Ajustes de la app. -->
+    <!-- Búsqueda de cervezas. -->
     <item
-        android:id="@+id/action_opciones"
-        android:icon="@drawable/ic_more_vert_black_48dp"
-        android:title="Ajustes"
+        android:id="@+id/action_buscar"
+        android:icon="@drawable/ic_search_black_48dp"
+        android:orderInCategory="100"
+        android:title="Buscar"
         app:showAsAction="always">
-
-        <!-- Submenú de opciones. -->
-        <menu>
-            <item
-                android:id="@+id/action_info"
-                android:icon="@drawable/ic_info_outline_black_48dp"
-                android:title="Información de la app"
-                app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/action_ajustes"
-                android:icon="@drawable/ic_settings_black_48dp"
-                android:title="Ajustes de usuario"
-                app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/action_extra"
-                android:icon="@drawable/ic_new_releases_black_48dp"
-                android:title="Extras de la app"
-                app:showAsAction="ifRoom" />
-        </menu>
-
     </item>
 
 </menu>
