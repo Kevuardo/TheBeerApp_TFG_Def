@@ -11,24 +11,43 @@
         android:layout_height="wrap_content"
         android:theme="@style/TheBeerApp.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tbBarraSuperiorHome"
+        <FrameLayout
+            android:id="@+id/flContenedorToolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            app:popupTheme="@style/TheBeerApp.PopupOverlay" />
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tbBarraSuperiorHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                app:popupTheme="@style/TheBeerApp.PopupOverlay" />
+
+            <com.miguelcatalan.materialsearchview.MaterialSearchView
+                android:id="@+id/msvBusqueda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:searchBackground="@color/colorPrimary"
+                app:searchSuggestionBackground="@color/colorPrimaryDark"
+                android:hint="Buscar..."
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textStyle="normal|bold" />
+
+        </FrameLayout>
+
 
     </android.support.design.widget.AppBarLayout>
 
     <!-- El contenido de la HomeActivity. -->
     <include layout="@layout/content_home" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabBuscarCervezas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_search_black_48dp" />
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fabBuscarCervezas"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_margin="@dimen/fab_margin"-->
+        <!--app:srcCompat="@drawable/ic_search_black_48dp" />-->
 
 </android.support.design.widget.CoordinatorLayout>
