@@ -34,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kcastilloe.thebeerapp_def.modelo.Cerveza;
 import com.kcastilloe.thebeerapp_def.modelo.ReferenciasFirebase;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
 
@@ -68,6 +69,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseDatabase bddFirebase;
     private DatabaseReference referenciaBdd;
 
+    /* Para el SearchView. */
+    private MaterialSearchView msvBusqueda;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,14 +82,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         tbBarraSuperiorHome = (Toolbar) findViewById(R.id.tbBarraSuperiorHome);
         setSupportActionBar(tbBarraSuperiorHome);
 
-        fabBuscarCervezas = (FloatingActionButton) findViewById(R.id.fabBuscarCervezas);
-        fabBuscarCervezas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        fabBuscarCervezas = (FloatingActionButton) findViewById(R.id.fabBuscarCervezas);
+//        fabBuscarCervezas.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         dlMenuLateral = (DrawerLayout) findViewById(R.id.dlMenuLateral);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -97,6 +101,44 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         nvMenuLateral.setNavigationItemSelectedListener(this);
 
         /* Código propio. */
+        /* MaterialSearchView es un elemento perteneciente a una librería importada. Es un elemento
+        de búsqueda que facilita mucho a la hora de trabajar con eventos, vistas, etc. */
+        msvBusqueda = (MaterialSearchView) findViewById(R.id.msvBusqueda);
+        msvBusqueda.setVoiceSearch(true); /* Habilita la búsqueda por voz. */
+
+        /* Se le añade una lista a la búsqueda para las coincidencias retornadas. */
+
+
+        /* Por último, se trabajan los eventos para evalúar que ocurrirá con la búsqueda. */
+        msvBusqueda.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                /* Cuando se selecciona la opción de envío de búsqueda. */
+                Snackbar.make(findViewById(R.id.rlContenedorHome), "Selecciona una de las sugerencias", Snackbar.LENGTH_LONG).show();
+//                Toast.makeText(HomeActivity.this, "Selecciona una de las sugerencias", Toast.LENGTH_SHORT).show();
+                return true; /* Si devuelve false, cierra el teclado; si devuelve true, lo deja abierto. */
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                /* Cuando el texto cambia, evalúa si hay coincidencias. */
+                
+                return false;
+            }
+        });
+
+        msvBusqueda.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+
+            }
+        });
+
         lvListaCervezasFavoritas = (ListView) findViewById(R.id.lvListaCervezasFavoritas);
         registerForContextMenu(lvListaCervezasFavoritas); /* Para añadir el menú contextual a los items de la lista. */
 //        tvListaVacia = (TextView) findViewById(R.id.tvListaVacia) ;
@@ -113,9 +155,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dlMenuLateral);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        DrawerLayout dlMenuLateral = (DrawerLayout) findViewById(R.id.dlMenuLateral);
+        if (dlMenuLateral.isDrawerOpen(GravityCompat.START)) {
+            dlMenuLateral.closeDrawer(GravityCompat.START);
+        } else if (msvBusqueda.isSearchOpen()) {
+            msvBusqueda.closeSearch();
         } else {
             super.onBackPressed();
         }
@@ -185,6 +229,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home, menu);
+        /* Asigna el item de búsqueda del menú del Toolbar a la MaterialSearchView. */
+        msvBusqueda.setMenuItem(menu.findItem(R.id.action_buscar));
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -198,50 +244,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intentCambio);
 
                 return true;
-            case R.id.action_info:
-                AlertDialog.Builder builderInfo = new AlertDialog.Builder(this);
-                builderInfo.setMessage("Creado por Kevin Castillo Escudero, 2017.\n\nContacto: kcastilloescudero@gmail.com");
-                builderInfo.setTitle("Información de la app");
-                builderInfo.setPositiveButton("Cerrar info", new DialogInterface.OnClickListener() {
+            case R.id.action_buscar:
+                AlertDialog.Builder builderBusqueda = new AlertDialog.Builder(this);
+                builderBusqueda.setMessage("Aquí va la búsqueda");
+                builderBusqueda.setTitle("Búsqueda de la app");
+                builderBusqueda.setPositiveButton("Cerrar búsqueda", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
                 });
-                AlertDialog dialogInfo = builderInfo.create();
-                dialogInfo.show();
-                return true;
-            case R.id.action_ajustes:
-
-                AlertDialog.Builder builderAjustes = new AlertDialog.Builder(this);
-                builderAjustes.setMessage("Has entrado en los ajustes de la app. Pero aquí no hay nah.");
-                builderAjustes.setTitle("Ajustes de la app");
-                builderAjustes.setPositiveButton("Cerrar ajustes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                AlertDialog dialogAjustes = builderAjustes.create();
-                dialogAjustes.show();
-
-                /* Dev Only - Cierra la sesión actual. */
-                autenticacionFirebase.signOut();
-                Toast.makeText(this, "Sesión cerrada.", Toast.LENGTH_SHORT).show();
-
-                return true;
-            case R.id.action_extra:
-                AlertDialog.Builder builderExtra = new AlertDialog.Builder(this);
-                builderExtra.setMessage("Próximamente disponible, ¡no desesperes! ;)");
-                builderExtra.setTitle("¡Pero si está incompleto!");
-                builderExtra.setPositiveButton("Cerrar info", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                AlertDialog dialogExtra = builderExtra.create();
-                dialogExtra.show();
+                AlertDialog dialogBusqueda = builderBusqueda.create();
+                dialogBusqueda.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
