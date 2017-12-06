@@ -9,4 +9,40 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string-array name="sugerencias_busqueda">
+        <item>Alhambra</item>
+        <item>Amstel Lager</item>
+        <item>Asahi</item>
+        <item>Beck's</item>
+        <item>Benediktiner</item>
+        <item>Birra Moretti</item>
+        <item>Buckler</item>
+        <item>Budweiser</item>
+        <item>Carlsberg</item>
+        <item>Chimay</item>
+        <item>Chimay Red</item>
+        <item>Corona</item>
+        <item>Dos Equis</item>
+        <item>Duvel</item>
+        <item>Erdinger Weissbier</item>
+        <item>Foster's</item>
+        <item>Guinness</item>
+        <item>Gulden Draak</item>
+        <item>Franziskaner</item>
+        <item>Heineken</item>
+        <item>Hoegaarden</item>
+        <item>King Goblin</item>
+        <item>Kirin Ichiban</item>
+        <item>Köstritzer</item>
+        <item>Kronenbourg 1664</item>
+        <item>Mahou</item>
+        <item>Newcastle Brown Ale</item>
+        <item>Paulaner</item>
+        <item>Peroni Nastro Azzurro</item>
+        <item>Presidente</item>
+        <item>Sapporo Premium Lager</item>
+        <item>Stella Artois</item>
+    </string-array>
+
 </resources>
