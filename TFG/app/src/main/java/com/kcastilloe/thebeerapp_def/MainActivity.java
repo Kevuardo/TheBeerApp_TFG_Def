@@ -2,7 +2,9 @@ package com.kcastilloe.thebeerapp_def;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference referenciaBdd;
     private Usuario nuevoUsuario;
 
+    private boolean teclaBackPulsada = false; /* Variable bandera para controlar la salida de la app. */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +76,39 @@ public class MainActivity extends AppCompatActivity {
         /* Comprueba si el usuario está actualmente activo (ya ha iniciado sesión). */
         usuarioActual = autenticacionFirebase.getCurrentUser();
         evaluarEstadoUsuario(usuarioActual);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        /* Evalúa si la tecla "back" del teléfono ha sido accionada, y cierra la app si se
+        produce una pulsación doble en un tiempo inferior a 2 segundos. */
+
+        /* Si ya ha sido pulsada en los anteriores 2 segundos, cierra la app. */
+        if (teclaBackPulsada) {
+            super.onBackPressed();
+            return;
+        } else {
+            /* Si no, cambia la variable bandera a true para que se pueda salir,
+            * muestra al usuario un mensaje por pantalla, y activa un temporizador en segundo
+            * plano de 2 segundos para accionar o desaccionar la acción de salida de la app. */
+            this.teclaBackPulsada = true;
+//            Toast.makeText(this, "Pulsa de nuevo para salir", Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.clGeneral), "Pulsa de nuevo para salir", Snackbar.LENGTH_LONG).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                /* De no cumplirse la condición de presionado de la tecla trasera en esos 2
+                * segundos, cambia el valor de la variable bandera a flase, de cara a un
+                * nuevo intento. */
+                @Override
+                public void run() {
+                    teclaBackPulsada = false;
+                }
+
+            }, 2000);
+        }
+
     }
 
     /**
