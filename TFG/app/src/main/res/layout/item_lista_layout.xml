@@ -7,60 +7,69 @@
     android:orientation="vertical"
     android:padding="10dp" >
 
-    <LinearLayout
-        android:id="@+id/llMuestraItem"
+    <RelativeLayout
+        android:id="@+id/rlMuestraItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:background="?android:attr/selectableItemBackground" >
 
         <ImageView
             android:id="@+id/ivImagenItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
             app:srcCompat="@android:drawable/ic_menu_info_details" />
 
         <LinearLayout
             android:id="@+id/llDatosItem"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="72dp"
+            android:gravity="center_vertical"
             android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/tvNombreItem"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre cerveza"
-                android:textSize="12sp"
+                android:paddingRight="16dp"
+                android:text="Nombre cerveza: -"
+                android:textSize="24sp"
                 android:textStyle="normal|bold" />
 
             <TextView
                 android:id="@+id/tvGradosItem"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Grados cerveza"
+                android:paddingRight="16dp"
+                android:text="Grados: -"
                 android:textSize="12sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/tvTipoItem"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Tipo cerveza"
+                android:paddingRight="16dp"
+                android:text="Tipo: -"
                 android:textSize="12sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/tvPaisOrigenItem"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="País origen cerveza"
+                android:paddingRight="16dp"
+                android:text="País de origen: -"
                 android:textSize="12sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal" />
 
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
