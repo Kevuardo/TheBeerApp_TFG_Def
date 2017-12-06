@@ -53,8 +53,8 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/llDatosContacto"
-                android:paddingTop="8dp">
+                android:id="@+id/llDatosCerveza"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -113,7 +113,8 @@
                     android:enabled="true"
                     android:focusable="false"
                     android:inputType="none"
-                    android:text="Nombre: -"
+                    android:text="Nombre cerveza: -"
+                    android:textSize="24dp"
                     android:textStyle="normal|bold" />
 
                 <TextView
@@ -128,7 +129,7 @@
                     android:inputType="none"
                     android:text="Grados: -"
                     android:textAlignment="viewStart"
-                    android:textStyle="normal|bold" />
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/tvTipoCervezaDetalle"
@@ -141,7 +142,7 @@
                     android:focusable="false"
                     android:inputType="none"
                     android:text="Tipo: -"
-                    android:textStyle="normal|bold" />
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/tvPaisOrigenCervezaDetalle"
@@ -154,7 +155,7 @@
                     android:focusable="false"
                     android:inputType="none"
                     android:text="País de origen: -"
-                    android:textStyle="normal|bold" />
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/tvDescripcionCervezaDetalle"
@@ -167,7 +168,7 @@
                     android:focusable="false"
                     android:inputType="none"
                     android:text="Descripción: Aquí va la descripción, habrá que ver si se le puede meter algo para que no se cambie la disposición de elementos del Activity. Como un TextArea scrollable o algo del rollo."
-                    android:textStyle="normal|bold" />
+                    android:textStyle="normal" />
 
                 <LinearLayout
                     android:orientation="vertical"

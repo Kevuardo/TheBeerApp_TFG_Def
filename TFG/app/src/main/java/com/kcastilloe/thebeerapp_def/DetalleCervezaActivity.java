@@ -120,7 +120,7 @@ public class DetalleCervezaActivity extends AppCompatActivity {
      */
     private void modificarCampos(Cerveza cervezaAlmacenada) {
 
-        tvNombreCervezaDetalle.setText("Nombre: " + cervezaAlmacenada.getNombre());
+        tvNombreCervezaDetalle.setText(cervezaAlmacenada.getNombre());
         tvGradacionCervezaDetalle.setText("Grados: " + Float.toString(cervezaAlmacenada.getGrados()) + "%");
         tvTipoCervezaDetalle.setText("Tipo: " + cervezaAlmacenada.getTipo());
         tvPaisOrigenCervezaDetalle.setText("País de origen: " + cervezaAlmacenada.getPaisOrigen());
