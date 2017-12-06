@@ -27,11 +27,11 @@
                 android:id="@+id/msvBusqueda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:searchBackground="@color/colorPrimary"
-                app:searchSuggestionBackground="@color/colorPrimaryDark"
+                app:searchBackground="@android:color/white"
+                app:searchSuggestionBackground="@android:color/white"
                 android:hint="Buscar..."
-                android:textColorHint="#FFFFFF"
-                android:textColor="#FFFFFF"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:textStyle="normal|bold" />
 
         </FrameLayout>
