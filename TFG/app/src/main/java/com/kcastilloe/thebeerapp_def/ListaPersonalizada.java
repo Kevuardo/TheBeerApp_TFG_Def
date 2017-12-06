@@ -57,15 +57,15 @@ public class ListaPersonalizada extends ArrayAdapter<Cerveza> {
 
         /* Carga de los grados de la cerveza. */
         tvGradosItem = (TextView) vistaFila.findViewById(R.id.tvGradosItem);
-        tvGradosItem.setText(Float.toString(alCervezas.get(position).getGrados()));
+        tvGradosItem.setText("Grados: " + Float.toString(alCervezas.get(position).getGrados()) + "%");
 
         /* Carga del tipo de la cerveza. */
         tvTipoItem = (TextView) vistaFila.findViewById(R.id.tvTipoItem);
-        tvTipoItem.setText(alCervezas.get(position).getTipo());
+        tvTipoItem.setText("Tipo: " + alCervezas.get(position).getTipo());
 
         /* Carga del país de origen de la cerveza. */
         tvPaisOrigenItem = (TextView) vistaFila.findViewById(R.id.tvPaisOrigenItem);
-        tvPaisOrigenItem.setText(alCervezas.get(position).getPaisOrigen());
+        tvPaisOrigenItem.setText("País de origen: " + alCervezas.get(position).getPaisOrigen());
 
         /* Carga de la imagen de la cerveza. */
         /*ivImagenItem = (ImageView) vistaFila.findViewById(R.id.ivImagenItem);
