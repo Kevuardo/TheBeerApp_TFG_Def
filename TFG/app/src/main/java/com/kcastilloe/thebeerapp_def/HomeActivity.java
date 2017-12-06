@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.speech.RecognizerIntent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
@@ -54,10 +51,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private static final String TAG = "HomeActivity";
 
     private ListView lvListaCervezasFavoritas; /* Lista de cervezas favoritas del usuario. */
-    private TextView tvListaVacia, tvNickUsuarioMenuLateral, tvEmailUsuarioMenuLateral;
+    private TextView tvNickUsuarioMenuLateral, tvEmailUsuarioMenuLateral;
     private LinearLayout llListaVacia;
     private Toolbar tbBarraSuperiorHome;
-    private FloatingActionButton fabBuscarCervezas;
     private DrawerLayout dlMenuLateral;
     private NavigationView nvMenuLateral;
 
@@ -66,8 +62,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<Cerveza> alCervezasFavoritas = new ArrayList();
     private Cerveza cervezaAlmacenada;
     private ArrayList<Cerveza> alCervezasAlmacenadasBdd = new ArrayList();
+    private String[] arrayNombresCervezas; /* Para mostrar los nombres en la búsqueda. Se instancia
+        vacío en un principio, y se poblará según se llame a la BDD. */
+
     private Intent intentCambio;
-    //    private boolean listaVacia = false; /* Variable bandera para evaluar si la lista de favoritos está vacía. */
     private int idItemLista = 0; /* El id del item sobre el que se abre el menú contextual. */
     private FirebaseAuth autenticacionFirebase; /* El controlador de autenticación de usuarios de Firebase. */
     private FirebaseUser usuarioActual; /* El modelo de usuario que se almacenará en Firebase. */
@@ -89,15 +87,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         tbBarraSuperiorHome = (Toolbar) findViewById(R.id.tbBarraSuperiorHome);
         setSupportActionBar(tbBarraSuperiorHome);
 
-//        fabBuscarCervezas = (FloatingActionButton) findViewById(R.id.fabBuscarCervezas);
-//        fabBuscarCervezas.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
         dlMenuLateral = (DrawerLayout) findViewById(R.id.dlMenuLateral);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, dlMenuLateral, tbBarraSuperiorHome, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -108,52 +97,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         nvMenuLateral.setNavigationItemSelectedListener(this);
 
         /* Código propio. */
-        /* MaterialSearchView es un elemento perteneciente a una librería importada. Es un elemento
-        de búsqueda que facilita mucho a la hora de trabajar con eventos, vistas, etc. */
+        /* Sistema de búsqueda de cervezas de la BDD. MaterialSearchView es un elemento perteneciente
+        a una librería importada. Es un elemento de búsqueda que facilita mucho a la hora de trabajar
+        con eventos, vistas, etc. */
         msvBusqueda = (MaterialSearchView) findViewById(R.id.msvBusqueda);
         msvBusqueda.setVoiceSearch(true); /* Habilita la búsqueda por voz. */
-        msvBusqueda.setSuggestions(getResources().getStringArray(R.array.sugerencias_busqueda));
         msvBusqueda.setEllipsize(true);
 
         /* Se le añade una lista a la búsqueda para las coincidencias retornadas. */
+        bddFirebase = FirebaseDatabase.getInstance();
+        recogerCervezasBdd(bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_CERVEZAS));
 
 
-        /* Por último, se trabajan los eventos para evalúar que ocurrirá con la búsqueda. */
-        msvBusqueda.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                /* Cuando se selecciona la opción de envío de búsqueda. */
-                Snackbar.make(findViewById(R.id.rlContenedorHome), "Selecciona una de las sugerencias", Snackbar.LENGTH_LONG).show();
-//                Toast.makeText(HomeActivity.this, "Selecciona una de las sugerencias", Toast.LENGTH_SHORT).show();
-                return true; /* Si devuelve false, cierra el teclado; si devuelve true, lo deja abierto. */
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                /* Cuando el texto cambia, evalúa si hay coincidencias. */
-                alCervezasAlmacenadasBdd = recogerCervezasBdd(bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_CERVEZAS));
-                for (int i = 0; i < alCervezasAlmacenadasBdd.size(); i++) {
-                    Log.i("Cerveza almacenada " + (i + 1), alCervezasAlmacenadasBdd.get(i).getNombre() + "");
-                }
-                return false;
-            }
-        });
-
-        msvBusqueda.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
-            @Override
-            public void onSearchViewShown() {
-
-            }
-
-            @Override
-            public void onSearchViewClosed() {
-
-            }
-        });
-
+        /* Lista de cervezas favoritas del usuario. */
         lvListaCervezasFavoritas = (ListView) findViewById(R.id.lvListaCervezasFavoritas);
         registerForContextMenu(lvListaCervezasFavoritas); /* Para añadir el menú contextual a los items de la lista. */
-//        tvListaVacia = (TextView) findViewById(R.id.tvListaVacia) ;
         llListaVacia = (LinearLayout) findViewById(R.id.llListaVacia);
 
         /* Los campos de la cabecera del NavigationDrawer. */
@@ -207,6 +165,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     
     @Override
     protected void onResume() {
+
         super.onResume();
 
         /* Se debe hacer la instanciación de FirebaseAuth y FirebaseDatabase en onResume() ya que de
@@ -216,8 +175,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         autenticacionFirebase = FirebaseAuth.getInstance();
         usuarioActual = autenticacionFirebase.getCurrentUser();
 
-        bddFirebase = FirebaseDatabase.getInstance();
-        /* Referencia al nick del usuario, que es lo que se desea recuperar en este moemento. */
+        /* Referencia al nick del usuario, que es lo que se desea recuperar en este momento. */
         referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS).child(usuarioActual.getUid()).child("nick");
 
         /* Se actualizan los datos de los campos de la vista cada vez que HomeActivity se reanuda (creación incluida). */
@@ -264,13 +222,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         });
 
-//        alCervezasAlmacenadasBdd = recogerCervezasBdd(bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_CERVEZAS);
-//        ArrayList<String> alNombresCervezas = new ArrayList();
-//        for (int i = 0; i < alCervezasAlmacenadasBdd.size(); i++) {
-//            alNombresCervezas.add(alCervezasAlmacenadasBdd.get(i).getNombre());
-//        }
-//        msvBusqueda.setSuggestions(getResources().getStringArray(alNombresCervezas));
-//        msvBusqueda.setSuggestions(alNombresCervezas);
+        recogerCervezasBdd(bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_CERVEZAS));
+
     }
 
     @Override
@@ -289,21 +242,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 /* Abre la NuevaCervezaActivity. */
                 Intent intentCambio = new Intent(this, NuevaCervezaActivity.class);
                 startActivity(intentCambio);
+                return true;
 
-                return true;
-            case R.id.action_buscar:
-//                AlertDialog.Builder builderBusqueda = new AlertDialog.Builder(this);
-//                builderBusqueda.setMessage("Aquí va la búsqueda");
-//                builderBusqueda.setTitle("Búsqueda de la app");
-//                builderBusqueda.setPositiveButton("Cerrar búsqueda", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                    }
-//                });
-//                AlertDialog dialogBusqueda = builderBusqueda.create();
-//                dialogBusqueda.show();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -486,9 +426,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * Recoge las cervezas almacenadas en la BDD.
+     * Recoge las cervezas almacenadas en la BDD, vuelca sus nombres en un array, lso selecciona como
+     * sugerencias de búsqueda y abre el DetalleCervezaActivity correspondiente a la cerveza elegida.
+     *
+     * @param referenciaBdd La referencia al nodo "cervezas" de la BDD de Firebase.
      */
-    private ArrayList<Cerveza> recogerCervezasBdd(DatabaseReference referenciaBdd) {
+    private void recogerCervezasBdd(DatabaseReference referenciaBdd) {
+
         /* Se recogen las cervezas almacenadas en la BDD en un ArrayList para mostrarlas como
         sugerencias de búsqueda. */
         referenciaBdd.addValueEventListener(new ValueEventListener() {
@@ -501,8 +445,70 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     cervezaAlmacenada = postSnapshot.getValue(Cerveza.class);
                     alCervezasAlmacenadasBdd .add(cervezaAlmacenada);
-                    Log.i("Cerveza almacenada", cervezaAlmacenada.getNombre() + "");
                 }
+
+                /* Se declara el array de nombres, que tendrá una longitud igual al total de cervezas
+                * en la BDD, y lo puebla con los nombres de las mismas. */
+                arrayNombresCervezas = new String[alCervezasAlmacenadasBdd.size()];
+
+                for (int i = 0; i < alCervezasAlmacenadasBdd.size(); i++) {
+                    arrayNombresCervezas[i] = alCervezasAlmacenadasBdd.get(i).getNombre();
+                }
+
+                /* Se asigna el array de nombres como sugerencia del MaterialSearchView. */
+                msvBusqueda.setSuggestions(arrayNombresCervezas);
+                /* Por último, se trabajan los eventos para evalúar que ocurrirá con la búsqueda. */
+
+                /* Evento activado al producirse una acción sobre el texto de búsqueda (modificación y envío). */
+                msvBusqueda.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+                            @Override
+                            public boolean onQueryTextSubmit(String query) {
+                        /* Cuando se selecciona la opción de envío de búsqueda. */
+                                Snackbar.make(findViewById(R.id.rlContenedorHome), "Selecciona una de las sugerencias", Snackbar.LENGTH_LONG).show();
+        //                Toast.makeText(HomeActivity.this, "Selecciona una de las sugerencias", Toast.LENGTH_SHORT).show();
+                                return true; /* Si devuelve false, cierra el teclado; si devuelve true, lo deja abierto. */
+                            }
+
+                            @Override
+                            public boolean onQueryTextChange(String newText) {
+                        /* Cuando el texto cambia, evalúa si hay coincidencias. */
+                                return false;
+                            }
+                        });
+
+                /* Evento activado al clicar en una sugerencia. */
+                msvBusqueda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        String sugerenciaSeleccionada = (String) parent.getItemAtPosition(position);
+                        for (int j = 0; j < alCervezasAlmacenadasBdd.size(); j++) {
+                            /* Compara la sugerencia seleccionada con los nombres de las cervezas almacenadas para abrir sus detalles y no los de otra. */
+                            if (sugerenciaSeleccionada.compareToIgnoreCase(alCervezasAlmacenadasBdd.get(j).getNombre()) == 0) {
+                                intentCambio = new Intent(HomeActivity.this, DetalleCervezaActivity.class);
+                                intentCambio.putExtra("id", alCervezasAlmacenadasBdd.get(j).getId());
+                                startActivity(intentCambio);
+                                msvBusqueda.closeSearch();
+                            }
+                        }
+
+                    }
+                });
+
+                /* Evento activado al producirse una acción sobre el elemento MaterialSearchView (mostrarse
+                y cerrarse). */
+                msvBusqueda.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+                            @Override
+                            public void onSearchViewShown() {
+
+                            }
+
+                            @Override
+                            public void onSearchViewClosed() {
+
+                            }
+                        });
 
             }
 
@@ -512,8 +518,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
 
         });
-
-        return alCervezasAlmacenadasBdd;
 
     }
 
@@ -528,7 +532,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         try {
             /* Evalúa si la lista está vacía. De estarlo, mostrará una imagen y un texto por defecto para comunicárselo al usuario. */
             if (alCervezasFavoritas.size() == 0) {
-//                lvListaCervezasFavoritas.setEmptyView(tvListaVacia);
                 /* Se fuerza el estado a visible de la vista, por si acaso estaba invisible previamente. */
                 llListaVacia.setVisibility(View.VISIBLE);
                 lvListaCervezasFavoritas.setEmptyView(llListaVacia);
