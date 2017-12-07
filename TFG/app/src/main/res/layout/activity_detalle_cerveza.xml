@@ -56,51 +56,13 @@
                 android:id="@+id/llDatosCerveza"
                 android:padding="16dp">
 
-                <LinearLayout
-                    android:orientation="horizontal"
+                <Button
+                    android:text="Agregar favorito"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left">
-
-                        <TextView
-                            android:id="@+id/tvFechaAdicionCervezaDetalle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:clickable="false"
-                            android:ems="10"
-                            android:layout_marginTop="10dp"
-                            android:enabled="true"
-                            android:focusable="false"
-                            android:inputType="none"
-                            android:text="Añadida el -/-/-"
-                            android:textStyle="normal|bold" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="right">
-
-                        <Button
-                            android:text="Favorita"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/btnFavorito"
-                            style="@style/Widget.AppCompat.Button.Colored"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnFavorito"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tvNombreCervezaDetalle"
