@@ -463,15 +463,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 msvBusqueda.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
                             @Override
                             public boolean onQueryTextSubmit(String query) {
-                        /* Cuando se selecciona la opción de envío de búsqueda. */
+                                /* Cuando se selecciona la opción de envío de búsqueda. */
                                 Snackbar.make(findViewById(R.id.rlContenedorHome), "Selecciona una de las sugerencias", Snackbar.LENGTH_LONG).show();
-        //                Toast.makeText(HomeActivity.this, "Selecciona una de las sugerencias", Toast.LENGTH_SHORT).show();
+//                              Toast.makeText(HomeActivity.this, "Selecciona una de las sugerencias", Toast.LENGTH_SHORT).show();
                                 return true; /* Si devuelve false, cierra el teclado; si devuelve true, lo deja abierto. */
                             }
 
                             @Override
                             public boolean onQueryTextChange(String newText) {
-                        /* Cuando el texto cambia, evalúa si hay coincidencias. */
+                                /* Cuando el texto cambia, evalúa si hay coincidencias. */
                                 return false;
                             }
                         });
@@ -490,6 +490,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 intentCambio.putExtra("id", alCervezasAlmacenadasBdd.get(j).getId());
                                 startActivity(intentCambio);
                                 msvBusqueda.closeSearch();
+                                break;
                             }
                         }
 
