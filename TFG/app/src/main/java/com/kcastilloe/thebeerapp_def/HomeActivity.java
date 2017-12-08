@@ -35,6 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.kcastilloe.thebeerapp_def.modelo.Cerveza;
 import com.kcastilloe.thebeerapp_def.modelo.ReferenciasFirebase;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+import com.miguelcatalan.materialsearchview.SearchAdapter;
 
 import java.util.ArrayList;
 
@@ -68,8 +69,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<Cerveza> alCervezasFavoritas = new ArrayList();
     private Cerveza cervezaAlmacenada;
     private ArrayList<Cerveza> alCervezasAlmacenadasBdd = new ArrayList();
+    private ArrayList<Cerveza> alBusquedasRecientes = new ArrayList();
     private String[] arrayNombresCervezas; /* Para mostrar los nombres en la búsqueda. Se instancia
         vacío en un principio, y se poblará según se llame a la BDD. */
+    private String[] arrayBusquedasRecientes; /* Para mostrar las búsquedas recientes hechas por el
+        usuario. Se instancia vacío en un principio, y se poblará según se llame a la BDD. */
+    private String[] sinBusquedasRecientes = {"No hay búsquedas recientes"}; /* Mostrará un mensaje
+        por defecto al usuario en lugar de las búsquedas recientes, ya que no habrá hecho ninguna. */
+
     private int idItemLista = 0; /* El id del item sobre el que se abre el menú contextual. */
     private boolean teclaBackPulsada = false; /* Variable bandera para controlar la salida de la app. */
 
@@ -222,6 +229,37 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     alCervezasFavoritas.add(cervezaFavorita);
                 }
                 rellenarLista(alCervezasFavoritas);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Error de BD", databaseError.getMessage()+ "");
+            }
+
+        });
+
+        /* Se recogen las búsquedas recientes en un ArrayList. */
+        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS).child(usuarioActual.getUid()).child("busquedasRecientes");
+        referenciaBdd.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                alBusquedasRecientes.clear(); /* Se vacía el Arraylist de cara a un nuevo proceso de rellenado de la lista. */
+                /* El parámetro que recibe el método getValue() es la clase del tipo de objeto que se desea recoger,
+                * y necesita un constructor vacío. */
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Cerveza cervezaReciente = postSnapshot.getValue(Cerveza.class);
+                    alBusquedasRecientes.add(cervezaReciente);
+                }
+
+                /* Se declara el array de nombres, que tendrá una longitud igual al total de cervezas
+                * en la BDD, y lo puebla con los nombres de las mismas. */
+                arrayBusquedasRecientes = new String[alBusquedasRecientes.size()];
+
+                for (int i = 0; i < alBusquedasRecientes.size(); i++) {
+                    arrayBusquedasRecientes[i] = alBusquedasRecientes.get(i).getNombre();
+                }
+
             }
 
             @Override
@@ -480,8 +518,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                             @Override
                             public boolean onQueryTextChange(String newText) {
-                                /* Cuando el texto cambia, evalúa si hay coincidencias. */
-                                return false;
+//                                /* Cuando el texto cambia, evalúa si hay coincidencias. */
+//                                /* Si el texto está vacío, cambia las sugerencias a las búsquedas
+//                                recientes. Si no, carga todas las cervezas. */
+//                                if (newText.trim().compareToIgnoreCase("") == 0) {
+//                                    /* Comprueba si hay búsquedas  recientes. */
+//                                    if (arrayBusquedasRecientes.length == 0) {
+//                                        msvBusqueda.setSuggestions(sinBusquedasRecientes);
+//                                        msvBusqueda.setAdapter(new SearchAdapter(msvBusqueda.getContext(), sinBusquedasRecientes));
+//                                        msvBusqueda.showSuggestions();
+//                                    } else {
+//                                        msvBusqueda.setSuggestions(arrayBusquedasRecientes);
+//                                        msvBusqueda.setAdapter(new SearchAdapter(msvBusqueda.getContext(), arrayBusquedasRecientes));
+//                                        msvBusqueda.showSuggestions();
+//                                    }
+//                                } else {
+//                                    msvBusqueda.setSuggestions(arrayNombresCervezas);
+//                                    msvBusqueda.setAdapter(new SearchAdapter(msvBusqueda.getContext(), arrayNombresCervezas));
+//                                    msvBusqueda.showSuggestions();
+//                                }
+                                return true;
                             }
                         });
 
@@ -495,6 +551,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         for (int j = 0; j < alCervezasAlmacenadasBdd.size(); j++) {
                             /* Compara la sugerencia seleccionada con los nombres de las cervezas almacenadas para abrir sus detalles y no los de otra. */
                             if (sugerenciaSeleccionada.compareToIgnoreCase(alCervezasAlmacenadasBdd.get(j).getNombre()) == 0) {
+
+                                /* Añade el elemento añadido a las búsquedas recientes del usuario. */
+                                DatabaseReference referenciaBusquedaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS);
+                                referenciaBusquedaBdd.child(usuarioActual.getUid()).child("busquedasRecientes").child(alCervezasAlmacenadasBdd.get(j).getId()).setValue(alCervezasAlmacenadasBdd.get(j));
                                 intentCambio = new Intent(HomeActivity.this, DetalleCervezaActivity.class);
                                 intentCambio.putExtra("id", alCervezasAlmacenadasBdd.get(j).getId());
                                 startActivity(intentCambio);
