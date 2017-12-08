@@ -34,27 +34,30 @@ import java.util.ArrayList;
 
 public class DetalleCervezaActivity extends AppCompatActivity {
 
+    private static final String TAG = "DetalleCervezaActivity";
+
+    /* Constantes para cambiar el texto del botón de favorito dependiendo de si ya está almacenado o no. */
     private static final String BORRAR_FAVORITO = "BORRAR FAVORITO";
     private static final String AGREGAR_FAVORITO = "AGREGAR FAVORITO";
 
-
+    /* Elementos de la vista. */
     private TextView tvNombreCervezaDetalle, tvGradacionCervezaDetalle, tvTipoCervezaDetalle,
             tvPaisOrigenCervezaDetalle, tvDescripcionCervezaDetalle;
     private Button btnFavorito;
 
-    private Intent intentCambio;
+    /* Elementos con modelo hecho por mí. */
+    private Cerveza cervezaAlmacenada; /* La cerveza almacenada en la BDD. */
+    private ArrayList<Cerveza> alCervezasFavoritasUsuario = new ArrayList();
+    private Usuario usuarioAlmacenado; /* El usuario almacenado en la BDD. */
+    private String idCerveza; /* La cadena identificadora de la cerveza en la BDD. */
+    private boolean esFavorita = false; /* Variable bandera. Si ya es favorita, la borra. Si no lo es, la añade. */
 
+    /* Elementos propios de Android Studio. */
+    private Intent intentCambio;
     private FirebaseAuth autenticacionFirebase;
     private FirebaseUser usuarioActual;
     private FirebaseDatabase bddFirebase;
     private DatabaseReference referenciaBdd;
-
-    private Cerveza cervezaAlmacenada; /* La cerveza almacenada en la BDD. */
-    private ArrayList<Cerveza> alCervezasFavoritasUsuario = new ArrayList();
-    private Usuario usuarioAlmacenado; /* El usuario almacenado en la BDD. */
-
-    private String idCerveza; /* La cadena identificadora de la cerveza en la BDD. */
-    private boolean esFavorita = false; /* Variable bandera. Si ya es favorita, la borra. Si no lo es, la añade. */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,11 +87,13 @@ public class DetalleCervezaActivity extends AppCompatActivity {
         btnFavorito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                /* Si ya es favorita, procede a borrarla, y si no lo es, a añadirla. */
                 if (esFavorita) {
-                    guardarFavorita(false);
+                    /* La borra. */
+                    modificarFavorita(false);
                 } else {
-                    guardarFavorita(true);
+                    /* La añade. */
+                    modificarFavorita(true);
                 }
 
             }
@@ -140,6 +145,11 @@ public class DetalleCervezaActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Evalúa si la cerveza de la que se ve el detalle está guardada o no como favorita por el usuario.
+     *
+     * @param idCerveza El id de la cerveza a evaluar.
+     */
     private void evaluarFavorito(final String idCerveza) {
 
 
@@ -189,7 +199,13 @@ public class DetalleCervezaActivity extends AppCompatActivity {
 
     }
 
-    private void guardarFavorita(boolean guardable) {
+    /**
+     * Modifica el valor de la cerveza en la lista de favoritas del usuario; si no lo es, la añade,
+     * y si ya lo es, la borra (preguntando previamente al usuario si es lo quiere).
+     *
+     * @param guardable Booleano para evalúar si se debe guardar como favorita o borrarla.
+     */
+    private void modificarFavorita(boolean guardable) {
 
         usuarioActual = autenticacionFirebase.getCurrentUser();
         referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS);
@@ -197,25 +213,30 @@ public class DetalleCervezaActivity extends AppCompatActivity {
         /* Con child se puede seleccionar la clave que tendrá el nodo, y en este caso se desea que
         sea el UID (User ID) que Firebase proporciona automáticamente a cada usuario autenticado. */
         if (guardable) {
+
             referenciaBdd.child(usuarioActual.getUid()).child("favoritas").child(cervezaAlmacenada.getId()).setValue(cervezaAlmacenada);
             btnFavorito.setText(BORRAR_FAVORITO);
             btnFavorito.setBackgroundColor(Color.parseColor("#000000"));
             btnFavorito.setTextColor(Color.parseColor("#FFFFFF"));
+            esFavorita = true;
             Snackbar.make(findViewById(R.id.clContenedorDetalle), "Cerveza añadida a favoritos", Snackbar.LENGTH_SHORT).show();
 
         } else {
+
             AlertDialog.Builder builderBorrarFavorito = new AlertDialog.Builder(this);
             builderBorrarFavorito.setMessage("¿Estás seguro de querer borrar esta cerveza de tu lista de favoritos?");
             builderBorrarFavorito.setTitle("Borrar favorito");
 
             /* Botón de decisión afirmativo. */
             builderBorrarFavorito.setPositiveButton("Borrar", new DialogInterface.OnClickListener() {
+
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     referenciaBdd.child(usuarioActual.getUid()).child("favoritas").child(cervezaAlmacenada.getId()).removeValue();
                     btnFavorito.setBackgroundColor(Color.parseColor("#b28223"));
                     btnFavorito.setTextColor(Color.parseColor("#FFFFFF"));
                     btnFavorito.setText(AGREGAR_FAVORITO);
+                    esFavorita = false;
 
                     /* Muestra una Snackbar para que el usuario pueda deshacer la acción de ser necesario. */
                     Snackbar.make(findViewById(R.id.clContenedorDetalle), "Cerveza eliminada de favoritos", Snackbar.LENGTH_LONG).setAction("Deshacer", new View.OnClickListener() {
@@ -225,16 +246,12 @@ public class DetalleCervezaActivity extends AppCompatActivity {
                             btnFavorito.setText(BORRAR_FAVORITO);
                             btnFavorito.setBackgroundColor(Color.parseColor("#000000"));
                             btnFavorito.setTextColor(Color.parseColor("#FFFFFF"));
+                            esFavorita = true;
                             Snackbar.make(findViewById(R.id.clContenedorDetalle), "Cerveza añadida a favoritos", Snackbar.LENGTH_SHORT).show();
                         }
                     }).setActionTextColor(Color.parseColor("#b28223")).show();
-
-//                    Toast.makeText(DetalleCervezaActivity.this, "Favorito eliminado.", Toast.LENGTH_SHORT).show();
-//
-//                    intentCambio = new Intent(DetalleCervezaActivity.this, HomeActivity.class);
-//                    startActivity(intentCambio);
-//                    finish(); /* Hace que no se pueda navegar desde DetalleCervezaActivity hasta HomeActivity de nuevo. */
                 }
+
             });
 
             /* Botón de decisión negativa. */
@@ -247,6 +264,7 @@ public class DetalleCervezaActivity extends AppCompatActivity {
 
             AlertDialog dialogBorrarFavorito = builderBorrarFavorito.create();
             dialogBorrarFavorito.show();
+
         }
 
     }
