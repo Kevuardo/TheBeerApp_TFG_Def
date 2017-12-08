@@ -34,17 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    private AdaptadorSeccionesInicio adaptadorSecciones; /* El adaptador de las secciones del TabLayout. */
+    /* Elementos propios de la vista. */
     private ViewPager vpContenedor; /* El formato de las secciones. */
     private TabLayout tlVentanas; /* El contenedor de las secciones. */
     private Intent intentCambio; /* El Intent para abrir la Home Activity. */
+
+    /* Elementos con modelo hecho por mí. */
+    private AdaptadorSeccionesInicio adaptadorSecciones; /* El adaptador de las secciones del TabLayout. */
+    private Usuario nuevoUsuario;
+    private boolean teclaBackPulsada = false; /* Variable bandera para controlar la salida de la app. */
+
+    /* Elementos propios de Android Studio. */
     private FirebaseAuth autenticacionFirebase; /* El controlador de autenticación de usuarios de Firebase. */
     private FirebaseUser usuarioActual; /* El modelo de usuario que se almacenará en Firebase. */
     private FirebaseDatabase bddFirebase;
     private DatabaseReference referenciaBdd;
-    private Usuario nuevoUsuario;
-
-    private boolean teclaBackPulsada = false; /* Variable bandera para controlar la salida de la app. */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         /* A continuación, crea nuevas instancias de Autenticación y BDD en Firebase. */
         autenticacionFirebase = FirebaseAuth.getInstance();
         bddFirebase = FirebaseDatabase.getInstance();
-        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS);
         /* Si la referencia al nodo en la BDD no existe en la misma, creará dicho nodo con la referencia. */
+        referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS);
     }
 
     @Override
@@ -136,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             abrirInicio(); /* Abre el inicio. */
         } else {
             /* Si no, muestra un mensaje de información. */
-            Toast.makeText(this, "Debes iniciar sesión para acceder a la app", Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.clGeneral), "Debes iniciar sesión para acceder a la app", Snackbar.LENGTH_LONG).show();
         }
     }
 
@@ -208,18 +212,9 @@ public class MainActivity extends AppCompatActivity {
      * Invoca el Intent a la siguiente Activity una vez que las operaciones de
      * inicio de sesión o registro han sido exitosas.
      */
-    public void abrirInicio() {
-        Intent intentCambio = new Intent(this, HomeActivity.class);
+    private void abrirInicio() {
+        intentCambio = new Intent(this, HomeActivity.class);
         startActivity(intentCambio);
         finish(); /* Hace que no se pueda navegar desde HomeActivity hasta MainActivity de nuevo. */
     }
-
-//    Eliminar método público tras desarrollo. Ahora está así porque está siendo usado para acceder con
-//    los botones de los fragment del TabLayout.
-
-//    private void abrirInicio() {
-//        Intent intentCambio = new Intent(this, HomeActivity.class);
-//        startActivity(intentCambio);
-//        finish(); /* Hace que no se pueda navegar desde HomeActivity hasta MainActivity de nuevo. */
-//    }
 }
