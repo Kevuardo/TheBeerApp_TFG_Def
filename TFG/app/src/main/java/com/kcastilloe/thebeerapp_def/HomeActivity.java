@@ -38,6 +38,9 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
 
+import static android.speech.SpeechRecognizer.createSpeechRecognizer;
+import static android.speech.SpeechRecognizer.isRecognitionAvailable;
+
 /**
  * La actividad usada como inicio de la app para usuarios registrados
  * para ver la lista cervezas favoritas guardadas por el usuario.
@@ -50,13 +53,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private static final String TAG = "HomeActivity";
 
+    /* Elementos de vista. */
     private ListView lvListaCervezasFavoritas; /* Lista de cervezas favoritas del usuario. */
     private TextView tvNickUsuarioMenuLateral, tvEmailUsuarioMenuLateral;
     private LinearLayout llListaVacia;
     private Toolbar tbBarraSuperiorHome;
     private DrawerLayout dlMenuLateral;
     private NavigationView nvMenuLateral;
+    private MaterialSearchView msvBusqueda; /* Librería importada. */
 
+    /* Elementos con modelo hecho por mí. */
     private ListaPersonalizada adaptadorLista; /* El adaptador personalizado para la lista. */
     private Cerveza cervezaFavorita;
     private ArrayList<Cerveza> alCervezasFavoritas = new ArrayList();
@@ -64,18 +70,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<Cerveza> alCervezasAlmacenadasBdd = new ArrayList();
     private String[] arrayNombresCervezas; /* Para mostrar los nombres en la búsqueda. Se instancia
         vacío en un principio, y se poblará según se llame a la BDD. */
-
-    private Intent intentCambio;
     private int idItemLista = 0; /* El id del item sobre el que se abre el menú contextual. */
+    private boolean teclaBackPulsada = false; /* Variable bandera para controlar la salida de la app. */
+
+    /* Elementos propios de Android Studio. */
+    private Intent intentCambio;
     private FirebaseAuth autenticacionFirebase; /* El controlador de autenticación de usuarios de Firebase. */
     private FirebaseUser usuarioActual; /* El modelo de usuario que se almacenará en Firebase. */
     private FirebaseDatabase bddFirebase;
     private DatabaseReference referenciaBdd;
-
-    /* Para el SearchView. */
-    private MaterialSearchView msvBusqueda;
-
-    private boolean teclaBackPulsada = false; /* Variable bandera para controlar la salida de la app. */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +104,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         a una librería importada. Es un elemento de búsqueda que facilita mucho a la hora de trabajar
         con eventos, vistas, etc. */
         msvBusqueda = (MaterialSearchView) findViewById(R.id.msvBusqueda);
-        msvBusqueda.setVoiceSearch(true); /* Habilita la búsqueda por voz. */
+        /* Comprueba si el dispositivo soporta entrada de texto por reconocimiento de voz. */
+        createSpeechRecognizer(getApplicationContext());
+        if (isRecognitionAvailable(getApplicationContext())) {
+            msvBusqueda.setVoiceSearch(true); /* Habilita la búsqueda por voz. */
+            msvBusqueda.setVoiceIcon(getResources().getDrawable(R.drawable.ic_keyboard_voice_black_48dp));
+        } else {
+            msvBusqueda.setVoiceSearch(false); /* Deshabilita la búsqueda por voz. */
+        }
         msvBusqueda.setEllipsize(true);
 
         /* Se le añade una lista a la búsqueda para las coincidencias retornadas. */
@@ -144,8 +154,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 * muestra al usuario un mensaje por pantalla, y activa un temporizador en segundo
                 * plano de 2 segundos para accionar o desaccionar la acción de salida de la app. */
                 this.teclaBackPulsada = true;
-//                Toast.makeText(this, "Pulsa de nuevo para salir", Toast.LENGTH_SHORT).show();
-                Snackbar.make(findViewById(R.id.rlContenedorHome), "Pulsa de nuevo para salir", Snackbar.LENGTH_LONG).show();
+                Toast.makeText(this, "Pulsa BACK de nuevo para salir", Toast.LENGTH_SHORT).show();
+//                Snackbar.make(findViewById(R.id.rlContenedorHome), "Pulsa BACK de nuevo para salir", Snackbar.LENGTH_LONG).show();
 
                 new Handler().postDelayed(new Runnable() {
 
@@ -210,7 +220,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     cervezaFavorita = postSnapshot.getValue(Cerveza.class);
                     alCervezasFavoritas.add(cervezaFavorita);
-                    Log.i("Cerveza favorita", cervezaFavorita.getNombre() + "");
                 }
                 rellenarLista(alCervezasFavoritas);
             }
@@ -413,8 +422,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
      * Recibe el usuario actual y modifica los campos de la vista de la actividad en función de sus
      * datos personales.
      *
-     * @param usuarioActual El usuario autenticado en el dispositivo actualmente.
-     *
+     * @param usuarioActual El usuario autenticado en el dispositivo actualmente, del que se tomará
+     *                      el correo electrónico.
+     * @param nickUsuario El nick del usuario autenticado en el dispositivo actualmente.
      */
     private void modificarCampos(FirebaseUser usuarioActual, String nickUsuario) {
 
@@ -465,7 +475,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             public boolean onQueryTextSubmit(String query) {
                                 /* Cuando se selecciona la opción de envío de búsqueda. */
                                 Snackbar.make(findViewById(R.id.rlContenedorHome), "Selecciona una de las sugerencias", Snackbar.LENGTH_LONG).show();
-//                              Toast.makeText(HomeActivity.this, "Selecciona una de las sugerencias", Toast.LENGTH_SHORT).show();
                                 return true; /* Si devuelve false, cierra el teclado; si devuelve true, lo deja abierto. */
                             }
 
