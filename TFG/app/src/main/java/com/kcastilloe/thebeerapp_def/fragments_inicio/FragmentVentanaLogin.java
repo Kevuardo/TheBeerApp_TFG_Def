@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 /**
  * Clase Java que contiene el modelo del Fragment de inicio de sesión de usuario y sus métodos de
  * validación de campos.
+ *
  * @author Kevin Castillo Escudero
  */
 
@@ -34,9 +35,9 @@ public class FragmentVentanaLogin extends Fragment {
     private EditText etEmailLogin, etPasswordLogin;
 
     /* Las validaciones de los campos de los formularios. */
-    private static final Pattern PATRON_NICK = Pattern.compile("^[a-zA-Z0-9_]{5,15}$");
     private static final Pattern PATRON_PASSWORD = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$");
 
+    /* Colores indicativos para los bordes de las cajas de texto. */
     private ColorStateList bordeRojo;
     private ColorStateList bordeVerde;
 
@@ -45,7 +46,6 @@ public class FragmentVentanaLogin extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_ventana_login, container, false); /* Selecciona el layout. */
 
-        /* Los colores para los bordes de los campos. */
         bordeRojo = ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.red));
         bordeVerde = ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.green));
 
