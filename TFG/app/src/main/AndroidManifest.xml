@@ -8,9 +8,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ca_icono_color"
+        android:icon="@drawable/ca_logo_launcher"
         android:label="Cheer App!"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ca_logo_launcher"
         android:supportsRtl="true"
         android:theme="@style/TheBeerApp">
         <activity
