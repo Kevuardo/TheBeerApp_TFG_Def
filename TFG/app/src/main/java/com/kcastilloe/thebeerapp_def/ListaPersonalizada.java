@@ -17,7 +17,8 @@ import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 /**
- * Clase usada para aplicar un modelo sobre la lista en la que se ha de hacer el volcado de datos de las cervezas favoritas.
+ * Clase usada para aplicar un modelo sobre la lista en la que se ha de hacer el volcado de datos
+ * de las cervezas favoritas.
  *
  * @author Kevin Castillo Escudero
  */

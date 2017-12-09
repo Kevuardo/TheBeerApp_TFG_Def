@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         /* A continuación, crea nuevas instancias de Autenticación y BDD en Firebase. */
         autenticacionFirebase = FirebaseAuth.getInstance();
         bddFirebase = FirebaseDatabase.getInstance();
-        /* Si la referencia al nodo en la BDD no existe en la misma, creará dicho nodo con la referencia. */
         referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS);
+        /* Si la referencia al nodo en la BDD no existe en la misma, creará dicho nodo con la referencia. */
     }
 
     @Override

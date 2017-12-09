@@ -1,7 +1,7 @@
 package com.kcastilloe.thebeerapp_def.modelo;
 
 /**
-* Clase modelo dedicada a los usuarios que se darán de alta en la app.
+* Clase modelo dedicada a los usuarios que usarán la app.
 *
 * @author Kevin Castillo Escudero
 */
@@ -12,11 +12,19 @@ public class Usuario {
     String email = null;
     int edad = 0;
 
-    /* Constructor vacío. */
+
+    /**
+     * Constructor vacío para usar como modelo de recogida de datos de Firebase.
+     */
     public Usuario() {
     }
 
-    /* COnstructor para almacenamiento en la BDD de Firebase. */
+    /**
+     * Constructor para almacenamiento en la BDD de Firebase.
+     * @param nick El nick del usuario a almacenar.
+     * @param email El email del usuario a almacenar.
+     * @param edad La edad del usuario a almacenar.
+     */
     public Usuario(String nick, String email, int edad) {
         this.nick = nick;
         this.email = email;

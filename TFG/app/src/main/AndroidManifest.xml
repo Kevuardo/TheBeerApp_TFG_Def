@@ -3,7 +3,8 @@
     package="com.kcastilloe.thebeerapp_def">
 
     <!-- Permisos de uso necesarios para el usuario. -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Conexión a Internet. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Estado de la conexión a redes móviles y Wi-Fi.-->
 
     <application
         android:allowBackup="true"

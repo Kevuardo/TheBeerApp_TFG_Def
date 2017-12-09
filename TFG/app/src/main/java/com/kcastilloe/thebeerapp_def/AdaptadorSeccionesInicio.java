@@ -29,7 +29,11 @@ public class AdaptadorSeccionesInicio extends FragmentPagerAdapter {
         lListaTitulosFragment.add(titulo);
     }
 
-    /* Constructor heredado de FragmentPagerAdapter. */
+    /**
+     * Constructor heredado de FragmentPagerAdapter.
+     *
+     * @param fm El manejador de los Fragments que se usarán.
+     */
     public AdaptadorSeccionesInicio(FragmentManager fm) {
         super(fm);
     }

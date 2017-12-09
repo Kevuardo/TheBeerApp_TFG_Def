@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 /**
  * Clase Java que contiene el modelo del Fragment de registro de usuario y sus métodos de
  * validación de campos.
+ *
  * @author Kevin Castillo Escudero
  */
 

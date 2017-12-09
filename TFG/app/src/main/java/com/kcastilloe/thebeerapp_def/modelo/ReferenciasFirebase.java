@@ -11,7 +11,5 @@ public class ReferenciasFirebase {
     /* Constantes que almacenan valores de referencia a nodos de la BDD en Firebase. */
     public static final String REFERENCIA_USUARIOS = "usuarios"; /* Referencia objetos (nodos) del tipo "usuarios". */
     public static final String REFERENCIA_CERVEZAS = "cervezas"; /* Referencia objetos (nodos) del tipo "cervezas". */
-    public static final String REFERENCIA_FAVORITOS = "favoritos"; /* Referencia objetos (nodos) del tipo "favoritos". */
-
 
 }

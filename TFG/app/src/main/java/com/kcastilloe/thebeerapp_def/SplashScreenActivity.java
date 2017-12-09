@@ -7,6 +7,12 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
+/**
+ * La actividad usada para mostrar un saludo al usuario al iniciar la app.
+ *
+ * @author Kevin Castillo Escudero
+ */
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     private final int DURACION_SPLASH = 2000;

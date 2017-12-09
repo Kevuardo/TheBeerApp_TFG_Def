@@ -159,7 +159,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             } else {
                 /* Si no, cambia la variable bandera a true para que se pueda salir,
                 * muestra al usuario un mensaje por pantalla, y activa un temporizador en segundo
-                * plano de 2 segundos para accionar o desaccionar la acción de salida de la app. */
+                * plano de 2 segundos para accionar o desaccionar la salida de la app. */
                 this.teclaBackPulsada = true;
                 Toast.makeText(this, "Pulsa BACK de nuevo para salir", Toast.LENGTH_SHORT).show();
 //                Snackbar.make(findViewById(R.id.rlContenedorHome), "Pulsa BACK de nuevo para salir", Snackbar.LENGTH_LONG).show();
@@ -360,13 +360,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                 AlertDialog.Builder builderLogout = new AlertDialog.Builder(this);
                 builderLogout.setMessage("¿Deseas cerrar la sesión de usuario actual?");
-                builderLogout.setTitle("Sesión de usuario actual");
+//                builderLogout.setTitle("Sesión de usuario actual");
 
                 /* Botón de decisión afirmativo. */
                 builderLogout.setPositiveButton("Cerrar sesión", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        /* Dev Only - Cierra la sesión actual. */
                         autenticacionFirebase.signOut();
                         Toast.makeText(HomeActivity.this, "Sesión cerrada.", Toast.LENGTH_SHORT).show();
                         intentCambio = new Intent(HomeActivity.this, MainActivity.class);
@@ -552,7 +551,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             /* Compara la sugerencia seleccionada con los nombres de las cervezas almacenadas para abrir sus detalles y no los de otra. */
                             if (sugerenciaSeleccionada.compareToIgnoreCase(alCervezasAlmacenadasBdd.get(j).getNombre()) == 0) {
 
-                                /* Añade el elemento añadido a las búsquedas recientes del usuario. */
+                                /* Añade el elemento añadido a las búsquedas recientes del usuario y abre el detalle de la cerveza. */
                                 DatabaseReference referenciaBusquedaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_USUARIOS);
                                 referenciaBusquedaBdd.child(usuarioActual.getUid()).child("busquedasRecientes").child(alCervezasAlmacenadasBdd.get(j).getId()).setValue(alCervezasAlmacenadasBdd.get(j));
                                 intentCambio = new Intent(HomeActivity.this, DetalleCervezaActivity.class);
@@ -560,6 +559,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 startActivity(intentCambio);
                                 msvBusqueda.closeSearch();
                                 break;
+
                             }
                         }
 

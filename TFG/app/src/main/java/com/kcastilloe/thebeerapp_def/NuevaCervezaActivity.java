@@ -13,6 +13,12 @@ import com.kcastilloe.thebeerapp_def.modelo.ReferenciasFirebase;
 
 import java.util.ArrayList;
 
+/**
+ * La actividad usada para añadir cervezas a la BDD de la aplicación.
+ *
+ * @author Kevin Castillo Escudero
+ */
+
 public class NuevaCervezaActivity extends AppCompatActivity {
 
     private static final String TAG = "NuevaCervezaActivity";
@@ -42,7 +48,12 @@ public class NuevaCervezaActivity extends AppCompatActivity {
         finish();
     }
 
-    /* Sólo testeo - genera varias cervezxas predefinidas. */
+    /* Sólo testeo - genera varias cervezas predefinidas. */
+
+    /**
+     * Genera varias cervezas predefinidas por código y las añade a un ArrayList para su posterior
+     * manejo dinámico.
+     */
     private void generarCervezas() {
 
         nuevaCerveza = new Cerveza("Alhambra", 5.0f, "Dorada", "España");
@@ -147,6 +158,10 @@ public class NuevaCervezaActivity extends AppCompatActivity {
     }
 
     /* Sólo testeo - agrega varias cervezas pre-generadas por código a la base de datos. */
+
+    /**
+     * Agrega las cervezas generadas a la BDD para que sean accesibles por los usuarios de la app.
+     */
     private void almacenarCervezas() {
 
         generarCervezas();

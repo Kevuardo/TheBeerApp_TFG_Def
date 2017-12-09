@@ -125,7 +125,7 @@ public class DetalleCervezaActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("Error de BD", databaseError.getMessage()+ "");
+//                Log.e("Error de BDD", databaseError.getMessage()+ "");
             }
         });
 
@@ -170,7 +170,6 @@ public class DetalleCervezaActivity extends AppCompatActivity {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Cerveza cervezaRecogida = postSnapshot.getValue(Cerveza.class);
                     alCervezasFavoritasUsuario.add(cervezaRecogida);
-                    Log.i("Cerveza favorita", cervezaRecogida.getNombre() + "");
                 }
 
                 for (int i = 0; i < alCervezasFavoritasUsuario.size(); i++) {
@@ -192,7 +191,7 @@ public class DetalleCervezaActivity extends AppCompatActivity {
             /* Cuando se cancele la referencia a la BDD por algún motivo, o se produzca un error en la BDD. */
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("Error en BDD: ", databaseError.getMessage());
+//                Log.e("Error en BDD: ", databaseError.getMessage());
             }
 
         });
