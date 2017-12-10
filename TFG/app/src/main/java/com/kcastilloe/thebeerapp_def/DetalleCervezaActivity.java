@@ -43,7 +43,7 @@ public class DetalleCervezaActivity extends AppCompatActivity {
     /* Elementos de la vista. */
     private TextView tvNombreCervezaDetalle, tvGradacionCervezaDetalle, tvTipoCervezaDetalle,
             tvPaisOrigenCervezaDetalle, tvDescripcionCervezaDetalle;
-    private Button btnFavorito;
+    private Button btnFavorito, btnUbicarCerveza;
 
     /* Elementos con modelo hecho por mí. */
     private Cerveza cervezaAlmacenada; /* La cerveza almacenada en la BDD. */
@@ -74,6 +74,7 @@ public class DetalleCervezaActivity extends AppCompatActivity {
         tvPaisOrigenCervezaDetalle = (TextView) findViewById(R.id.tvPaisOrigenCervezaDetalle);
         tvDescripcionCervezaDetalle = (TextView) findViewById(R.id.tvDescripcionCervezaDetalle);
         btnFavorito = (Button) findViewById(R.id.btnFavorito);
+        btnUbicarCerveza = (Button) findViewById(R.id.btnUbicarCerveza);
 
         /* Recoge el ID que le envía el Intent. */
         Intent intentApertura = getIntent();
@@ -96,6 +97,14 @@ public class DetalleCervezaActivity extends AppCompatActivity {
                     modificarFavorita(true);
                 }
 
+            }
+        });
+
+        btnUbicarCerveza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intentCambio = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intentCambio);
             }
         });
 
