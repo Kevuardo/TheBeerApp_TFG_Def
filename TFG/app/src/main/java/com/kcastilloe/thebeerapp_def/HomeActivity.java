@@ -345,21 +345,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dlMenuLateral);
 
         switch (item.getItemId()) {
-            case R.id.nav_cuenta:
-
-                AlertDialog.Builder builderCuenta = new AlertDialog.Builder(this);
-                builderCuenta.setMessage("Has entrado en los ajustes de la app. Pero aquí no hay nah.");
-                builderCuenta.setTitle("Ajustes de la app");
-                builderCuenta.setPositiveButton("Cerrar ajustes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                AlertDialog dialogCuenta = builderCuenta.create();
-                dialogCuenta.show();
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
+//            case R.id.nav_cuenta:
+//
+//                AlertDialog.Builder builderCuenta = new AlertDialog.Builder(this);
+//                builderCuenta.setMessage("Has entrado en los ajustes de la app. Pero aquí no hay nah.");
+//                builderCuenta.setTitle("Ajustes de la app");
+//                builderCuenta.setPositiveButton("Cerrar ajustes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                });
+//                AlertDialog dialogCuenta = builderCuenta.create();
+//                dialogCuenta.show();
+//                drawer.closeDrawer(GravityCompat.START);
+//                return true;
 
             case R.id.nav_logout:
 
@@ -496,6 +496,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                     }
                 });
+
                 AlertDialog dialogSugerencias = builderSugerencias.create();
                 dialogSugerencias.show();
                 drawer.closeDrawer(GravityCompat.START);
