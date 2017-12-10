@@ -54,7 +54,6 @@ import static android.speech.SpeechRecognizer.isRecognitionAvailable;
  * @author Kevin Castillo Escudero
  */
 
-
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "HomeActivity";
@@ -238,7 +237,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("Error de BD", databaseError.getMessage()+ "");
+                Log.e("Error de BDD", databaseError.getMessage()+ "");
             }
 
         });
@@ -269,7 +268,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("Error de BD", databaseError.getMessage()+ "");
+                Log.e("Error de BDD", databaseError.getMessage()+ "");
             }
 
         });
@@ -332,6 +331,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.action_context_ubicar:
                 /* Muestra las distintas ubicaciones almacenadas en Firebase de la cerveza seleccionada. */
                 cervezaFavorita = alCervezasFavoritas.get(idItemLista);
+                /* Dev Only - de momento abre unas ubicaciones predefinidas para todos los dispositivos. */
+                intentCambio = new Intent(getApplicationContext(), MapsActivity.class);
+                intentCambio.putExtra("id", cervezaFavorita.getId());
+                startActivity(intentCambio);
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -679,7 +682,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("Error de BD", databaseError.getMessage()+ "");
+                Log.e("Error de BDD", databaseError.getMessage()+ "");
             }
 
         });
