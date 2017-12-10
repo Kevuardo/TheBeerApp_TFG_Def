@@ -1,9 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlCOntenedorNuevaCerveza"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kcastilloe.thebeerapp_def.NuevaCervezaActivity">
+    tools:context="com.kcastilloe.thebeerapp_def.NuevaCervezaActivity"
+    android:padding="16dp">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/llContenedorTituloNuevaCerveza"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:id="@+id/tvTituloNuevaCerveza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Añadir nueva cerveza"
+            android:textStyle="normal|bold"
+            android:textSize="25dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilNombreNuevaCerveza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/llContenedorTituloNuevaCerveza"
+        android:layout_marginTop="10dp" >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etNombreNuevaCerveza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilGradosNuevaCerveza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tilNombreNuevaCerveza"
+        android:layout_marginTop="10dp" >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etGradosNuevaCerveza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Gradación"
+            android:inputType="numberDecimal" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilTipoNuevaCerveza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tilGradosNuevaCerveza"
+        android:layout_marginTop="10dp" >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etTipoNuevaCerveza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Tipo"
+            android:inputType="text" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilPaisOrigenNuevaCerveza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tilTipoNuevaCerveza"
+        android:layout_marginTop="10dp" >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etPaisOrigenNuevaCerveza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="País de origen"
+            android:inputType="textPersonName" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnAgregarNuevaCerveza"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tilPaisOrigenNuevaCerveza"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Añadir nueva cerveza" />
+
+</RelativeLayout>

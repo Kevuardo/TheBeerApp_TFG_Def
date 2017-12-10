@@ -2,8 +2,13 @@ package com.kcastilloe.thebeerapp_def;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -23,11 +28,20 @@ public class NuevaCervezaActivity extends AppCompatActivity {
 
     private static final String TAG = "NuevaCervezaActivity";
 
+    /* Elementos de vista. */
+    private EditText etNombreNuevaCerveza, etGradosNuevaCerveza, etTipoNuevaCerveza, etPaisOrigenNuevaCerveza;
+    private Button btnAgregarNuevaCerveza;
+
+    /* Elementos propios de Android Studio.*/
     private FirebaseDatabase bddFirebase;
     private DatabaseReference referenciaBdd;
     private Cerveza nuevaCerveza;
     private ArrayList<Cerveza> alCervezasInsercion = new ArrayList();
     private Intent intentCambio;
+
+    /* Colores indicativos para los bordes de las cajas de texto. */
+    private ColorStateList bordeRojo;
+    private ColorStateList bordeVerde;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +49,95 @@ public class NuevaCervezaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nueva_cerveza);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); /* Fuerza la posición a vertical. */
 
+        bordeRojo = ColorStateList.valueOf(ContextCompat.getColor(NuevaCervezaActivity.this, R.color.red));
+        bordeVerde = ColorStateList.valueOf(ContextCompat.getColor(NuevaCervezaActivity.this, R.color.green));
+
         /* A continuación, crea una nueva instancia de BDD en Firebase. */
         bddFirebase = FirebaseDatabase.getInstance();
         referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_CERVEZAS);
         /* Si la referencia al nodo en la BDD no existe en la misma, creará dicho nodo con la referencia. */
 
-        almacenarCervezas();
+        /* Recoge los elementos de la vista. */
+        etNombreNuevaCerveza = findViewById(R.id.etNombreNuevaCerveza);
+        etGradosNuevaCerveza = findViewById(R.id.etGradosNuevaCerveza);
+        etTipoNuevaCerveza = findViewById(R.id.etTipoNuevaCerveza);
+        etPaisOrigenNuevaCerveza = findViewById(R.id.etPaisOrigenNuevaCerveza);
+        btnAgregarNuevaCerveza = findViewById(R.id.btnAgregarNuevaCerveza);
 
-        /* Abre la HomeActivity. */
-        Intent intentCambio = new Intent(this, HomeActivity.class);
-        startActivity(intentCambio);
-        finish();
+        btnAgregarNuevaCerveza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /* Recoge los valores de los campos. */
+                String nombreCerveza = null;
+                String gradosCervezaString = null;
+                float gradosCervezaNumericos = 0f;
+                String tipoCerveza = null;
+                String paisOrigenCerveza = null;
+
+                 /* Variables bandera para analizar la validación de campos. */
+                boolean nombreValido = false;
+                boolean tipoValido = false;
+                boolean gradacionValida = false;
+                boolean paisOrigenValido = false;
+
+                /* Evalúa si el nombre está vacío. */
+                if (etNombreNuevaCerveza.getText().toString().trim().compareToIgnoreCase("") == 0) {
+                    Toast.makeText(NuevaCervezaActivity.this, "Introduzca un nombre de cerveza, por favor.", Toast.LENGTH_SHORT).show();
+                    etNombreNuevaCerveza.setBackgroundTintList(bordeRojo);
+                    nombreValido = false;
+                } else {
+                    /* Recoge el valor del campo. */
+                    nombreCerveza = etNombreNuevaCerveza.getText().toString().trim();
+                    etNombreNuevaCerveza.setBackgroundTintList(bordeVerde);
+                    nombreValido = true;
+                }
+
+                /* Evalúa si la gradación está vacía. */
+                if (etGradosNuevaCerveza.getText().toString().trim().compareToIgnoreCase("") == 0) {
+                    Toast.makeText(NuevaCervezaActivity.this, "Introduzca una gradación, por favor.", Toast.LENGTH_SHORT).show();
+                    etGradosNuevaCerveza.setBackgroundTintList(bordeRojo);
+                    gradacionValida = false;
+                } else {
+                    /* Recoge el valor del campo. */
+                    gradosCervezaString = etGradosNuevaCerveza.getText().toString().trim();
+                    gradosCervezaNumericos = Float.parseFloat(gradosCervezaString);
+                    etGradosNuevaCerveza.setBackgroundTintList(bordeVerde);
+                    gradacionValida = true;
+                }
+
+                /* Evalúa si el tipo está vacío. */
+                if (etTipoNuevaCerveza.getText().toString().trim().compareToIgnoreCase("") == 0) {
+                    Toast.makeText(NuevaCervezaActivity.this, "Introduzca un tipo de cerveza, por favor.", Toast.LENGTH_SHORT).show();
+                    etTipoNuevaCerveza.setBackgroundTintList(bordeRojo);
+                    tipoValido = false;
+                } else {
+                    /* Recoge el valor del campo. */
+                    tipoCerveza = etTipoNuevaCerveza.getText().toString().trim();
+                    etTipoNuevaCerveza.setBackgroundTintList(bordeVerde);
+                    tipoValido = true;
+                }
+
+                /* Evalúa si el país de origen está vacío. */
+                if (etPaisOrigenNuevaCerveza.getText().toString().trim().compareToIgnoreCase("") == 0) {
+                    Toast.makeText(NuevaCervezaActivity.this, "Introduzca un país de origen, por favor.", Toast.LENGTH_SHORT).show();
+                    etPaisOrigenNuevaCerveza.setBackgroundTintList(bordeRojo);
+                    paisOrigenValido = false;
+                } else {
+                    /* Recoge el valor del campo. */
+                    paisOrigenCerveza = etPaisOrigenNuevaCerveza.getText().toString().trim();
+                    etPaisOrigenNuevaCerveza.setBackgroundTintList(bordeVerde);
+                    paisOrigenValido = true;
+                }
+
+                if (nombreValido && gradacionValida && tipoValido && paisOrigenValido) {
+                    nuevaCerveza = new Cerveza(nombreCerveza, gradosCervezaNumericos, tipoCerveza, paisOrigenCerveza);
+                    almacenarCerveza(nuevaCerveza);
+                }
+
+            }
+        });
+
     }
 
     /* Sólo testeo - genera varias cervezas predefinidas. */
@@ -157,27 +249,39 @@ public class NuevaCervezaActivity extends AppCompatActivity {
 
     }
 
-    /* Sólo testeo - agrega varias cervezas pre-generadas por código a la base de datos. */
-
     /**
-     * Agrega las cervezas generadas a la BDD para que sean accesibles por los usuarios de la app.
+     * Agrega la cerveza generada a la BDD para que sea accesible por los usuarios de la app.
+     *
+     * @param nuevaCerveza La cerveza a almacenar en la BDD.
      */
-    private void almacenarCervezas() {
+    private void almacenarCerveza(Cerveza nuevaCerveza) {
 
-        generarCervezas();
+//        generarCervezas();
+//
+//        for (int i = 0; i < alCervezasInsercion.size(); i++) {
+//
+//            /* Se fuerza una key aleatoria sin llegar a insertar un valor. Después se inserta la
+//            cerveza como child() usando dicha key aleatoria, y finalmente se cambia el valor del id
+//            al de la key para poder referenciarlo fácilmente para la DetalleCervezaActivity. */
+//            String keyAleatoriaFirebase = referenciaBdd.push().getKey();
+//            referenciaBdd.child(keyAleatoriaFirebase).setValue(alCervezasInsercion.get(i));
+//            referenciaBdd.child(keyAleatoriaFirebase).child("id").setValue(keyAleatoriaFirebase);
+//
+//        }
 
-        for (int i = 0; i < alCervezasInsercion.size(); i++) {
+        /* Se fuerza una key aleatoria sin llegar a insertar un valor. Después se inserta la
+        cerveza como child() usando dicha key aleatoria, y finalmente se cambia el valor del id
+        al de la key para poder referenciarlo fácilmente para la DetalleCervezaActivity. */
+        String keyAleatoriaFirebase = referenciaBdd.push().getKey();
+        referenciaBdd.child(keyAleatoriaFirebase).setValue(nuevaCerveza);
+        referenciaBdd.child(keyAleatoriaFirebase).child("id").setValue(keyAleatoriaFirebase);
 
-            /* Se fuerza una key aleatoria sin llegar a insertar un valor. Después se inserta la
-            cerveza como child() usando dicha key aleatoria, y finalmente se cambia el valor del id
-            al de la key para poder referenciarlo fácilmente para la DetalleCervezaActivity. */
-            String keyAleatoriaFirebase = referenciaBdd.push().getKey();
-            referenciaBdd.child(keyAleatoriaFirebase).setValue(alCervezasInsercion.get(i));
-            referenciaBdd.child(keyAleatoriaFirebase).child("id").setValue(keyAleatoriaFirebase);
+        Toast.makeText(this, "Cerveza añadida con éxito", Toast.LENGTH_SHORT).show();
 
-        }
-
-        Toast.makeText(this, "Todo creado con éxito", Toast.LENGTH_SHORT).show();
+        /* Abre la HomeActivity. */
+        intentCambio = new Intent(this, HomeActivity.class);
+        startActivity(intentCambio);
+        finish();
 
     }
 
