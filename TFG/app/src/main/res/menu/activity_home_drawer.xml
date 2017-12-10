@@ -5,10 +5,10 @@
 
     <item android:title="Usuario">
         <menu>
-            <item
-                android:id="@+id/nav_cuenta"
-                android:icon="@drawable/ic_account_circle_black_48dp"
-                android:title="Administrar cuenta" />
+            <!--<item-->
+                <!--android:id="@+id/nav_cuenta"-->
+                <!--android:icon="@drawable/ic_account_circle_black_48dp"-->
+                <!--android:title="Administrar cuenta" />-->
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/user_logout"

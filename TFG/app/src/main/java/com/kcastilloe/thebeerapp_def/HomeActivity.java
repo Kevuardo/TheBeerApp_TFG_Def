@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -20,6 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -406,14 +409,46 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_reportar:
                 AlertDialog.Builder builderReportar = new AlertDialog.Builder(this);
-                builderReportar.setMessage("No hay nada que reportar, granujilla ;)");
+                builderReportar.setMessage("Escribe lo que quieras reportar en la caja de texto:");
                 builderReportar.setTitle("Reportar incidencias");
-                builderReportar.setPositiveButton("Cerrar", new DialogInterface.OnClickListener() {
+
+                /* Añade una caja de texto para escribir los comentarios necesarios. */
+                final EditText comentarioReporte = new EditText(this);
+                comentarioReporte.setInputType(InputType.TYPE_CLASS_TEXT);
+                comentarioReporte.setHint("Escribe el reporte aquí...");
+                comentarioReporte.setSingleLine(false); /* Habilita la escritura multilínea. */
+                comentarioReporte.setLines(5); /* La altura de la caja de texto. */
+                comentarioReporte.setMaxLines(5); /* El número máximo de líneas que admite. */
+                comentarioReporte.setGravity(Gravity.LEFT | Gravity.TOP); /* Posicionamiento. */
+                builderReportar.setView(comentarioReporte);  /* Lo añade al AlertDialog. */
+
+                /* Botón de respuesta afirmativa. */
+                builderReportar.setPositiveButton("Enviar reporte", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String reporte = comentarioReporte.getText().toString();
+                        if (reporte.trim().compareToIgnoreCase("") == 0) {
+                            Toast.makeText(HomeActivity.this, "No se pueden enviar reportes vacíos", Toast.LENGTH_SHORT).show();
+                        } else {
+                            String keyAleatoriaFirebase = referenciaBdd.push().getKey();
+                            usuarioActual = autenticacionFirebase.getCurrentUser();
+
+                            referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_REPORTES);
+                            referenciaBdd.child(keyAleatoriaFirebase).child("reporte").setValue(reporte);
+                            referenciaBdd.child(keyAleatoriaFirebase).child("usuario").setValue(usuarioActual.getUid());
+                            Snackbar.make(findViewById(R.id.rlContenedorHome), "Reporte enviado exitosamente", Snackbar.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+                /* Botón de respuesta negativa. */
+                builderReportar.setNegativeButton("Cerrar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
                 });
+
                 AlertDialog dialogReportar = builderReportar.create();
                 dialogReportar.show();
                 drawer.closeDrawer(GravityCompat.START);
@@ -422,9 +457,40 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_sugerencias:
 
                 AlertDialog.Builder builderSugerencias = new AlertDialog.Builder(this);
-                builderSugerencias.setMessage("Todas las sugerencias son bienvenidas, pero no obligatoriamente tomadas en cuenta.");
+                builderSugerencias.setMessage("Todas las sugerencias son bienvenidas!");
                 builderSugerencias.setTitle("Sugerencias de desarrollo");
-                builderSugerencias.setPositiveButton("Cerrar ", new DialogInterface.OnClickListener() {
+
+                /* Añade una caja de texto para escribir los comentarios necesarios. */
+                final EditText comentarioSugerencia = new EditText(this);
+                comentarioSugerencia.setInputType(InputType.TYPE_CLASS_TEXT);
+                comentarioSugerencia.setHint("Escribe la sugerencia aquí...");
+                comentarioSugerencia.setSingleLine(false); /* Habilita la escritura multilínea. */
+                comentarioSugerencia.setLines(5); /* La altura de la caja de texto. */
+                comentarioSugerencia.setMaxLines(5); /* El número máximo de líneas que admite. */
+                comentarioSugerencia.setGravity(Gravity.LEFT | Gravity.TOP); /* Posicionamiento. */
+                builderSugerencias.setView(comentarioSugerencia); /* Lo añade al AlertDialog. */
+
+                /* Botón de respuesta afirmativa. */
+                builderSugerencias.setPositiveButton("Enviar sugerencia", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String sugerencia = comentarioSugerencia.getText().toString();
+                        if (sugerencia.trim().compareToIgnoreCase("") == 0) {
+                            Toast.makeText(HomeActivity.this, "No se pueden enviar sugerencias vacías", Toast.LENGTH_SHORT).show();
+                        } else {
+                            String keyAleatoriaFirebase = referenciaBdd.push().getKey();
+                            usuarioActual = autenticacionFirebase.getCurrentUser();
+
+                            referenciaBdd = bddFirebase.getReference(ReferenciasFirebase.REFERENCIA_SUGERENCIAS);
+                            referenciaBdd.child(keyAleatoriaFirebase).child("sugerencia").setValue(sugerencia);
+                            referenciaBdd.child(keyAleatoriaFirebase).child("usuario").setValue(usuarioActual.getUid());
+                            Snackbar.make(findViewById(R.id.rlContenedorHome), "Sugerencia enviada exitosamente", Snackbar.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+                /* Botón de respuesta negativa. */
+                builderSugerencias.setNegativeButton("Cerrar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
