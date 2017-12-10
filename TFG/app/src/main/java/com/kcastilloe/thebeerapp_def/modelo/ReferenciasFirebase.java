@@ -13,5 +13,7 @@ public class ReferenciasFirebase {
     public static final String REFERENCIA_CERVEZAS = "cervezas"; /* Referencia objetos (nodos) del tipo "cervezas". */
     public static final String REFERENCIA_REPORTES = "reportes"; /* Referencia objetos (nodos) del tipo "reportes". */
     public static final String REFERENCIA_SUGERENCIAS = "sugerencias"; /* Referencia objetos (nodos) del tipo "sugerencias". */
+    /* Dev Only. */
+    public static final String REFERENCIA_UBICACIONES= "ubicaciones"; /* Referencia objetos (nodos) del tipo "ubicaciones". */
 
 }
