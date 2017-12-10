@@ -25,6 +25,12 @@ import com.kcastilloe.thebeerapp_def.modelo.UbicacionCerveza;
 
 import java.util.ArrayList;
 
+/**
+ * La actividad usada para mostrar las distintas ubicaciones en que se puede encontrar una cerveza.
+ *
+ * @author Kevin Castillo Escudero
+ */
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     /* Elementos con modelo hecho por mí. */
