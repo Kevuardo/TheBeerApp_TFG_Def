@@ -61,6 +61,4 @@
         android:layout_marginTop="10dp"
         android:text="Iniciar sesión" />
 
-    <!-- Borrar Botón tras desarrollo!!! -->
-
 </RelativeLayout>

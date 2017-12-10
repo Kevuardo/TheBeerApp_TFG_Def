@@ -298,6 +298,7 @@ public class FragmentVentanaRegistro extends Fragment {
                         /* Compara las contraseñas para comprobar que coinciden. */
                         if (passwordVerificacion.compareToIgnoreCase(password) != 0) {
                             Toast.makeText(view.getContext(), "Las contraseñas deben coincidir", Toast.LENGTH_SHORT).show();
+                            passwordsCoinciden = false;
                         } else {
                             etPasswordVerificacionRegistro.setBackgroundTintList(bordeVerde);
                             passwordsCoinciden = true;

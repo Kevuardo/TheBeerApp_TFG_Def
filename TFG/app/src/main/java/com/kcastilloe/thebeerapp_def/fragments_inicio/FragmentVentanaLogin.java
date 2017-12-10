@@ -116,12 +116,14 @@ public class FragmentVentanaLogin extends Fragment {
                 if (etEmailLogin.getText().toString().trim().compareToIgnoreCase("") == 0) {
                     Toast.makeText(view.getContext(), "Introduzca un e-mail, por favor.", Toast.LENGTH_SHORT).show();
                     etEmailLogin.setBackgroundTintList(bordeRojo);
+                    emailValido = false;
                 } else {
                     /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
                     email = etEmailLogin.getText().toString().trim();
                     if (!validarEmail(email)) {
                         Toast.makeText(view.getContext(), "Nick de usuario inválido; pruebe con otro", Toast.LENGTH_SHORT).show();
                         etEmailLogin.setBackgroundTintList(bordeRojo);
+                        emailValido = false;
                     } else {
                         etEmailLogin.setBackgroundTintList(bordeVerde);
                         emailValido = true;
@@ -132,12 +134,14 @@ public class FragmentVentanaLogin extends Fragment {
                 if (etPasswordLogin.getText().toString().trim().compareToIgnoreCase("") == 0) {
                     Toast.makeText(view.getContext(), "Introduzca una contraseña, por favor", Toast.LENGTH_SHORT).show();
                     etPasswordLogin.setBackgroundTintList(bordeRojo);
+                    passwordValida = false;
                 } else {
                     /* Recoge el valor del campo, y evalúa si cumple con los estándares definidos por la expresión regular. */
                     password = etPasswordLogin.getText().toString().trim();
                     if (!validarPassword(password)) {
                         Toast.makeText(view.getContext(), "La contraseña ha de tener mínimo 8 caracteres, incluyendo mínimo 1 número, 1 mayúscula y 1 minúscula.", Toast.LENGTH_SHORT).show();
                         etPasswordLogin.setBackgroundTintList(bordeRojo);
+                        passwordValida = false;
                     } else {
                         etPasswordLogin.setBackgroundTintList(bordeVerde);
                         passwordValida = true;
