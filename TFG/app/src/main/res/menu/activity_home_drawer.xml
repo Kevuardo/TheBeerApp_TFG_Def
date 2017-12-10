@@ -33,6 +33,10 @@
                 android:icon="@drawable/lightbulb_on_outline_48dp"
                 android:title="Sugerir cambios" />
             <item
+                android:id="@+id/nav_agradecimientos"
+                android:icon="@drawable/greeting_48dp"
+                android:title="Agradecimientos" />
+            <item
                 android:id="@+id/nav_extra"
                 android:icon="@drawable/ic_new_releases_black_48dp"
                 android:title="Extras de la app" />

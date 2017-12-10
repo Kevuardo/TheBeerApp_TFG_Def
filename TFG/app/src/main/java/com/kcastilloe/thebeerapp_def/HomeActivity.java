@@ -38,6 +38,8 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.miguelcatalan.materialsearchview.SearchAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import static android.speech.SpeechRecognizer.createSpeechRecognizer;
 import static android.speech.SpeechRecognizer.isRecognitionAvailable;
@@ -433,6 +435,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
 
+            case R.id.nav_agradecimientos:
+
+                AlertDialog.Builder builderAgradecimientos = new AlertDialog.Builder(this);
+                builderAgradecimientos.setMessage("\n\nVarias imágenes: www.flaticon.com" +
+                        "\n\nMaterialSearchview, librería para SearchView personalizado: Miguel Catalán Bañuls" +
+                        "\n\nAl equipo docente, por su atención.");
+                builderAgradecimientos.setTitle("Agradecimientos");
+                builderAgradecimientos.setPositiveButton("Cerrar ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialogAgradecimientos = builderAgradecimientos.create();
+                dialogAgradecimientos.show();
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+
             case R.id.nav_extra:
 
                 AlertDialog.Builder builderExtra = new AlertDialog.Builder(this);
@@ -493,6 +513,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     cervezaAlmacenada = postSnapshot.getValue(Cerveza.class);
                     alCervezasAlmacenadasBdd .add(cervezaAlmacenada);
                 }
+
+                /* Ordena alfabéticamente las sugerencias de búsqueda.*/
+                Collections.sort(alCervezasAlmacenadasBdd, new Comparator<Cerveza>() {
+                    @Override
+                    public int compare(Cerveza cerveza1, Cerveza cerveza2) {
+                        return cerveza1.getNombre().compareToIgnoreCase(cerveza2.getNombre());
+                    }
+                });
 
                 /* Se declara el array de nombres, que tendrá una longitud igual al total de cervezas
                 * en la BDD, y lo puebla con los nombres de las mismas. */
@@ -609,6 +637,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 /* Se fuerza el estado a invisible de la vista, ya que de otra manera se mezclarían
                 en la vista la emptyView (imagen y texto) y los items de la lista. */
                 llListaVacia.setVisibility(View.INVISIBLE);
+
+                /* Ordena alfabéticamente las cervezas recogidas como favoritas para mostrarlas
+                * ordenadas en la lista de favoritas. */
+                Collections.sort(alCervezasFavoritas, new Comparator<Cerveza>() {
+                    @Override
+                    public int compare(Cerveza cerveza1, Cerveza cerveza2) {
+                        return cerveza1.getNombre().compareToIgnoreCase(cerveza2.getNombre());
+                    }
+                });
+
                 adaptadorLista = new ListaPersonalizada(this, R.layout.item_lista_layout, alCervezasFavoritas);
                 lvListaCervezasFavoritas.setAdapter(adaptadorLista);
 
