@@ -1,0 +1,1288 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="11.40" multi-file="no" uid="simpdcec33b9c3ee4a1d9591b1468ccde431">
+  <meta>
+    <name>CheerApp</name>
+    <authors> </authors>
+    <description />
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type type-id="package" type="UmlPackage" />
+        <value>3</value>
+      </counter>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>20</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type type-id="package" type="UmlPackage" />
+        <value>4</value>
+      </counter>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>21</value>
+      </counter>
+      <counter>
+        <item-type type-id="universal-connector" type="UniversalConnector" />
+        <value>7</value>
+      </counter>
+      <counter>
+        <item-type type-id="generalization" type="UmlGeneralization" />
+        <value>12</value>
+      </counter>
+      <counter>
+        <item-type type-id="shape" type="AbstractShapeItem" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="" type="AbstractElementGroup" />
+        <value>319</value>
+      </counter>
+      <counter>
+        <item-type type-id="realization" type="UmlRealization" />
+        <value>2</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
+        <value>3</value>
+      </counter>
+    </diagrams>
+    <fields>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.AttributeField</type>
+        <value>184</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
+        <value>185</value>
+      </counter>
+    </fields>
+  </counters>
+  <alias-groups />
+  <management uid="md-ef9d50ae630e466b9820adaf526a58db" name="" task-id-sequence="0">
+    <working-schedule uid="ws-af550008488d4f55a1a38d89b93e1ba8" hours="8" monday="8" tuesday="8" wednesday="8" thursday="8" friday="8" saturday="0" sunday="0" />
+    <persons>
+      <person id="P8f95c8849c1847469d5d090d87df7cd7">
+        <first-name />
+        <last-name />
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+        <working-schedule uid="ws-8dcdde4e5e9f4249b3aa282cbf1784db" hours="8" monday="8" tuesday="8" wednesday="8" thursday="8" friday="8" saturday="0" sunday="0" />
+      </person>
+    </persons>
+    <teams />
+    <sprints />
+    <projects />
+    <modules />
+    <tasks />
+    <to-dos />
+  </management>
+  <glossary id="glsr-64b130e2745d4e8c8762d5503015d8ba" />
+  <types default="UML">
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <type id="Pattern" tid="" name="Pattern" description="" />
+      <type id="EditText" tid="" name="EditText" description="" />
+      <type id="ColorStateList" tid="" name="ColorStateList" description="" />
+      <type id="LayoutInflater" tid="" name="LayoutInflater" description="" />
+      <type id="ViewGroup" tid="" name="ViewGroup" description="" />
+      <type id="Bundle" tid="" name="Bundle" description="" />
+      <type id="View" tid="" name="View" description="" />
+      <type id="double" tid="" name="double" description="" />
+      <type id="Float" tid="" name="Float" description="" />
+      <type id="Byte" tid="" name="Byte" description="" />
+      <type id="void" tid="" name="void" description="" />
+      <type id="ArrayList" tid="" name="ArrayList" description="" />
+      <type id="FragmentManager" tid="" name="FragmentManager" description="" />
+      <type id="CharSequence" tid="" name="CharSequence" description="" />
+      <type id="Class:di791494081315474973" tid="" name="Fragment" description="" class-ref="di791494081315474973" />
+      <type id="ArrayList&lt;Cerveza&gt;" tid="" name="ArrayList&lt;Cerveza&gt;" description="" />
+      <type id="ArrayList&lt;&gt;" tid="" name="ArrayList&lt;&gt;" description="" />
+      <type id="TextView" tid="" name="TextView" description="" />
+      <type id="ImageView" tid="" name="ImageView" description="" />
+      <type id="Context" tid="" name="Context" description="" />
+      <type id="ViewPager" tid="" name="ViewPager" description="" />
+      <type id="TabLayout" tid="" name="TabLayout" description="" />
+      <type id="Intent" tid="" name="Intent" description="" />
+      <type id="Class:di319115963691975059" tid="" name="AdaptadorSeccionesInicio" description="" class-ref="di319115963691975059" />
+      <type id="Class:di343604700658655884" tid="" name="Usuario" description="" class-ref="di343604700658655884" />
+      <type id="FirebaseAuth" tid="" name="FirebaseAuth" description="" />
+      <type id="FirebaseUser" tid="" name="FirebaseUser" description="" />
+      <type id="FirebaseDatabase" tid="" name="FirebaseDatabase" description="" />
+      <type id="DatabaseReference" tid="" name="DatabaseReference" description="" />
+      <type id="LinearLayout" tid="" name="LinearLayout" description="" />
+      <type id="ListView" tid="" name="ListView" description="" />
+      <type id="Toolbar" tid="" name="Toolbar" description="" />
+      <type id="DrawerLayout" tid="" name="DrawerLayout" description="" />
+      <type id="NavigationView" tid="" name="NavigationView" description="" />
+      <type id="MaterialSearchView" tid="" name="MaterialSearchView" description="" />
+      <type id="Class:di255289589136475680" tid="" name="ListaPersonalizada" description="" class-ref="di255289589136475680" />
+      <type id="Class:di730682678918612417" tid="" name="Cerveza" description="" class-ref="di730682678918612417" />
+      <type id="Class:di915955036484645524" tid="" name="ArrayAdapter&lt;Cerveza&gt;" description="" class-ref="di915955036484645524" />
+      <type id="Menu" tid="" name="Menu" description="" />
+      <type id="MenuItem" tid="" name="MenuItem" description="" />
+      <type id="ContextMenu" tid="" name="ContextMenu" description="" />
+      <type id="ContextMenu.ContextMenuInfo" tid="" name="ContextMenu.ContextMenuInfo" description="" />
+      <type id="Button" tid="" name="Button" description="" />
+      <type id="Class:di822045261523853520" tid="" name="UbicacionCerveza" description="" class-ref="di822045261523853520" />
+      <type id="ArrayList&lt;UbicacionCerveza&gt;" tid="" name="ArrayList&lt;UbicacionCerveza&gt;" description="" />
+      <type id="GoogleMap" tid="" name="GoogleMap" description="" />
+    </custom-types>
+  </types>
+  <items />
+  <models>
+    <model id="p3bc9514a7cd94ce4a8a3732a2eb21e33_134998150" name="Model1" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>12/15/2017 13:01:01</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="pfac996e5724944a69a97422033d12895_998395659" name="Fragments_inicio" order-index="1" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" show-frame="false" view-location="-178,-252" zoom="0.8">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author />
+          </authors>
+          <description />
+          <creation-date>12/15/2017 13:01:01</creation-date>
+          <change-date>12/15/2017 13:24:48</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di524035195671787286" cid="C001" type="class" name="FragmentVentanaLogin" style-class="" owner="di913578078158740374" visibility="package" change-tracking-state="added" creator="P8f95c8849c1847469d5d090d87df7cd7" creation-date="12/15/2017 13:01:24">
+            <style class="default" />
+            <attributes>
+              <attribute id="a2df7aaae075347fb9a8b8db8ad337c3315" cid="ELEM001" name="TAG" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a194bdd4087d54eefa2376dfba8b3153a28" cid="ELEM002" name="etEmailLogin, etPasswordLogin" creation-date="01/01/0001 00:00:00" type="EditText" type-id="EditText" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a9cc5e7dcaaa74711a875531efdc70de5895" cid="ELEM003" name="PATRON_PASSWORD" creation-date="01/01/0001 00:00:00" type="Pattern" type-id="Pattern" visibility="private" default-value="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])." constraint="8, ">
+                <style class="default" />
+              </attribute>
+              <attribute id="aac6a88e2de01454ba17cd685fd0e6a39997" cid="ELEM004" name="bordeRojo, bordeVerde" creation-date="01/01/0001 00:00:00" type="ColorStateList" type-id="ColorStateList" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o057c2c56b1d84583b8df2e54c64e6b4f671" cid="ELEM005" name="onCreateView" creation-date="01/01/0001 00:00:00" type="View" type-id="View" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pcf4e2844e9284cee89f0a477b5ba2d3b" name="inflater" type="LayoutInflater" type-id="LayoutInflater" />
+                  <parameter id="pf331d2deb54242a78b481bf01d9811b5" name="container" type="ViewGroup" type-id="ViewGroup" />
+                  <parameter id="p56f07d8904d447adaff0e1297c7849f7" name="savedInstanceState" type="Bundle" type-id="Bundle" />
+                </parameters>
+              </operation>
+              <operation id="obe634a9ef1a6456bb22da5d3084235d4583" cid="ELEM008" name="validarEmail" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p742ccf865eb34ca694ba863867f9587f" name="emailUsuario" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o6758effd1fd94b6691260bd7666c8b46703" cid="ELEM009" name="validarPassword" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p66a788bfb527478ba4bae99a430b930f" name="passwordusuario" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di791494081315474973" cid="C002" type="class" name="Fragment" style-class="" owner="di913578078158740374" visibility="package" change-tracking-state="added" creator="P8f95c8849c1847469d5d090d87df7cd7" creation-date="12/15/2017 13:04:33">
+            <style class="default" />
+          </item>
+          <item id="di286027318206664598" cid="GNR001" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="P8f95c8849c1847469d5d090d87df7cd7" creation-date="12/15/2017 13:04:33" from="di524035195671787286" to="di791494081315474973">
+            <style class="default" />
+          </item>
+          <item id="di344438755305426162" cid="C003" type="class" name="FragmentVentanaRegistro" style-class="" owner="di913578078158740374" visibility="package" change-tracking-state="added" creator="P8f95c8849c1847469d5d090d87df7cd7" creation-date="12/15/2017 13:05:10">
+            <style class="default" />
+            <attributes>
+              <attribute id="a055abc4706e941cd8efad620521fedfe70" cid="ELEM006" name="TAG" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6f9e95ed28014d52b9ebff6c9808441b704" cid="ELEM010" name="EDAD_MINIMA" creation-date="01/01/0001 00:00:00" type="Integer" type-id="Uml.Integer" visibility="private" default-value="18">
+                <style class="default" />
+              </attribute>
+              <attribute id="aa56da212763a43beb12b9913eadf80dc199" cid="ELEM012" name="EDAD_MAXIMA" creation-date="01/01/0001 00:00:00" type="Integer" type-id="Uml.Integer" visibility="private" default-value="130">
+                <style class="default" />
+              </attribute>
+              <attribute id="a99d1942a2c3943e19190d6f58c3c8bc7366" cid="ELEM013" name="etNickRegistro, etEdadRegistro, etEmailRegistro, etPasswordRegistro, etPasswordVerificacionRegistro" creation-date="01/01/0001 00:00:00" type="EditText" type-id="EditText" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a8639427f6f7b41b080c238fdb4440a43671" cid="ELEM014" name="PATRON_NICK" creation-date="01/01/0001 00:00:00" type="Pattern" type-id="Pattern" visibility="private" default-value="^[a-zA-Z0-9_]" constraint="5, 15">
+                <style class="default" />
+              </attribute>
+              <attribute id="ad4bc30ed596e4d9d857dee418472265c968" cid="ELEM015" name="PATRON_PASSWORD" creation-date="01/01/0001 00:00:00" type="Pattern" type-id="Pattern" visibility="private" default-value="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])." constraint="8, ">
+                <style class="default" />
+              </attribute>
+              <attribute id="a9fb07bd189f6448ea81ca8faf8d16d29848" cid="ELEM016" name="bordeRojo, bordeVerde" creation-date="01/01/0001 00:00:00" type="ColorStateList" type-id="ColorStateList" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o4e9f2d7354db4d4d863e2e3aa878c7ec652" cid="ELEM017" name="onCreateView" creation-date="01/01/0001 00:00:00" type="View" type-id="View" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p5d0420050c50422a93a5f544a3859314" name="inflater" type="LayoutInflater" type-id="LayoutInflater" />
+                  <parameter id="pfd658375a48343a09e1539a503475fb2" name="container" type="ViewGroup" type-id="ViewGroup" />
+                  <parameter id="pe387680bc3ab47a38dd21d30d11427c3" name="savedInstanceState" type="Bundle" type-id="Bundle" />
+                </parameters>
+              </operation>
+              <operation id="o012ab17f4d584bc39c2f7952ca3e110d156" cid="ELEM018" name="validarNick" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p8f146d52a6ee4f209d976ce645999476" name="nickUsuario" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o72d149e59ce842cf9713868232914a0f706" cid="ELEM019" name="validarEdad" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p19ea990d0eb84f5987d76bcccd33890f" name="edadUsuario" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o6deba8178e7d4a568116dc6ae86b43d9132" cid="ELEM020" name="validarEmail" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p9acd717908264c8caf60c78cac8ef4b5" name="emailUsuario" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="ob3cbba9d16c04b0bbd52cbb2b50c156b177" cid="ELEM021" name="validarPassword" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p3ae6f2e7bc3045b696985bcff1c66ea4" name="passwordUsuario" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di837798672141175549" cid="GNR003" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="P8f95c8849c1847469d5d090d87df7cd7" creation-date="12/15/2017 13:06:02" from="di344438755305426162" to="di791494081315474973">
+            <style class="default" />
+          </item>
+          <item id="di913578078158740374" cid="PKG001" type="package" name="fragments_inicio" style-class="" visibility="package" change-tracking-state="added" creator="P8f95c8849c1847469d5d090d87df7cd7" creation-date="12/15/2017 13:01:12">
+            <style class="default" />
+          </item>
+        </abstract-items>
+        <layer id="0247e140e1bb4fb7824316c7c10f9393" name="Default" visible="true" enabled="true" locked="false">
+          <item id="di913578078158740374" iid="aa76a127165d4a368a9efb4173db7617" name-style="" creation-date="12/15/2017 13:01:12" order-index="0" type="entity">
+            <layout ax="-153" ay="-211" awidth="920" aheight="485" x="-153" y="-211" width="920" height="485" />
+          </item>
+          <item id="di791494081315474973" iid="871a05e4bfc6482f80234cef8131e6a3" container="di913578078158740374" container-iid="aa76a127165d4a368a9efb4173db7617" name-style="" creation-date="12/15/2017 13:04:33" order-index="2" type="entity">
+            <layout ax="319.5" ay="-154" awidth="140" aheight="23" x="319.5" y="-154" width="140" height="23" />
+            <class />
+          </item>
+          <item id="di524035195671787286" iid="5371c5994a2e4ca69ebfd7cc62098ba6" container="di913578078158740374" container-iid="aa76a127165d4a368a9efb4173db7617" name-style="" creation-date="12/15/2017 13:01:24" order-index="1" type="entity">
+            <layout ax="-141" ay="-67" awidth="509" aheight="199" x="-141" y="-67" width="509" height="199" />
+            <class />
+          </item>
+          <item id="di344438755305426162" iid="2e572daa356142909331a1ac0d73a305" container="di913578078158740374" container-iid="aa76a127165d4a368a9efb4173db7617" name-style="" creation-date="12/15/2017 13:05:10" order-index="4" type="entity">
+            <layout ax="411" ay="-67" awidth="343" aheight="324" x="411" y="-67" width="343" height="324" />
+            <class />
+          </item>
+          <item id="di286027318206664598" iid="ee9ed6c630294b679b12f839ba808fe2" name-style="" creation-date="12/15/2017 13:04:33" order-index="3" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" auto-path="" x1="271" y1="-67" x2="373" y2="-131" start-border-pos="0.202374501406327" end-border-pos="0.65526477268764" name-position="0,0">
+              <points>
+                <point x="271" y="-67" />
+                <point x="373" y="-131" />
+              </points>
+            </layout>
+            <relation from="di524035195671787286" from-iid="5371c5994a2e4ca69ebfd7cc62098ba6" to="di791494081315474973" to-iid="871a05e4bfc6482f80234cef8131e6a3" />
+          </item>
+          <item id="di837798672141175549" iid="c0223e4def3c478a8f1608d8719f6e03" name-style="" creation-date="12/15/2017 13:06:02" order-index="5" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="475" y1="-67" x2="428" y2="-131" start-border-pos="0.0469483568075117" end-border-pos="0.557142857142857" name-position="0,0">
+              <points>
+                <point x="475" y="-67" />
+                <point x="428" y="-131" />
+              </points>
+            </layout>
+            <relation from="di344438755305426162" from-iid="2e572daa356142909331a1ac0d73a305" to="di791494081315474973" to-iid="871a05e4bfc6482f80234cef8131e6a3" />
+          </item>
+        </layer>
+      </diagram>
+      <diagram type="uml-class" id="p2c0ec6419cf64b0e864d067de38031b6_324422902" name="Modelo" order-index="2" overview-order-index="0" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" show-frame="false" view-location="0,-1" zoom="0.3">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author />
+          </authors>
+          <description />
+          <creation-date>12/15/2017 13:35:03</creation-date>
+          <change-date>12/15/2017 13:57:31</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di279250995650788312" cid="PKG002" type="package" name="modelo" style-class="" visibility="package" change-tracking-state="added" creator="P8f95c8849c1847469d5d090d87df7cd7" creation-date="12/15/2017 13:35:09">
+            <style class="default" />
+          </item>
+          <item id="di730682678918612417" cid="C005" type="class" name="Cerveza" style-class="" owner="di279250995650788312" visibility="package" change-tracking-state="added" creator="P8f95c8849c1847469d5d090d87df7cd7" creation-date="12/15/2017 13:36:24">
+            <style class="default" />
+            <attributes>
+              <attribute id="a094134f7c4db448b9a586f9565b9f63b336" cid="ELEM022" name="nombre, tipo, paisOrigen, descripcion, id" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a5a9bfc3e51f64a6ea99da33b94fd9d02953" cid="ELEM023" name="grados" creation-date="01/01/0001 00:00:00" type="Float" type-id="Float" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a0263bcc0e6a04c538869695a8c595d93689" cid="ELEM024" name="foto" creation-date="01/01/0001 00:00:00" type="Byte" type-id="Byte" visibility="private" multiplicity="*">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="odaabd5c47ed941b4b8347fe73926d811209" cid="ELEM025" name="Cerveza" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oaab50170325b4cd89bea879e8bd510e8486" cid="ELEM026" name="Cerveza" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p72c766375174485fb0d2d1a4336ac298" name="nombre" type="String" type-id="Uml.String" />
+                  <parameter id="p0c2f421e10024dffa3d4b2509619e258" name="grados" type="Float" type-id="Float" />
+                  <parameter id="pb06acf0af7234efe8b858a94900dc52e" name="tipo" type="String" type-id="Uml.String" />
+                  <parameter id="p3d8c1efd5640408a9bb01700beef1e3d" name="paisOrigen" type="String" type-id="Uml.String" />
+                  <parameter id="p97c2ffe7059c497ba1431d73d2d5c885" name="descripcion" type="String" type-id="Uml.String" />
+                  <parameter id="p0d5a7fffaf90434e8e3872e6f1cdbfe4" name="foto" type="Byte" type-id="Byte" multiplicity="*" />
+                </parameters>
+              </operation>
+              <operation id="of84e4d1e97a44318b6337df768fe9bbd370" cid="ELEM027" name="Cerveza" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p7d6df2a1dacb4ec590c3185c7aa3dcb6" name="nombre" type="String" type-id="Uml.String" />
+                  <parameter id="p830f4858e29a4600841b9931fee4b59b" name="grados" type="Float" type-id="Float" />
+                  <parameter id="pc5bc2dd39c164a019b5368fe9fd0a499" name="tipo" type="String" type-id="Uml.String" />
+                  <parameter id="p8b819dcd9a184759aae43b95cc9d846a" name="paisOrigen" type="String" type-id="Uml.String" />
+                  <parameter id="p06c9de04b28047cc94e3deab52e53048" name="descripcion" type="String" type-id="Uml.String" />
+                  <parameter id="p3ff4d5854ca84cf9b59d23a182702e14" name="id" type="String" type-id="Uml.String" />
+                  <parameter id="pcd5cb3efc3394dff8034a6b7c5226e9e" name="foto" type="Byte" type-id="Byte" multiplicity="*" />
+                </parameters>
+              </operation>
+              <operation id="o8259886028904725a64b697f8637e835354" cid="ELEM028" name="Cerveza" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p5e3416092e40430e81e7be41a23913b4" name="nombre" type="String" type-id="Uml.String" />
+                  <parameter id="p3b7132d48d5f4120a1ec6c9c567905a1" name="grados" type="Float" type-id="Float" />
+                  <parameter id="p4a94cfe0cbec486096c8fb1f45c614d4" name="tipo" type="String" type-id="Uml.String" />
+                  <parameter id="p954182d477ac4e4c851b6403d62c085e" name="paisOrigen" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oe1717a7b55b04899bd25f387b916714f10" cid="ELEM029" name="getNombre" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="odad78e9fa8ad4a8985d406573f8e4755744" cid="ELEM030" name="setNombre" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pdb12d42f9f2c49d4a053590102f46e8a" name="nombre" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oc3441738a2d24ff5b01c7c5b1d5a7a22941" cid="ELEM031" name="getGrados" creation-date="01/01/0001 00:00:00" type="Float" type-id="Float" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o16636c8343f644cc854780c2b910412d832" cid="ELEM032" name="setGrados" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p17d6044f40464c08937937d98817cffb" name="grados" type="Float" type-id="Float" />
+                </parameters>
+              </operation>
+              <operation id="oa6850da36f2848bb858dda4138894748377" cid="ELEM033" name="getTipo" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o6b8f6931b572470d9309884a4d9f0f21607" cid="ELEM034" name="setTipo" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p4bdd45ba34ce4bef90580760f6e558f0" name="tipo" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="ob19c06e5f39547d8a8b3b7e93faaf103618" cid="ELEM035" name="getPaisOrigen" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oe52a530b869f44bca2cf849ae13c6306624" cid="ELEM036" name="setPaisOrigen" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pe361a34b8e504693915b4a29978c6640" name="paisOrigen" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="obd7e212842c14a61b52574f0abe8227a554" cid="ELEM037" name="getDescripcion" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o34235a197c854866a7c6fc65f2733a68656" cid="ELEM038" name="setDescripcion" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p8c1ee23ac23c463a8324b232d82cfa0c" name="descripcion" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o42b31adfaba44b75b869323db5687c34146" cid="ELEM039" name="getId" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o125db9a8b80c48ffa3bb4e17567cfa4c889" cid="ELEM040" name="setId" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p8154bdd7c6ee422bb3ed02f21335a738" name="id" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="of151699f73f942b98d166173a439738a706" cid="ELEM041" name="getFoto" creation-date="01/01/0001 00:00:00" type="Byte" type-id="Byte" multiplicity="*" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="of0b1c44032eb4ab394c708472df6ef6a1" cid="ELEM042" name="setFoto" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p65c03f306e7a47e0885fd4dbc6c75182" name="foto" type="Byte" type-id="Byte" multiplicity="*" />
+                </parameters>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di222560461734865768" cid="C006" type="class" name="ReferenciasFirebase" style-class="" owner="di279250995650788312" visibility="package" change-tracking-state="added" creator="P8f95c8849c1847469d5d090d87df7cd7" creation-date="12/15/2017 13:46:53">
+            <style class="default" />
+            <attributes>
+              <attribute id="a2299bf923a974ecea52cbdb2e3adc29f884" cid="ELEM044" name="REFERENCIA_USUARIOS" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" default-value="&quot;usuarios&quot;">
+                <style class="default" />
+              </attribute>
+              <attribute id="a538f2b3de2fe4e8f96b2f8cd0811fef6530" cid="ELEM045" name="REFERENCIA_CERVEZAS" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" default-value="&quot;cervezas&quot;">
+                <style class="default" />
+              </attribute>
+              <attribute id="a2760646395284eaa8fa858fb356fd3b1826" cid="ELEM046" name="REFERENCIA_REPORTES" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" default-value="&quot;reportes&quot;">
+                <style class="default" />
+              </attribute>
+              <attribute id="a019d64affdf94970b1de0751d486ce1b619" cid="ELEM047" name="REFERENCIA_SUGERENCIAS" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" default-value="&quot;sugerencias&quot;">
+                <style class="default" />
+              </attribute>
+              <attribute id="ab418d9eb18a7425c8877d45725d19f12434" cid="ELEM048" name="REFERENCIA_UBICACIONES" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" default-value="&quot;ubicaciones&quot;">
+                <style class="default" />
+              </attribute>
+            </attributes>
+          </item>
+          <item id="di822045261523853520" cid="C007" type="class" name="UbicacionCerveza" style-class="" owner="di279250995650788312" visibility="package" change-tracking-state="added" creation-date="12/15/2017 13:51:47">
+            <style class="default" />
+            <attributes>
+              <attribute id="a950236409a05438c8c1e3d8d04200961572" cid="ELEM049" name="titulo, id; String" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a4f38ecb660b1489a99a80e851de4db20874" cid="ELEM050" name="latitud, longitud" creation-date="01/01/0001 00:00:00" type="Float" type-id="Float" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="od69696e804b44b659d9d3bb77d2d6a2b175" cid="ELEM043" name="UbicacionCerveza" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="od0d5cbe0093347cbaa2820915873f987161" cid="ELEM051" name="UbicacionCerveza" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p96b0388aef3e49278c019a5f5e5bc27d" name="titulo" type="String" type-id="Uml.String" />
+                  <parameter id="p036887c225164e0990d16b83251ac3b4" name="latitud" type="Float" type-id="Float" />
+                  <parameter id="pd0058e401dd94e43866f15e1af9e0422" name="longitud" type="Float" type-id="Float" />
+                </parameters>
+              </operation>
+              <operation id="oa177e2561ca44005ae8e70b6a13a0009581" cid="ELEM052" name="UbicacionCerveza" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p585ad341aafa49fea38c5d9a0206feb5" name="titulo" type="String" type-id="Uml.String" />
+                  <parameter id="pf9b79203ed4647f1b3179eb07a7869ff" name="latitud" type="Float" type-id="Float" />
+                  <parameter id="p679b0643511249f19a968bc59a65e7dc" name="longitud" type="Float" type-id="Float" />
+                  <parameter id="p2feb211725f3429fa7ad06e45b51f0f6" name="id" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o8f695d9f2f99455bbd251e7159747690257" cid="ELEM053" name="getTitulo" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o07a4ac3a98a846e68b47c824bcd346f7269" cid="ELEM054" name="setTitulo" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p49afc3778bca4ddc9bfe385d585b299b" name="titulo" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o386df055dbdb479ab379d28f27df80d0605" cid="ELEM055" name="getLatitud" creation-date="01/01/0001 00:00:00" type="Float" type-id="Float" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o64cb16a490d04d9bbf79948068bdffdc244" cid="ELEM056" name="setLatitud" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p94f1d4b0bb054e099c7579a0765b6ada" name="latitud" type="Float" type-id="Float" />
+                </parameters>
+              </operation>
+              <operation id="o79a750e377684417aeab921e3d701fbe325" cid="ELEM057" name="getLongitud" creation-date="01/01/0001 00:00:00" type="Float" type-id="Float" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oe103eaa5e56e4f3f9472a2111bfb2d74317" cid="ELEM058" name="setLongitud" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pa023a82d774f40139428a628c51b0de9" name="longitud" type="Float" type-id="Float" />
+                </parameters>
+              </operation>
+              <operation id="ofc81a899e9224250affbfdf602e5a9f877" cid="ELEM059" name="getId" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="od4af00dce8974c51abb69f67d1d2c561741" cid="ELEM060" name="setId" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pc5bc8ef199e34f4496a891d64e4bd0f6" name="id" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di343604700658655884" cid="C008" type="class" name="Usuario" style-class="" owner="di279250995650788312" visibility="package" change-tracking-state="added" creation-date="12/15/2017 13:57:31">
+            <style class="default" />
+            <attributes>
+              <attribute id="a53829b26715e47f68504060196132a9f937" cid="ELEM062" name="nick, email" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a27327c46003c4742b52fc003da8cd00b893" cid="ELEM063" name="edad" creation-date="01/01/0001 00:00:00" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o781b33902a7247e89c09c614f6f6593089" cid="ELEM064" name="Usuario" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o7c0e78d54c86435b8eeefaaf013eaca0310" cid="ELEM065" name="Usuario" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p9aaa46bbe0b74340a86b01299f4dc9cc" name="nick" type="String" type-id="Uml.String" />
+                  <parameter id="pf782c75d1c65440f93b0e9bd87e31fcb" name="email" type="String" type-id="Uml.String" />
+                  <parameter id="pb0c0ab9ec1774aae8f481b92879b1c62" name="edad" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o0146934f998d4244895248543bb5eb1d256" cid="ELEM066" name="getNick" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o68692ba12bbc4358991949a17e6963b1550" cid="ELEM067" name="setNick" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p630c00b195ab4c57abf0467177158671" name="nick" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o565131acc5644e129a1fe0e0cafad840958" cid="ELEM068" name="getEmail" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o0f3a259f48824fda9e758350c5ad8990849" cid="ELEM069" name="setEmail" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p0e7aa5e941a349d2a3ed90e536d1cf84" name="email" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oea3b9c70146a4f048bf99d851f2cfb80623" cid="ELEM070" name="getEdad" creation-date="01/01/0001 00:00:00" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o98aabae0a5db42ab90e9ee6df95081d1687" cid="ELEM071" name="setEdad" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pde36c0a8469645ce9880c083090fcefb" name="edad" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+        </abstract-items>
+        <layer id="7624983cf3344c70aa9729d8e319dbf0" name="Default" visible="true" enabled="true" locked="false">
+          <item id="di279250995650788312" iid="60e0628cb6734ad382dc6488e77cefeb" name-style="" creation-date="12/15/2017 13:35:09" order-index="0" type="entity">
+            <layout ax="115" ay="100" awidth="1354" aheight="588" x="115" y="100" width="1354" height="588" />
+          </item>
+          <item id="di730682678918612417" iid="b6882650887346c9ba08ec587c7ce9b0" container="di279250995650788312" container-iid="60e0628cb6734ad382dc6488e77cefeb" name-style="" creation-date="12/15/2017 13:36:24" order-index="1" type="entity">
+            <layout ax="163" ay="165" awidth="453" aheight="478" x="163" y="165" width="453" height="478" />
+            <class />
+          </item>
+          <item id="di222560461734865768" iid="c167e54431004048adf0f3747fe447d1" container="di279250995650788312" container-iid="60e0628cb6734ad382dc6488e77cefeb" name-style="" creation-date="12/15/2017 13:46:53" order-index="2" type="entity">
+            <layout ax="652" ay="165" awidth="355" aheight="160" x="652" y="165" width="355" height="160" />
+            <class />
+          </item>
+          <item id="di822045261523853520" iid="00325ab978774d548ad109ae250db71f" container="di279250995650788312" container-iid="60e0628cb6734ad382dc6488e77cefeb" name-style="" creation-date="12/15/2017 13:51:47" order-index="3" type="entity">
+            <layout ax="652" ay="354" awidth="355" aheight="289" x="652" y="354" width="355" height="289" />
+            <class />
+          </item>
+          <item id="di343604700658655884" iid="24c2970b2ac04888a6a0a062e84f2beb" container="di279250995650788312" container-iid="60e0628cb6734ad382dc6488e77cefeb" name-style="" creation-date="12/15/2017 13:57:31" order-index="4" type="entity">
+            <layout ax="1043" ay="165" awidth="370" aheight="233" x="1043" y="165" width="370" height="233" />
+            <class />
+          </item>
+        </layer>
+      </diagram>
+      <diagram type="uml-class" id="p40d977d4cca2479d8ba8ee6da644d61c_800065867" name="Activities y otros" order-index="3" overview-order-index="1" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" show-frame="false" view-location="0,-50" zoom="0.6">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author />
+          </authors>
+          <description />
+          <creation-date>12/15/2017 14:02:26</creation-date>
+          <change-date>12/15/2017 15:58:18</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di616517549717098508" cid="C009" type="class" name="SplashScreenActivity" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:02:39">
+            <style class="default" />
+            <attributes>
+              <attribute id="ad2a4f45a02844630af439315b2a69047888" cid="ELEM085" name="DURACION_SPLASH" creation-date="01/01/0001 00:00:00" type="Integer" type-id="Uml.Integer" visibility="private" default-value="2000">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="of6805508d30f45babffcffb4b4d26a63158" cid="ELEM087" name="onCreate" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p17851efc35ed4ea2ba2b7b3a8835e2d3" name="savedInstanceState" type="" type-id="" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di319115963691975059" cid="C010" type="class" name="AdaptadorSeccionesInicio" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:03:58">
+            <style class="default" />
+            <attributes>
+              <attribute id="afe14074182aa4ed49324b3f05891d234540" cid="ELEM072" name="lListaFragment" creation-date="01/01/0001 00:00:00" type="ArrayList&lt;&gt;" type-id="ArrayList&lt;&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ad46d4376db1f4124b76305d7e863d51c379" cid="ELEM073" name="lListaTitulosFragment" creation-date="01/01/0001 00:00:00" type="ArrayList&lt;&gt;" type-id="ArrayList&lt;&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o20c2230db07f458896b6f26d23938417284" cid="ELEM074" name="AdaptadorSeccionesInicio" creation-date="01/01/0001 00:00:00" type="FragmentManager" type-id="FragmentManager" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p756e9bf9c4f54a44abc0aaf9796958a9" name="fm" type="FragmentManager" type-id="FragmentManager" />
+                </parameters>
+              </operation>
+              <operation id="oa74846882b994c30b3982ab68e31c7e9979" cid="ELEM075" name="getPageTitle" creation-date="01/01/0001 00:00:00" type="CharSequence" type-id="CharSequence" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pa56ee577575a4568a349d908b9aaecc5" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="oedf91f9f785a4fee90e81f52daf6ab39315" cid="ELEM076" name="getItem" creation-date="01/01/0001 00:00:00" type="Fragment" type-id="Class:di791494081315474973" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p2806c13314044210b97bcc594f9d3ba5" name="position" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o5609206e56324d45afd7e7844fefff47946" cid="ELEM077" name="getCount" creation-date="01/01/0001 00:00:00" type="Integer" type-id="Uml.Integer" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o3d3f6a1b723e4d8d9efa77de4b4b62f4819" cid="ELEM078" name="agregarFragment" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p1d4f56a35f2c451d820fb6499a51e86e" name="fragment" type="Fragment" type-id="Class:di791494081315474973" />
+                  <parameter id="p431c103402994555b78092b9a2f31d73" name="titulo" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di990939583619895366" cid="C011" type="class" name="FragmentPagerAdapter" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:05:49">
+            <style class="default" />
+          </item>
+          <item id="di151249464248782580" cid="GNR004" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:06:24" from="di319115963691975059" to="di990939583619895366">
+            <style class="default" />
+          </item>
+          <item id="di255289589136475680" cid="C012" type="class" name="ListaPersonalizada" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:10:16">
+            <style class="default" />
+            <attributes>
+              <attribute id="a6417de88b83f4be392c8be8fba9080c946" cid="ELEM079" name="alCervezas" creation-date="01/01/0001 00:00:00" type="ArrayList&lt;Cerveza&gt;" type-id="ArrayList&lt;Cerveza&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ad51165510b7b4ce7b6e993bfdf4eb2ab178" cid="ELEM080" name="tvNombreItem, tvGradosItem, tvTipoItem, tvPaisOrigenItem" creation-date="01/01/0001 00:00:00" type="TextView" type-id="TextView" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a7490d1ce13f54e5fa2e23d429182dfc7806" cid="ELEM081" name="ivImagenItem" creation-date="01/01/0001 00:00:00" type="ImageView" type-id="ImageView" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="acfc6cc4773cd48f79db20f3a1d9a5866794" cid="ELEM082" name="idVistaElemento" creation-date="01/01/0001 00:00:00" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="ocab365f76b4147058d105edf04784990815" cid="ELEM083" name="ListaPersonalizada" creation-date="01/01/0001 00:00:00" type="Context" type-id="Context" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pa69841bc80f64ce8abc0b33bf50bbcd3" name="context" type="Context" type-id="Context" />
+                  <parameter id="p93d01e1727044aa3a07e3820f995dc12" name="idVistaElemento" type="Integer" type-id="Uml.Integer" />
+                  <parameter id="p2792a968afac47eeb24c9625178e9465" name="alCervezas" type="ArrayList&lt;Cerveza&gt;" type-id="ArrayList&lt;Cerveza&gt;" />
+                </parameters>
+              </operation>
+              <operation id="o2cbfa27ec97244f68364eac910fedec2261" cid="ELEM084" name="getView" creation-date="01/01/0001 00:00:00" type="View" type-id="View" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p2bb1148fdf754bbc8b550a77f62c6bd7" name="position" type="Integer" type-id="Uml.Integer" />
+                  <parameter id="p33d229c544354521acce78f6f4782fc7" name="convertView" type="View" type-id="View" />
+                  <parameter id="pe665d55e55244bfda06a991114da936f" name="parent" type="ViewGroup" type-id="ViewGroup" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di915955036484645524" cid="C013" type="class" name="ArrayAdapter&lt;Cerveza&gt;" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:14:16">
+            <style class="default" />
+          </item>
+          <item id="di555222116204937995" cid="GNR005" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:14:47" from="di255289589136475680" to="di915955036484645524">
+            <style class="default" />
+          </item>
+          <item id="di774933770262726454" cid="C014" type="class" name="MainActivity" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:33:43">
+            <style class="default" />
+            <attributes>
+              <attribute id="a11f222fb9ee14189a816dca0e26224fd927" cid="ELEM088" name="TAG" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" default-value="&quot;MainActivity&quot;">
+                <style class="default" />
+              </attribute>
+              <attribute id="a8bb6557941a24199a520e18009d961ab820" cid="ELEM089" name="vpContenedor" creation-date="01/01/0001 00:00:00" type="ViewPager" type-id="ViewPager" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a1c093a76b7af4ac4a39792199129a521146" cid="ELEM090" name="tlVentanas" creation-date="01/01/0001 00:00:00" type="TabLayout" type-id="TabLayout" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a9f6d2a27432a4ec68c3fe0db8f47aad1264" cid="ELEM091" name="intentCambio" creation-date="01/01/0001 00:00:00" type="Intent" type-id="Intent" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a61d8a91e9de2410eb0d34de24f51a7d8783" cid="ELEM092" name="adaptadorSecciones" creation-date="01/01/0001 00:00:00" type="AdaptadorSeccionesInicio" type-id="Class:di319115963691975059" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a72d9a49430bf432e8011f066fd466ab3371" cid="ELEM093" name="nuevoUsuario" creation-date="01/01/0001 00:00:00" type="Usuario" type-id="Class:di343604700658655884" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="add5b33eaf0164f528965c41b135b4252385" cid="ELEM094" name="teclaBackPulsada" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a784acbd6a2804c8f8699133b6a999548437" cid="ELEM095" name="autenticacionFirebase" creation-date="01/01/0001 00:00:00" type="FirebaseAuth" type-id="FirebaseAuth" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ad8babdd95e92491697dad57bb0f4c527238" cid="ELEM096" name="usuarioActual" creation-date="01/01/0001 00:00:00" type="FirebaseUser" type-id="FirebaseUser" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a00061c24d00c4433809c371e085f8dec85" cid="ELEM097" name="bddFirebase" creation-date="01/01/0001 00:00:00" type="FirebaseDatabase" type-id="FirebaseDatabase" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6a1aa7f6a74b4855ac961fcb839e63f2845" cid="ELEM098" name="referenciaBdd" creation-date="01/01/0001 00:00:00" type="DatabaseReference" type-id="DatabaseReference" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="ob015e6bfb1934167b01c43da1d38404271" cid="ELEM099" name="onCreate" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="protected">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p898e1002f0504d308ebc9908d147f37c" name="savedInstanceState" type="Bundle" type-id="Bundle" />
+                </parameters>
+              </operation>
+              <operation id="o3d7ef6be73fa466aa2f7a67f0a1a6d2f196" cid="ELEM100" name="onStart" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="protected">
+                <style class="default" />
+              </operation>
+              <operation id="od483529516284e5cb7939ef0b9d21214540" cid="ELEM101" name="onBackPressed" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="o4e17af24c9b34fdd85bc80dcf9f51b5c189" cid="ELEM102" name="configurarViewPager" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pdcd31434d8a44f89859849ee86124282" name="viewPager" type="ViewPager" type-id="ViewPager" />
+                </parameters>
+              </operation>
+              <operation id="o5863adc488164ecc9be3387ba4dd17b9237" cid="ELEM103" name="evaluarEstadoUsuario" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pc14e033e545b41b1adb2c68b2c68e4b4" name="usuarioActual" type="FirebaseUser" type-id="FirebaseUser" />
+                </parameters>
+              </operation>
+              <operation id="o1f9fe2ea2b574af5a9bf59685264e9c4564" cid="ELEM104" name="iniciarSesionUsuario" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pa222af0a722d4786b5803182160f5495" name="email" type="String" type-id="Uml.String" />
+                  <parameter id="p2f8bbd93f8dd4a879e37a458d100ac93" name="password" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o63d562c0849a4716a1974b5595bf4faa4" cid="ELEM105" name="registrarUsuario" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p324c0e7878974561ba99acd02bb1dcb7" name="nick" type="String" type-id="Uml.String" />
+                  <parameter id="p2e74c49008a44b64b96f3699f3ff9c26" name="email" type="String" type-id="Uml.String" />
+                  <parameter id="p5e9070fa2e6a45a892dabfd113f3668c" name="edad" type="Integer" type-id="Uml.Integer" />
+                  <parameter id="p55203bb151ef42c39fd12249eb7447d2" name="password" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="o80348d624e954393a5862a69ff874cd1294" cid="ELEM106" name="almacenarNuevoUsuario" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p4d666f50439047c1b2732e4dd7f26231" name="nick" type="String" type-id="Uml.String" />
+                  <parameter id="p759dfe40ea8a475a91f3ee48ea328c7b" name="email" type="String" type-id="Uml.String" />
+                  <parameter id="pf18d9867666a4f4b9212ac50fa4d1788" name="edad" type="Integer" type-id="Uml.Integer" />
+                </parameters>
+              </operation>
+              <operation id="o1c56d2ebe9a14833b43443d548a6f744293" cid="ELEM107" name="abrirInicio" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di545472944806982354" cid="C015" type="class" name="AppCompatActivity" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:33:56">
+            <style class="default" />
+          </item>
+          <item id="di724540917966995529" cid="GNR006" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:38:19" from="di616517549717098508" to="di545472944806982354">
+            <style class="default" />
+          </item>
+          <item id="di163501284624753542" cid="GNR008" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:38:50" from="di774933770262726454" to="di545472944806982354">
+            <style class="default" />
+          </item>
+          <item id="di747167881120542300" cid="C016" type="class" name="HomeActivity" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:51:09">
+            <style class="default" />
+            <attributes>
+              <attribute id="a9fa4a24e03fa43d0877519d61f80ac6b783" cid="ELEM108" name="TAG" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" default-value="&quot;HomeActivity&quot;">
+                <style class="default" />
+              </attribute>
+              <attribute id="aed68f3717ea54f7a8bb75887281cc157931" cid="ELEM109" name="lvListaCervezasFavoritas" creation-date="01/01/0001 00:00:00" type="ListView" type-id="ListView" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="aa6abcd8537ea43e2a1b9014e72a00d84382" cid="ELEM110" name="tvNickUsuarioMenuLateral, tvEmailUsuarioMenuLateral" creation-date="01/01/0001 00:00:00" type="TextView" type-id="TextView" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a8853195b25094ed0aecd1132d64de4c5379" cid="ELEM111" name="llListaVacia" creation-date="01/01/0001 00:00:00" type="LinearLayout" type-id="LinearLayout" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a1c3caa24d9e743fd9aaa62ab94f5de1a593" cid="ELEM112" name="tbBarraSuperiorHome" creation-date="01/01/0001 00:00:00" type="Toolbar" type-id="Toolbar" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a46b4e4df6cf4498594657222eb771da669" cid="ELEM113" name="dlMenuLateral" creation-date="01/01/0001 00:00:00" type="DrawerLayout" type-id="DrawerLayout" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a8fc9a5b3ca39462d9ba1b8d75a9524bd380" cid="ELEM114" name="nvMenuLateral" creation-date="01/01/0001 00:00:00" type="NavigationView" type-id="NavigationView" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a70dc86f07ff14fef9ac304becb274c73814" cid="ELEM115" name="msvBusqueda" creation-date="01/01/0001 00:00:00" type="MaterialSearchView" type-id="MaterialSearchView" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a02b4761dff8a40a8aa0ff574eeca0cf9598" cid="ELEM116" name="adaptadorLista" creation-date="01/01/0001 00:00:00" type="ListaPersonalizada" type-id="Class:di255289589136475680" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="abc6b31bc659f4bd5b5b2cc698ebb1500902" cid="ELEM117" name="cervezaFavorita" creation-date="01/01/0001 00:00:00" type="Cerveza" type-id="Class:di730682678918612417" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a3a36f349f4ea46d39257d0f83dcd6548182" cid="ELEM118" name="alCervezasFavoritas" creation-date="01/01/0001 00:00:00" type="ArrayAdapter&lt;Cerveza&gt;" type-id="Class:di915955036484645524" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a33563d508cfc46d9a86d1919be01159266" cid="ELEM120" name="cervezaAlmacenada" creation-date="01/01/0001 00:00:00" type="Cerveza" type-id="Class:di730682678918612417" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a64fd9df2b0e1438ab1235ba051b1a49d980" cid="ELEM121" name="alCervezasAlmacenadas" creation-date="01/01/0001 00:00:00" type="ArrayList&lt;Cerveza&gt;" type-id="ArrayList&lt;Cerveza&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a243a35b1f9ba4b578b1bf2a7fc72c276927" cid="ELEM122" name="alBusquedasRecientes" creation-date="01/01/0001 00:00:00" type="ArrayList&lt;Cerveza&gt;" type-id="ArrayList&lt;Cerveza&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="aca28bb52640f4c9c8e347db93b527a14715" cid="ELEM123" name="arrayNombresCervezas" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" multiplicity="*">
+                <style class="default" />
+              </attribute>
+              <attribute id="a9569761f17624d0291556ee6d64399ac572" cid="ELEM124" name="arrayBusquedasRecientes" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" multiplicity="*">
+                <style class="default" />
+              </attribute>
+              <attribute id="a44678032e2f4404e9cf22090187763c8444" cid="ELEM125" name="sinBusquedasRecientes" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" multiplicity="*">
+                <style class="default" />
+              </attribute>
+              <attribute id="a4576194a4f9d41dab5b1c7c88581bd60684" cid="ELEM126" name="idItemLista" creation-date="01/01/0001 00:00:00" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="adeae2662c54740ac94c394b38d24c49d788" cid="ELEM127" name="teclaBackPulsada" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="abef8be836acb47388c985ed1cd99d5a2621" cid="ELEM128" name="intentCambio" creation-date="01/01/0001 00:00:00" type="Intent" type-id="Intent" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="aca6905f9b9d24385b7f3973dae0b03d5108" cid="ELEM129" name="autenticacionFirenase" creation-date="01/01/0001 00:00:00" type="FirebaseAuth" type-id="FirebaseAuth" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ad3c58566dd084b74a29cac85f2466be4540" cid="ELEM130" name="usuarioActual" creation-date="01/01/0001 00:00:00" type="FirebaseUser" type-id="FirebaseUser" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6c3e601fce3f4500b8e5a20f2a1cfb04260" cid="ELEM131" name="bddFirebase" creation-date="01/01/0001 00:00:00" type="FirebaseDatabase" type-id="FirebaseDatabase" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="aae4c9f8f99394dc59c9883568b16e27d236" cid="ELEM132" name="referenciaBdd" creation-date="01/01/0001 00:00:00" type="DatabaseReference" type-id="DatabaseReference" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o3eb5bc51a80d4f379451e2d9de3db874583" cid="ELEM133" name="onCreate" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="protected">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pd81ea4b86a4741688d49046a67c2d69c" name="savedInstanceState" type="Bundle" type-id="Bundle" />
+                </parameters>
+              </operation>
+              <operation id="o1dbd95e4b7df4f978439708cfb54707b467" cid="ELEM134" name="onBackPressed" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="public">
+                <style class="default" />
+              </operation>
+              <operation id="oc90d7c18da38428696a3eeddadd62c33573" cid="ELEM135" name="onResume" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="protected">
+                <style class="default" />
+              </operation>
+              <operation id="o3472253a3b584a2da8b9ef42fe8f7484381" cid="ELEM136" name="onCreateOptionsMenu" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p1b0227fc770c458db2e30e0e1308119e" name="menu" type="Menu" type-id="Menu" />
+                </parameters>
+              </operation>
+              <operation id="od94e751019ac4ee1877de2565494815185" cid="ELEM137" name="onOptionsItemSelected" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p80116247040245f3951bf009fb36781f" name="item" type="MenuItem" type-id="MenuItem" />
+                </parameters>
+              </operation>
+              <operation id="o17496143f2304c9a849c9bfe76b0e149305" cid="ELEM138" name="onCreateContextMenu" creation-date="01/01/0001 00:00:00" type="ContextMenu.ContextMenuInfo" type-id="ContextMenu.ContextMenuInfo" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p60fe29f9cfab4120b557838e32fb132e" name="menu" type="ContextMenu" type-id="ContextMenu" />
+                  <parameter id="p43994b6641d349f2af10b9c6c9366b6d" name="v" type="View" type-id="View" />
+                  <parameter id="pa977f14b859b47cda7739193645de961" name="menuInfo" type="ContextMenu.ContextMenuInfo" type-id="ContextMenu.ContextMenuInfo" />
+                </parameters>
+              </operation>
+              <operation id="o6194fa92f53d4510a02ec294e039d11930" cid="ELEM139" name="onContextItemSelected" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pf313657eed524c3a91a7a99500cc484d" name="item" type="MenuItem" type-id="MenuItem" />
+                </parameters>
+              </operation>
+              <operation id="od7df76cba4fb404fa82ed4b39a517f2d221" cid="ELEM140" name="onNavigationItemSelected" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p24359cd17213408ca216d6140d3ca315" name="item" type="MenuItem" type-id="MenuItem" />
+                </parameters>
+              </operation>
+              <operation id="o718f86a6d03441b98a87c5655e2eaad5335" cid="ELEM141" name="modificarCampos" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p0ce6076daa6749aa8b2351b2e5d175bf" name="usuarioActual" type="FirebaseUser" type-id="FirebaseUser" />
+                  <parameter id="p9b55a7889e0c4e06b800aa543415a20b" name="nickUsuario" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="od62683501e534136a6dd75b2a536d6e1685" cid="ELEM142" name="recogerCervezasBdd" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pd84ae10d7b1c493ab98ddb61acdaa85c" name="referenciaBdd" type="DatabaseReference" type-id="DatabaseReference" />
+                </parameters>
+              </operation>
+              <operation id="od085d4b6c44e4c5babb24ab0d71c29d8717" cid="ELEM143" name="rellenarLista" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p78d988bc5e4543d0bb0670e728a7854e" name="alCervezasFavoritas" type="ArrayList&lt;Cerveza&gt;" type-id="ArrayList&lt;Cerveza&gt;" />
+                </parameters>
+              </operation>
+              <operation id="of73bf2794d1c4aab9b9bb7d171acca7a422" cid="ELEM144" name="compartirCerveza" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p47efbd3745ea4500aa9051707321cad9" name="cervezaAlmacenada" type="Cerveza" type-id="Class:di730682678918612417" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di743205205116136534" cid="GNR009" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:52:22" from="di747167881120542300" to="di545472944806982354">
+            <style class="default" />
+          </item>
+          <item id="di538243914139719419" cid="C017" type="class" name="NavigationView.OnNavigationItemSelectedListener" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:52:32">
+            <style class="default" />
+          </item>
+          <item id="di835155913663493444" cid="REA001" type="realization" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 14:53:13" from="di747167881120542300" to="di538243914139719419">
+            <style class="default" />
+          </item>
+          <item id="di609661973971255639" cid="C018" type="class" name="DetalleCervezaActivity" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 15:40:33">
+            <style class="default" />
+            <attributes>
+              <attribute id="a0b6fec8ee93f457d9aa57d2f1c78bf9f488" cid="ELEM145" name="TAG" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" default-value="&quot;DetalleCervezaActivity&quot;">
+                <style class="default" />
+              </attribute>
+              <attribute id="a0862eb331db54347a6cb9cf3190afb37719" cid="ELEM146" name="BORRAR_FAVORITO" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" default-value="&quot;BORRAR FAVORITO&quot;">
+                <style class="default" />
+              </attribute>
+              <attribute id="a438114ce0cd64a58bd8b30773844bee3733" cid="ELEM147" name="AGREGAR_FAVORITO" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" default-value="&quot;AGREGAR FAVORITO&quot;">
+                <style class="default" />
+              </attribute>
+              <attribute id="ac574d587b1bf48b7918fb1557e2e8a46804" cid="ELEM148" name="tvNombreCervezaDetalle, tvGradacionCervezaDetalle, tvTipoCervezaDetalle, tvPaisOrigenCervezaDetalle, tvDescripcionCervezaDetalle" creation-date="01/01/0001 00:00:00" type="TextView" type-id="TextView" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a2955c94b153a4835b9c7a13bce348248348" cid="ELEM149" name="btnFavorito, btnUbicarCerveza" creation-date="01/01/0001 00:00:00" type="Button" type-id="Button" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a74285a8cd4b04162a1c8247b4d5dadd261" cid="ELEM150" name="cervezaAlmacenada" creation-date="01/01/0001 00:00:00" type="Cerveza" type-id="Class:di730682678918612417" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a01d803c613774c50b3b04439f13b179b566" cid="ELEM151" name="alCervezasFavoritasUsuario" creation-date="01/01/0001 00:00:00" type="ArrayList&lt;Cerveza&gt;" type-id="ArrayList&lt;Cerveza&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a80fb37d045024098a0239adffcd3a624526" cid="ELEM152" name="usuarioAlmacenado" creation-date="01/01/0001 00:00:00" type="Usuario" type-id="Class:di343604700658655884" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a2b133fbe50dd4031a9892bbce7ce0716525" cid="ELEM153" name="idCerveza" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6f3d432d461a4ab08c83b6e1335cda2e165" cid="ELEM154" name="esFavorita" creation-date="01/01/0001 00:00:00" type="Boolean" type-id="Uml.Boolean" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a728595de50a9464b9fc899be65f1251a510" cid="ELEM155" name="intentCambio" creation-date="01/01/0001 00:00:00" type="Intent" type-id="Intent" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a8fb046807fd343f9ab22a5ae0e8c2473181" cid="ELEM156" name="autenticacionFirebase" creation-date="01/01/0001 00:00:00" type="FirebaseAuth" type-id="FirebaseAuth" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="adf228e6403d74318a508274ab4660cc8396" cid="ELEM157" name="usuarioActual" creation-date="01/01/0001 00:00:00" type="FirebaseUser" type-id="FirebaseUser" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6c07b9b0410a4b5e887a512fdf1d3494406" cid="ELEM158" name="bddFirebase" creation-date="01/01/0001 00:00:00" type="FirebaseDatabase" type-id="FirebaseDatabase" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a4e1cd1beafbf445791e561d078178d65422" cid="ELEM159" name="referenciaBdd" creation-date="01/01/0001 00:00:00" type="DatabaseReference" type-id="DatabaseReference" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o4e234e6378fb4d4a966e1ab73614607e288" cid="ELEM160" name="onCreate" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="protected">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pfe4fba4757f6473c9dd276c191a284a4" name="savedInstanceState" type="Bundle" type-id="Bundle" />
+                </parameters>
+              </operation>
+              <operation id="o9569a38e95504b8cad2dc4e7476c3c57102" cid="ELEM161" name="onResume" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="protected">
+                <style class="default" />
+              </operation>
+              <operation id="o8501e918d9cc455e8bd5e1c372fb166a5" cid="ELEM162" name="modificarCampos" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p26f72041febe45cb9381ae0c5fab4516" name="cervezaAlmacenada" type="Cerveza" type-id="Class:di730682678918612417" />
+                </parameters>
+              </operation>
+              <operation id="o877de5de8eec413c84a8dfae7ac8156a863" cid="ELEM163" name="evaluarFavorito" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p416355cddde14f7695b150a155ee4524" name="idCerveza" type="String" type-id="Uml.String" />
+                </parameters>
+              </operation>
+              <operation id="oa106a61cebe94e46926c786c57d3d75d461" cid="ELEM164" name="modificarFavorito" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p88fd885e01e74dd7ae6b903389774b39" name="guardable" type="Boolean" type-id="Uml.Boolean" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di724147592498452978" cid="GNR010" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 15:41:26" from="di609661973971255639" to="di545472944806982354">
+            <style class="default" />
+          </item>
+          <item id="di699936151906870937" cid="C019" type="class" name="NuevaCervezaActivity" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 15:49:27">
+            <style class="default" />
+            <attributes>
+              <attribute id="a9c97c7592fee45f4b0bd92cc8ef57c25471" cid="ELEM165" name="TAG" creation-date="01/01/0001 00:00:00" type="String" type-id="Uml.String" visibility="private" default-value="&quot;NuevaActivityActivity&quot;">
+                <style class="default" />
+              </attribute>
+              <attribute id="acbbad694ea1c4a4d843e5bfb6331a0fb437" cid="ELEM166" name="etNombreNuevaCerveza, etGradosNuevaCerveza, etTipoNuevaCerveza, etPaisOrigenNuevaCerveza" creation-date="01/01/0001 00:00:00" type="EditText" type-id="EditText" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ab5d3bc46bf29409dad6391573e52f5d8431" cid="ELEM167" name="btnAgreagrCerveza" creation-date="01/01/0001 00:00:00" type="Button" type-id="Button" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ae3b19479ffa74a0e9ac570b69afa363c173" cid="ELEM168" name="bddFirebase" creation-date="01/01/0001 00:00:00" type="FirebaseDatabase" type-id="FirebaseDatabase" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a1a063540799c476085dd490ecdde80b8940" cid="ELEM169" name="referenciaBdd" creation-date="01/01/0001 00:00:00" type="DatabaseReference" type-id="DatabaseReference" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a174bfed34e31420aa6dc395684ba3d07533" cid="ELEM170" name="nuevaCerveza" creation-date="01/01/0001 00:00:00" type="Cerveza" type-id="Class:di730682678918612417" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="afc84328433ad4b2f827cedaf52854a6d445" cid="ELEM171" name="alCervezasInsercion" creation-date="01/01/0001 00:00:00" type="ArrayList&lt;Cerveza&gt;" type-id="ArrayList&lt;Cerveza&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6d3184ace2244fa6929301d242845358566" cid="ELEM172" name="intentCambio" creation-date="01/01/0001 00:00:00" type="Intent" type-id="Intent" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a9d1dad02b25f46e28c1c56e678561d49804" cid="ELEM173" name="bordeRojo, bordeVerde" creation-date="01/01/0001 00:00:00" type="ColorStateList" type-id="ColorStateList" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="ocec7f3d93f334856bd431ef650273fb1584" cid="ELEM175" name="onCreate" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="protected">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pb5d8657c173e48a5950279ead93e9e43" name="savedInstanceState" type="Bundle" type-id="Bundle" />
+                </parameters>
+              </operation>
+              <operation id="o17044ec1a7a04825b9387d0b942a044e780" cid="ELEM176" name="generarCervezas" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+              </operation>
+              <operation id="o8c3fc5f842654399beb025e07a3d261a269" cid="ELEM177" name="almacenarCervezas" creation-date="01/01/0001 00:00:00" type="void" type-id="void" visibility="private">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pba44c554e6ca42f0ae55b81c617d2c29" name="nuevaCerveza" type="Cerveza" type-id="Class:di730682678918612417" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di978412299533481045" cid="GNR011" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 15:50:24" from="di699936151906870937" to="di545472944806982354">
+            <style class="default" />
+          </item>
+          <item id="di557587138264217228" cid="C020" type="class" name="MapsActivity" style-class="" visibility="package" change-tracking-state="added" creation-date="12/15/2017 15:58:18">
+            <style class="default" />
+            <attributes>
+              <attribute id="ab8295f6411cd45fb98ded973ed59609b328" cid="ELEM178" name="ubicacionAlmacenada" creation-date="01/01/0001 00:00:00" type="UbicacionCerveza" type-id="Class:di822045261523853520" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a02709133adc042e9bff354f2c16a0de8935" cid="ELEM179" name="alUbicacionesALmacenadas" creation-date="01/01/0001 00:00:00" type="ArrayList&lt;UbicacionCerveza&gt;" type-id="ArrayList&lt;UbicacionCerveza&gt;" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a743f6e22b3e84787a9a5f06c0668a5e3699" cid="ELEM180" name="mMap" creation-date="01/01/0001 00:00:00" type="GoogleMap" type-id="GoogleMap" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="af81457749d344c68902e33580bcdd68f640" cid="ELEM182" name="bddFirebase" creation-date="01/01/0001 00:00:00" type="FirebaseDatabase" type-id="FirebaseDatabase" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a63f6ce0f91d748a6bbd9f00338ea5364606" cid="ELEM183" name="referenciaBdd" creation-date="01/01/0001 00:00:00" type="DatabaseReference" type-id="DatabaseReference" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="oc29dbcab66e64e6ab79863b722f9a39d471" cid="ELEM184" name="NewOperation1" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+              </operation>
+            </operations>
+          </item>
+        </abstract-items>
+        <layer id="8d02bdb8b8aa41659f1037deefceb020" name="Default" visible="true" enabled="true" locked="false">
+          <item id="di616517549717098508" iid="3ccc7fd1fe8f4ab0932fad646b5b3785" name-style="" creation-date="12/15/2017 14:02:39" order-index="0" type="entity">
+            <layout ax="653" ay="477.5" awidth="268" aheight="74" x="653" y="477.5" width="268" height="74" />
+            <class />
+          </item>
+          <item id="di319115963691975059" iid="f00e29a6e2af451fbfe55d54c27cf463" name-style="" creation-date="12/15/2017 14:03:58" order-index="1" type="entity">
+            <layout ax="-33" ay="138" awidth="349" aheight="196" x="-33" y="138" width="349" height="196" />
+            <class />
+          </item>
+          <item id="di774933770262726454" iid="a13b6f34783045cc8d919ba1a3e97bfc" name-style="" creation-date="12/15/2017 14:33:43" order-index="7" type="entity">
+            <layout ax="873" ay="602" awidth="561" aheight="378" x="873" y="602" width="561" height="378" />
+            <class />
+          </item>
+          <item id="di990939583619895366" iid="fb34fb541f594e5283b0cde8655d1d05" name-style="" creation-date="12/15/2017 14:05:49" order-index="2" type="entity">
+            <layout ax="48" ay="63" awidth="187" aheight="19" x="48" y="63" width="187" height="19" />
+            <class />
+          </item>
+          <item id="di545472944806982354" iid="3ee04158e533475782c1cdf4c4209741" name-style="" creation-date="12/15/2017 14:33:56" order-index="8" type="entity">
+            <layout ax="1049" ay="396.5" awidth="233" aheight="19" x="1049" y="396.5" width="233" height="19" />
+            <class />
+          </item>
+          <item id="di151249464248782580" iid="0e255c5c7c22426c98c0427377b0e938" name-style="" creation-date="12/15/2017 14:06:24" order-index="3" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="142" y1="138" x2="142" y2="82" start-border-pos="0.125" end-border-pos="0.625" name-position="0,0">
+              <points>
+                <point x="142" y="138" />
+                <point x="142" y="82" />
+              </points>
+            </layout>
+            <relation from="di319115963691975059" from-iid="f00e29a6e2af451fbfe55d54c27cf463" to="di990939583619895366" to-iid="fb34fb541f594e5283b0cde8655d1d05" />
+          </item>
+          <item id="di724540917966995529" iid="0eca37cbed1b40fb87d41340cddd6357" name-style="" creation-date="12/15/2017 14:38:19" order-index="9" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="787" y1="478" x2="1049" y2="406" start-border-pos="0.125" end-border-pos="0.875" name-position="0,0">
+              <points>
+                <point x="787" y="478" />
+                <point x="1049" y="406" />
+              </points>
+            </layout>
+            <relation from="di616517549717098508" from-iid="3ccc7fd1fe8f4ab0932fad646b5b3785" to="di545472944806982354" to-iid="3ee04158e533475782c1cdf4c4209741" />
+          </item>
+          <item id="di255289589136475680" iid="e039c72659a041b28cbf258a30442f20" name-style="" creation-date="12/15/2017 14:10:16" order-index="4" type="entity">
+            <layout ax="346" ay="138" awidth="324" aheight="208" x="346" y="138" width="324" height="208" />
+            <class />
+          </item>
+          <item id="di163501284624753542" iid="9a497365c0f9478bbef5478434ca9590" name-style="" creation-date="12/15/2017 14:38:50" order-index="10" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="1154" y1="602" x2="1166" y2="416" start-border-pos="0.125" end-border-pos="0.624463519313305" name-position="0,0">
+              <points>
+                <point x="1154" y="602" />
+                <point x="1166" y="416" />
+              </points>
+            </layout>
+            <relation from="di774933770262726454" from-iid="a13b6f34783045cc8d919ba1a3e97bfc" to="di545472944806982354" to-iid="3ee04158e533475782c1cdf4c4209741" />
+          </item>
+          <item id="di915955036484645524" iid="364cafa859ea44eabe50b69a1dfd5edb" name-style="" creation-date="12/15/2017 14:14:16" order-index="5" type="entity">
+            <layout ax="391.5" ay="61.5" awidth="233" aheight="22" x="391.5" y="61.5" width="233" height="22" />
+            <class />
+          </item>
+          <item id="di747167881120542300" iid="04d6b3fe33ca4a67a92f0757d7455132" name-style="" creation-date="12/15/2017 14:51:09" order-index="11" type="entity">
+            <layout ax="1538" ay="526.5" awidth="496" aheight="743" x="1538" y="526.5" width="496" height="743" />
+            <class />
+          </item>
+          <item id="di555222116204937995" iid="fd66ad3af1ae43c684795b1b953c055d" name-style="" creation-date="12/15/2017 14:14:47" order-index="6" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="508" y1="138" x2="508" y2="84" start-border-pos="0.125" end-border-pos="0.625" name-position="0,0">
+              <points>
+                <point x="508" y="138" />
+                <point x="508" y="84" />
+              </points>
+            </layout>
+            <relation from="di255289589136475680" from-iid="e039c72659a041b28cbf258a30442f20" to="di915955036484645524" to-iid="364cafa859ea44eabe50b69a1dfd5edb" />
+          </item>
+          <item id="di743205205116136534" iid="addfaf22cbe7455ba132b7bf5b2ca73c" name-style="" creation-date="12/15/2017 14:52:22" order-index="12" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="1538" y1="526" x2="1282" y2="416" start-border-pos="0" end-border-pos="0.5" name-position="0,0">
+              <points>
+                <point x="1538" y="526" />
+                <point x="1282" y="416" />
+              </points>
+            </layout>
+            <relation from="di747167881120542300" from-iid="04d6b3fe33ca4a67a92f0757d7455132" to="di545472944806982354" to-iid="3ee04158e533475782c1cdf4c4209741" />
+          </item>
+          <item id="di538243914139719419" iid="a044db0628eb44608fb548aba4cf4bcc" name-style="" creation-date="12/15/2017 14:52:32" order-index="13" type="entity">
+            <layout ax="1561" ay="1313.5" awidth="450" aheight="19" x="1561" y="1313.5" width="450" height="19" />
+            <class />
+          </item>
+          <item id="di835155913663493444" iid="a7f973ac1b994052927b11106367940e" name-style="" creation-date="12/15/2017 14:53:13" order-index="14" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="1786" y1="1270" x2="1786" y2="1314" start-border-pos="0.625" end-border-pos="0.125" name-position="0,0">
+              <points>
+                <point x="1786" y="1270" />
+                <point x="1786" y="1314" />
+              </points>
+            </layout>
+            <relation from="di747167881120542300" from-iid="04d6b3fe33ca4a67a92f0757d7455132" to="di538243914139719419" to-iid="a044db0628eb44608fb548aba4cf4bcc" />
+          </item>
+          <item id="di609661973971255639" iid="fb97ae19fe724ba09ca35639e39f3c8a" name-style="" creation-date="12/15/2017 15:40:33" order-index="15" type="entity">
+            <layout ax="1771" ay="52" awidth="703.5" aheight="406.5" x="1771" y="52" width="703.5" height="406.5" />
+            <class />
+          </item>
+          <item id="di724147592498452978" iid="9e811a1de63d4fb3b9e82770c4845396" name-style="" creation-date="12/15/2017 15:41:26" order-index="16" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="1771" y1="255" x2="1282" y2="396" start-border-pos="0.875" end-border-pos="0.25" name-position="0,0">
+              <points>
+                <point x="1771" y="255" />
+                <point x="1282" y="396" />
+              </points>
+            </layout>
+            <relation from="di609661973971255639" from-iid="fb97ae19fe724ba09ca35639e39f3c8a" to="di545472944806982354" to-iid="3ee04158e533475782c1cdf4c4209741" />
+          </item>
+          <item id="di699936151906870937" iid="8e49e01fdd1b434a9de074d98a1661fe" name-style="" creation-date="12/15/2017 15:49:27" order-index="17" type="entity">
+            <layout ax="804.5" ay="-85" awidth="722" aheight="265" x="804.5" y="-85" width="722" height="265" />
+            <class />
+          </item>
+          <item id="di978412299533481045" iid="19d755acc6a14fdfb6858e883c732dbf" name-style="" creation-date="12/15/2017 15:50:24" order-index="18" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="1166" y1="180" x2="1166" y2="396" start-border-pos="0.625" end-border-pos="0.125536480686695" name-position="0,0">
+              <points>
+                <point x="1166" y="180" />
+                <point x="1166" y="396" />
+              </points>
+            </layout>
+            <relation from="di699936151906870937" from-iid="8e49e01fdd1b434a9de074d98a1661fe" to="di545472944806982354" to-iid="3ee04158e533475782c1cdf4c4209741" />
+          </item>
+          <item id="di557587138264217228" iid="1c6404660fda4eaf9f3832b34eb1ed2f" name-style="" creation-date="12/15/2017 15:58:18" order-index="19" type="entity">
+            <layout ax="1771" ay="-245" awidth="703.5" aheight="160" x="1771" y="-245" width="703.5" height="160" />
+            <class />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+</sim-project>
