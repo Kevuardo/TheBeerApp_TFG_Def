@@ -8,9 +8,9 @@ package com.kcastilloe.thebeerapp_def.modelo;
 
 public class Usuario {
 
-    String nick = null;
-    String email = null;
-    int edad = 0;
+    private String nick = null;
+    private String email = null;
+    private int edad = 0;
 
 
     /**
